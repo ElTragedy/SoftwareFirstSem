@@ -1,7 +1,11 @@
 package backend;
 
+import java.util.*;
+
 public class Reservation {
     int reservationID;
+
+    ArrayList<Integer> roomNumbers;
 
     String username;
 
@@ -14,6 +18,10 @@ public class Reservation {
     public void setReservationID(int reservationID) {
         this.reservationID = reservationID;
     }
+
+    public ArrayList<Integer> getRoomNumbers(){return roomNumbers;}
+
+    public void setRoomNumber(int roomNumber){roomNumbers.add(roomNumber);}
 
     public String getUsername() {
         return username;
