@@ -1,12 +1,14 @@
 package backend;
+
 enum RoomType {
     doubleQueen, singleKing, suite
-}
-public class Room {
+};
+public class Room implements Comparator<Room> {
     RoomType roomType;
     int number;
     boolean vacant;
     Account occupant;
+
     public Room(RoomType roomType, int number, boolean vacant) {
         this.roomType = roomType;
         this.number = number;
@@ -37,12 +39,16 @@ public class Room {
         this.vacant = vacant;
     }
 
-
     public Account getOccupant() {
         return occupant;
     }
 
     public void setOccupant(Account occupant) {
         this.occupant = occupant;
+    }
+
+    @Override
+    public int compare(Room r1, Room r2) {
+        return r1.number - r2.number;
     }
 }
