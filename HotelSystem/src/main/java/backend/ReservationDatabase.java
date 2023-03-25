@@ -1,23 +1,34 @@
 package backend;
 
 /*
-* this would normally interface with a database server ie sql, but for now it'll just load
+* this would normally interface with a database server ie sql, but for now it'll just loads
 * from a csv*/
 
+import java.io.*;
+import java.text.ParseException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class ReservationDatabase {
-    HashSet<Reservation> reservations;
+    HashMap<Integer, backend.Reservation> reservations;
 
-    public ReservationDatabase(){
-        reservations = new HashSet<>();
+    public ReservationDatabase() throws IOException, ParseException {
+        reservations = new HashMap<>();
 
-        //TODO: Load from CSV
+        BufferedReader reader = null;
 
+        reader = new BufferedReader(new FileReader("Reservations.csv"));
+
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            String[] split = line.split(",");
+            reservations.put(Integer.parseInt(split[0]), new Reservation(split));
+        }
     }
 
     public Reservation getReservationDetails(int reservationID){
-        return new Reservation();
+        return null;
     }
 
     public boolean attemptUpdate(int reservationIm, Reservation modified){
@@ -25,16 +36,20 @@ public class ReservationDatabase {
     }
 
     public void confirmUpdate(){
-        reservations.add(new Reservation());
+        reservations.put(null, null);
     }
 
     public Reservation getUpdateReservation(int reservationID){
-        return new Reservation();
+
+        return null;
     }
 
     public boolean cancelReservation(int reservationID){
-        return reservations.remove(reservationID);
+        return reservations.get(reservationID) != null;
     }
 
+    public static void main(String[] args) throws IOException, ParseException {
+        ReservationDatabase temp = new ReservationDatabase();
 
+    }
 }
