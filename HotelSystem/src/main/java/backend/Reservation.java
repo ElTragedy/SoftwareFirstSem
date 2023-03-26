@@ -28,6 +28,12 @@ public class Reservation {
 
     }
 
+    public Reservation(){
+        reservationID = -1;
+        username = "";
+        payed = false;
+    }
+
     public int getReservationID() {
         return reservationID;
     }

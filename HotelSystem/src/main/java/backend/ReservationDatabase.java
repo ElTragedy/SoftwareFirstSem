@@ -39,6 +39,10 @@ public class ReservationDatabase {
         reservations.put(null, null);
     }
 
+    public void add(Reservation r){
+        reservations.put(r.getReservationID(), r);
+    }
+
     public Reservation getUpdateReservation(int reservationID){
 
         return null;
