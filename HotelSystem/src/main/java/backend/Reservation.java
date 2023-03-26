@@ -1,5 +1,6 @@
 package backend;
 
+
 import javax.swing.text.DateFormatter;
 import javax.swing.text.html.parser.Parser;
 import java.text.DateFormat;
@@ -7,9 +8,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Formatter;
+import java.util.*;
+import java.util.*;
+
 
 public class Reservation {
     int reservationID;
+
+    ArrayList<Integer> roomNumbers;
 
     String username;
 
@@ -35,6 +41,10 @@ public class Reservation {
     public void setReservationID(int reservationID) {
         this.reservationID = reservationID;
     }
+
+    public ArrayList<Integer> getRoomNumbers(){return roomNumbers;}
+
+    public void setRoomNumber(int roomNumber){roomNumbers.add(roomNumber);}
 
     public String getUsername() {
         return username;
