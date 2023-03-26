@@ -1,7 +1,19 @@
 package backend;
 
 enum RoomType {
-    doubleQueen, singleKing, suite
+    doubleQueen, singleKing, suite;
+
+    public static RoomType fromString(String str) {
+        if (str.equalsIgnoreCase("doubleQueen")) {
+            return doubleQueen;
+        } else if (str.equalsIgnoreCase("singleKing")) {
+            return singleKing;
+        } else if (str.equalsIgnoreCase("suite")) {
+            return suite;
+        } else {
+            return null;
+        }
+    }
 };
 public class Room implements Comparator<Room> {
     RoomType roomType;
