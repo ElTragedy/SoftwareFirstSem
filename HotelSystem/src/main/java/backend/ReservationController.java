@@ -20,7 +20,7 @@ public class ReservationController extends JFrame implements ActionListener {
 
     static ReservationDatabase resDatabase;
 
-    ReservationController() {reservation = new Reservation();};
+    ReservationController() {};
 
     public static void main(String[] args) {
         createWindow();
