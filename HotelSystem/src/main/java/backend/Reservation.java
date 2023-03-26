@@ -1,6 +1,16 @@
 package backend;
 
+
+import javax.swing.text.DateFormatter;
+import javax.swing.text.html.parser.Parser;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Formatter;
 import java.util.*;
+import java.util.*;
+
 
 public class Reservation {
     int reservationID;
@@ -10,6 +20,19 @@ public class Reservation {
     String username;
 
     Room reserved;
+
+    Date checkIn;
+
+    Date checkOut;
+
+    public Reservation(String []data) throws ParseException {
+        reservationID = Integer.parseInt(data[0]);
+        username = data[1];
+        payed = Boolean.parseBoolean(data[2]);
+        checkIn = new SimpleDateFormat("MM/dd/yyyy").parse(data[3]);
+        checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[4]);
+
+    }
 
     public int getReservationID() {
         return reservationID;
@@ -45,6 +68,14 @@ public class Reservation {
 
     public void setPayed(boolean payed) {
         this.payed = payed;
+    }
+
+    public Date getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
     }
 
     boolean payed;
