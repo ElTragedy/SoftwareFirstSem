@@ -1,5 +1,7 @@
 package backend;
 
+import java.util.Objects;
+
 public class User {
     private enum type {ADMIN, GUEST};
     private String id;
