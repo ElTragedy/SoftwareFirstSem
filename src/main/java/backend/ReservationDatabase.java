@@ -1,4 +1,4 @@
-package backend;
+package main.java.backend;
 
 /*
 * this would normally interface with a database server ie sql, but for now it'll just loads
@@ -6,12 +6,10 @@ package backend;
 
 import java.io.*;
 import java.text.ParseException;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class ReservationDatabase {
-    HashMap<Integer, backend.Reservation> reservations;
+    HashMap<Integer, Reservation> reservations;
 
     public ReservationDatabase() throws IOException, ParseException {
         reservations = new HashMap<>();

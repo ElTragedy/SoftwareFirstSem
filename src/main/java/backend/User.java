@@ -1,4 +1,6 @@
-package backend;
+package main.java.backend;
+
+import java.util.Objects;
 
 public class User {
     private enum type {ADMIN, GUEST};

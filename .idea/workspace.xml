@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4663adbd-c2ae-4e8b-ad49-b2fd627f3f70" name="Changes" comment="" />
+    <list default="true" id="4663adbd-c2ae-4e8b-ad49-b2fd627f3f70" name="Changes" comment="Added import of database csv">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SoftwareFirstSem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SoftwareFirstSem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/src/main/java/backend/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/src/main/java/backend/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/src/main/java/backend/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/ReservationDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/src/main/java/backend/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/src/main/java/backend/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/RoomDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/src/main/java/backend/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/backend/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/src/resources/Reservations.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Reservations.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/target/classes/backend/Access.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/Access.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/target/classes/backend/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelSystem/target/classes/backend/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/backend/Main.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +34,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/backend/ReservationDatabase.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -33,12 +58,33 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/.idea" />
+    </key>
+  </component>
   <component name="RunManager">
+    <configuration name="main.java.backend.ReservationDatabase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.java.backend.ReservationDatabase" />
+      <module name="SoftwareFirstSem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Proj" />
       <method v="2">
@@ -52,6 +98,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.main.java.backend.ReservationDatabase" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -66,10 +117,24 @@
       <workItem from="1679599779221" duration="859000" />
       <workItem from="1679687712812" duration="46000" />
       <workItem from="1679769833280" duration="247000" />
+      <workItem from="1679783565685" duration="703000" />
+      <workItem from="1679944666396" duration="717000" />
     </task>
+    <task id="LOCAL-00001" summary="Added import of database csv">
+      <created>1679784176511</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679784176511</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added import of database csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added import of database csv" />
   </component>
 </project>

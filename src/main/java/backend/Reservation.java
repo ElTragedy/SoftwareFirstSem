@@ -1,12 +1,8 @@
-package backend;
+package main.java.backend;
 
-import javax.swing.text.DateFormatter;
-import javax.swing.text.html.parser.Parser;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Formatter;
 
 public class Reservation {
     int reservationID;

@@ -1,4 +1,6 @@
-package backend;
+package main.java.backend;
+
+import java.util.Comparator;
 
 enum RoomType {
     doubleQueen, singleKing, suite
