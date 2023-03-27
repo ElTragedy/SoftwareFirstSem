@@ -1,4 +1,4 @@
-package main.java.backend;
+package backend;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

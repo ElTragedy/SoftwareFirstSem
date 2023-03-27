@@ -1,4 +1,4 @@
-package main.java.backend;
+package backend;
 
 enum Access {
     guest, clerk, admin

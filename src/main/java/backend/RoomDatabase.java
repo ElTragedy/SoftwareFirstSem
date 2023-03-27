@@ -1,4 +1,4 @@
-package main.java.backend;
+package backend;
 
 public class RoomDatabase {
     // array of X object

@@ -1,4 +1,6 @@
-/.idea/workspace.xml
-/.idea/shelf
-/.idea/modules.xml
-/.idea/libraries
+.idea/workspace.xml
+.idea/shelf
+.idea/modules.xml
+.idea/libraries
+**/*.iml
+/target/

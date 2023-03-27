@@ -1,4 +1,4 @@
-package main.java.backend;
+package backend;
 
 /*
 * this would normally interface with a database server ie sql, but for now it'll just loads
@@ -16,7 +16,7 @@ public class ReservationDatabase {
 
         BufferedReader reader = null;
 
-        reader = new BufferedReader(new FileReader("Reservations.csv"));
+        reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Reservations.csv")));
 
         String line = null;
         while ((line = reader.readLine()) != null) {
