@@ -118,7 +118,7 @@ public class User {
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
         User user = (User) object;
-        return java.util.Objects.equals(getId(), user.getId()) && java.util.Objects.equals(getFirstName(), user.getFirstName()) && java.util.Objects.equals(getLastName(), user.getLastName()) && java.util.Objects.equals(getDOB(), user.getDOB()) && java.util.Objects.equals(getSex(), user.getSex()) && java.util.Objects.equals(getPhoneNumber(), user.getPhoneNumber()) && java.util.Objects.equals(getEmail(), user.getEmail()) && java.util.Objects.equals(getPassword(), user.getPassword()) && java.util.Objects.equals(getAddress(), user.getAddress()) && java.util.Objects.equals(getZipcode(), user.getZipcode()) && java.util.Objects.equals(getCity(), user.getCity()) && java.util.Objects.equals(getState(), user.getState());
+        return Objects.equals(getId(), user.getId()) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getDOB(), user.getDOB()) && Objects.equals(getSex(), user.getSex()) && Objects.equals(getPhoneNumber(), user.getPhoneNumber()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getAddress(), user.getAddress()) && Objects.equals(getZipcode(), user.getZipcode()) && Objects.equals(getCity(), user.getCity()) && Objects.equals(getState(), user.getState());
     }
 
     public int hashCode() {

@@ -6,19 +6,17 @@ package backend;
 
 import java.io.*;
 import java.text.ParseException;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class ReservationDatabase {
-    HashMap<Integer, backend.Reservation> reservations;
+    HashMap<Integer, Reservation> reservations;
 
     public ReservationDatabase() throws IOException, ParseException {
         reservations = new HashMap<>();
 
         BufferedReader reader = null;
 
-        reader = new BufferedReader(new FileReader("Reservations.csv"));
+        reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Reservations.csv")));
 
         String line = null;
         while ((line = reader.readLine()) != null) {
@@ -38,8 +36,6 @@ public class ReservationDatabase {
     public void confirmUpdate(){
         reservations.put(null, null);
     }
-
-    public void add(Reservation r){reservations.put(r.getReservationID(), r);}
 
     public Reservation getUpdateReservation(int reservationID){
 
