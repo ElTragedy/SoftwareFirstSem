@@ -1,2 +1,2 @@
 reservationID, username, roomId(number), payed(bool), checkIn(MM,DD,YYYY), checkOut(MM,DD,YYYY)
-1234, bobstone123, 0, true, 01/01/2023, 01/05/2023
+1234,bobstone123,123,true,01/01/2023,01/05/2023
