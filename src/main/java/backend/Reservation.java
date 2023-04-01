@@ -23,6 +23,21 @@ public class Reservation {
         checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[4]);
     }
 
+    public Reservation(int id, String username, Room reserved, Date checkIn, Date checkOut){
+        this.reservationID = id;
+        this.username = username;
+        this.reserved = reserved;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+    }
+
+    public boolean overlap(Reservation r){
+        if(r.checkIn.compareTo(checkOut)  <= 0 || r.checkOut.compareTo(checkIn) >= 0){
+            return false;
+        }
+        return true;
+    }
+
     public int getReservationID() {
         return reservationID;
     }
@@ -39,11 +54,11 @@ public class Reservation {
         this.username = username;
     }
 
-    public Room getReserved() {
+    public Room getRoom() {
         return reserved;
     }
 
-    public void setReserved(Room reserved) {
+    public void getRoom(Room reserved) {
         this.reserved = reserved;
     }
 

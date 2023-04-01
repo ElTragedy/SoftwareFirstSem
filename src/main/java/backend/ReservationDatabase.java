@@ -6,10 +6,14 @@ package backend;
 
 import java.io.*;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ReservationDatabase {
     HashMap<Integer, Reservation> reservations;
+    HashMap<Room, ArrayList<Reservation>> database;
 
     public ReservationDatabase() throws IOException, ParseException {
         reservations = new HashMap<>();
@@ -20,8 +24,15 @@ public class ReservationDatabase {
 
         String line = null;
         while ((line = reader.readLine()) != null) {
+
             String[] split = line.split(",");
-            reservations.put(Integer.parseInt(split[0]), new Reservation(split));
+
+            Reservation current = new Reservation(split);
+            reservations.put(Integer.parseInt(split[0]), current);
+
+            database.computeIfAbsent(new Room(new String[]{split[2], "0"}), k -> new ArrayList<>());
+
+            database.get(new Room(new String[]{split[2], "0"})).add(current);
         }
     }
 
@@ -42,12 +53,33 @@ public class ReservationDatabase {
         return null;
     }
 
-    public boolean reserveRoom(){
+    public boolean reserveRoom(Reservation r){
+        boolean reserved = false;
 
-        return true;
+        if(database.get(r.getRoom()) == null){
+            database.put(r.getRoom(), new ArrayList<>(List.of(r)));
+            return true;
+        }else{
+            ArrayList<Reservation> reservations = database.get(r.getRoom());
+
+            for (Reservation reservation : reservations) {
+                reserved = reservation.overlap(r);
+                if(reserved){
+                    break;
+                }
+            }
+
+            if(!reserved){
+                reservations.add(r);
+                database.put(r.getRoom(), reservations);
+            }
+        }
+
+        return !reserved;
     }
 
     public boolean cancelReservation(int reservationID){
+
         return reservations.get(reservationID) != null;
     }
 
