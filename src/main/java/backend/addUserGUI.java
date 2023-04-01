@@ -38,6 +38,7 @@ public class addUserGUI extends JFrame {
     JDatePickerImpl datePicker;
 
     public addUserGUI() {
+        // Set header for window
         message = new JLabel("Register a New User");
         message.setFont(new Font("Courier", Font.BOLD, 20));
 

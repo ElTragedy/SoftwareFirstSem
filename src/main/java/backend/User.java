@@ -36,6 +36,9 @@ public class User {
     }
 
     // addUser creates new user and stores in data base
+    public void addUser() {
+
+    }
 
     public String getId() {
         return id;
