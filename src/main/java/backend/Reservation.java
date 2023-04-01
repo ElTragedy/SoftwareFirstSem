@@ -21,7 +21,6 @@ public class Reservation {
         payed = Boolean.parseBoolean(data[2]);
         checkIn = new SimpleDateFormat("MM/dd/yyyy").parse(data[3]);
         checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[4]);
-
     }
 
     public int getReservationID() {

@@ -29,6 +29,13 @@ public class RoomDatabase {
         return rooms;
     }
 
+    public void addRoom(Room newRoom) throws Exception {
+        if(rooms.get(newRoom.getNumber()) != null){
+            throw new Exception("Room number already exists");
+        }
+        rooms.put(newRoom.getNumber(), newRoom);
+    }
+
     public static void main(String[] args) {
         try {
             RoomDatabase rd = new RoomDatabase();

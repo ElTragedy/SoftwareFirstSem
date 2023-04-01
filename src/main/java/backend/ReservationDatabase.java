@@ -42,9 +42,16 @@ public class ReservationDatabase {
         return null;
     }
 
+    public boolean reserveRoom(){
+
+        return true;
+    }
+
     public boolean cancelReservation(int reservationID){
         return reservations.get(reservationID) != null;
     }
+
+
 
     public static void main(String[] args) throws IOException, ParseException {
         ReservationDatabase temp = new ReservationDatabase();
