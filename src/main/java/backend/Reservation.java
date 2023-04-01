@@ -10,6 +10,7 @@ public class Reservation {
     String username;
 
     Room reserved;
+    boolean payed;
 
     Date checkIn;
 
@@ -18,10 +19,26 @@ public class Reservation {
     public Reservation(String []data) throws ParseException {
         reservationID = Integer.parseInt(data[0]);
         username = data[1];
-        payed = Boolean.parseBoolean(data[2]);
-        checkIn = new SimpleDateFormat("MM/dd/yyyy").parse(data[3]);
-        checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[4]);
+        reserved = new Room(new String[]{data[2], "suite"});
+        payed = Boolean.parseBoolean(data[3]);
+        checkIn = new SimpleDateFormat("MM/dd/yyyy").parse(data[4]);
+        checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[5]);
+    }
 
+    public Reservation(int id, String username, Room reserved, boolean payed, Date checkIn, Date checkOut){
+        this.reservationID = id;
+        this.username = username;
+        this.reserved = reserved;
+        this.payed = payed;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+    }
+
+    public boolean overlap(Reservation r){
+        if(r.checkIn.compareTo(checkOut)  <= 0 || r.checkOut.compareTo(checkIn) >= 0){
+            return false;
+        }
+        return true;
     }
 
     public int getReservationID() {
@@ -40,11 +57,11 @@ public class Reservation {
         this.username = username;
     }
 
-    public Room getReserved() {
+    public Room getRoom() {
         return reserved;
     }
 
-    public void setReserved(Room reserved) {
+    public void getRoom(Room reserved) {
         this.reserved = reserved;
     }
 
@@ -63,8 +80,4 @@ public class Reservation {
     public void setCheckIn(Date checkIn) {
         this.checkIn = checkIn;
     }
-
-    boolean payed;
-
-
 }
