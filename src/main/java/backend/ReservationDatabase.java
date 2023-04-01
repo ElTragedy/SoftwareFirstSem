@@ -15,29 +15,38 @@ public class ReservationDatabase {
     HashMap<Integer, Reservation> reservations;
     HashMap<Room, ArrayList<Reservation>> database;
 
-    public ReservationDatabase() throws IOException, ParseException {
+    public ReservationDatabase(){
         reservations = new HashMap<>();
+        database = new HashMap<>();
 
         BufferedReader reader = null;
 
         reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Reservations.csv")));
 
         String line = null;
-        while ((line = reader.readLine()) != null) {
+        try {
+            reader.readLine(); //for header
+            while ((line = reader.readLine()) != null) {
 
-            String[] split = line.split(",");
+                String[] split = line.split(",");
 
-            Reservation current = new Reservation(split);
-            reservations.put(Integer.parseInt(split[0]), current);
+                Reservation current = new Reservation(split);
+                reservations.put(Integer.parseInt(split[0]), current);
 
-            database.computeIfAbsent(new Room(new String[]{split[2], "0"}), k -> new ArrayList<>());
-
-            database.get(new Room(new String[]{split[2], "0"})).add(current);
+                if(database.get(new Room(new String[]{split[2], "suite"})) == null){
+                    database.put(new Room(new String[]{split[2], "suite"}), new ArrayList<>(List.of(current)));
+                } else{
+                    database.get(new Room(new String[]{split[2], "suite"})).add(current);
+                }
+            }
+        } catch(IOException | ParseException e){
+            e.printStackTrace();
+            System.err.println("CSV Read: FATAL ERROR");
         }
     }
 
     public Reservation getReservationDetails(int reservationID){
-        return null;
+        return reservations.get(reservationID);
     }
 
     public boolean attemptUpdate(int reservationIm, Reservation modified){
@@ -58,11 +67,12 @@ public class ReservationDatabase {
 
         if(database.get(r.getRoom()) == null){
             database.put(r.getRoom(), new ArrayList<>(List.of(r)));
+            reservations.put(r.getReservationID(), r);
             return true;
         }else{
-            ArrayList<Reservation> reservations = database.get(r.getRoom());
+            ArrayList<Reservation> reserveList = database.get(r.getRoom());
 
-            for (Reservation reservation : reservations) {
+            for (Reservation reservation : reserveList) {
                 reserved = reservation.overlap(r);
                 if(reserved){
                     break;
@@ -70,8 +80,9 @@ public class ReservationDatabase {
             }
 
             if(!reserved){
-                reservations.add(r);
-                database.put(r.getRoom(), reservations);
+                reserveList.add(r);
+                database.put(r.getRoom(), reserveList);
+                reservations.put(r.getReservationID(), r);
             }
         }
 
