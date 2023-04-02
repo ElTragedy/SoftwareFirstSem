@@ -1,4 +1,7 @@
-package backend;
+package frontend;
+
+import backend.Reservation;
+import backend.ReservationDatabase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,11 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
-public class ReservationController extends JFrame implements ActionListener {
+public class reservationGUI extends JFrame implements ActionListener {
 
     static JFrame frame;
 
@@ -20,7 +21,7 @@ public class ReservationController extends JFrame implements ActionListener {
 
     static ReservationDatabase resDatabase;
 
-    ReservationController() {};
+    reservationGUI() {};
 
     public static void main(String[] args) {
         createWindow();
@@ -36,7 +37,7 @@ public class ReservationController extends JFrame implements ActionListener {
     }
 
     private static void createUI(final JFrame frame){
-        ReservationController r = new ReservationController();
+        reservationGUI r = new reservationGUI();
 
         //title
         JLabel header = new JLabel("Reserve a Room");
@@ -105,7 +106,9 @@ public class ReservationController extends JFrame implements ActionListener {
                 } catch (ParseException ex) {
                     throw new RuntimeException(ex);
                 }
-                //resDatabase.add(reservation);
+                if(resDatabase.reserveRoom(reservation)){
+                    JOptionPane.showMessageDialog(null, "You have reserved a room!");
+                }
             }
         });
 
