@@ -16,6 +16,28 @@ public class User {
     private String zipcode;
     private String city;
     private String state;
+    private String country;
+
+    public User(String id, String firstName, String lastName, String DOB, String sex, String phoneNumber, String email,
+                String password, String address, String zipcode, String city, String state, String country) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.DOB = DOB;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.zipcode = zipcode;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+    }
+
+    public void addUser() {
+
+    }
 
     public String getId() {
         return id;
@@ -113,6 +135,10 @@ public class User {
         this.state = state;
     }
 
+    public String getCountry() { return country; }
+
+    public void setCountry(String country) { this.country = country; }
+
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
@@ -141,4 +167,5 @@ public class User {
                 ", state='" + state + '\'' +
                 '}';
     }
+
 }
