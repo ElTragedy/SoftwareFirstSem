@@ -1,4 +1,4 @@
-package backend;
+package frontend;
 
 import java.awt.Container;
 import java.awt.Font;
@@ -51,7 +51,7 @@ public class addUserGUI extends JFrame {
         // Add DOB labels and fields
         dobLabel = new JLabel("DOB");
         UtilDateModel model = new UtilDateModel();
-        model.setDate(1999, 01, 02);
+        model.setDate(2000, 01, 12);
         model.setSelected(true);
         Properties p = new Properties();
         p.put("text.today", "Today");
