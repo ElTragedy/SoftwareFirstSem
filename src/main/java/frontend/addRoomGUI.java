@@ -36,7 +36,7 @@ public class addRoomGUI extends JFrame implements ActionListener {
         submitButton.addActionListener(this);
 
         add(submitButton, BorderLayout.SOUTH);
-
+        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -66,6 +66,5 @@ public class addRoomGUI extends JFrame implements ActionListener {
     public static void main(String[] args) {
 
         addRoomGUI ui = new addRoomGUI();
-        ui.setVisible(true);
     }
 }
