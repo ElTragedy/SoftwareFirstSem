@@ -13,7 +13,7 @@ public class addRoomGUI extends JFrame implements ActionListener {
     private JButton submitButton;
 
     public addRoomGUI() {
-        setTitle("Number Input UI");
+        setTitle("Add Room");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 200);
         setLocationRelativeTo(null);
@@ -32,7 +32,7 @@ public class addRoomGUI extends JFrame implements ActionListener {
         
         add(panel, BorderLayout.NORTH);
 
-        submitButton = new JButton("Add room");
+        submitButton = new JButton("Add Room");
         submitButton.addActionListener(this);
 
         add(submitButton, BorderLayout.SOUTH);
