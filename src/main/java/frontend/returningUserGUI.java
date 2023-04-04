@@ -34,9 +34,9 @@ public class returningUserGUI extends JFrame{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String email = emailField.getText();
-                String password = Arrays.toString(passwordField.getPassword());
-                System.out.println(email + " " + password);
+                //String email = emailField.getText();
+                //String password = Arrays.toString(passwordField.getPassword());
+                //System.out.println(email + " " + password);
             }
         });
 

@@ -47,7 +47,6 @@ public class loginGUI extends JFrame implements ActionListener {
             }
         });
 
-
         // Add and set container
         container = getContentPane();
         container.setLayout(null);
