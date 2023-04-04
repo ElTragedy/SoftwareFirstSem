@@ -39,7 +39,7 @@ public class addUserGUI extends JFrame {
 
     public addUserGUI() {
         // Set header for window
-        message = new JLabel("Register a New User");
+        message = new JLabel("Register a New Account");
         message.setFont(new Font("Courier", Font.BOLD, 20));
 
         // Add name labels and fields
