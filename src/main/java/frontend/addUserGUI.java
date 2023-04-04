@@ -13,29 +13,29 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 public class addUserGUI extends JFrame {
-    JLabel message;
-    JLabel firstNameLabel, lastNameLabel, dobLabel, sexLabel, dobFormat;
-    JTextField firstNameField, lastNameField;
-    JRadioButton sexMale, sexFemale, sexUnassigned;
-    ButtonGroup sexGroup;
-    JLabel emailLabel, mobileNoLabel;
-    JTextField emailField, mobileNoField;
-    JLabel passwordLabel, rePasswordLabel;
-    JPasswordField passwordField, rePasswordField;
-    JLabel addressLabel;
-    JTextField addressField;
-    JLabel cityLabel;
-    JTextField cityField;
-    JLabel stateLabel;
-    JComboBox<String> stateList;
-    JLabel zipLabel;
-    JTextField zipField;
-    JLabel countryLabel;
-    JComboBox<String> countryList;
-    JButton registerButton;
-    Container container;
-    JDatePanelImpl datePanel;
-    JDatePickerImpl datePicker;
+    private JLabel message;
+    private JLabel firstNameLabel, lastNameLabel, dobLabel, sexLabel, dobFormat;
+    private JTextField firstNameField, lastNameField;
+    private JRadioButton sexMale, sexFemale, sexUnassigned;
+    private ButtonGroup sexGroup;
+    private JLabel emailLabel, mobileNoLabel;
+    private JTextField emailField, mobileNoField;
+    private JLabel passwordLabel, rePasswordLabel;
+    private JPasswordField passwordField, rePasswordField;
+    private JLabel addressLabel;
+    private JTextField addressField;
+    private JLabel cityLabel;
+    private JTextField cityField;
+    private JLabel stateLabel;
+    private JComboBox<String> stateList;
+    private JLabel zipLabel;
+    private JTextField zipField;
+    private JLabel countryLabel;
+    private JComboBox<String> countryList;
+    private JButton registerButton;
+    private Container container;
+    private JDatePanelImpl datePanel;
+    private JDatePickerImpl datePicker;
 
     public addUserGUI() {
         // Set header for window
@@ -228,7 +228,7 @@ public class addUserGUI extends JFrame {
         container.add(countryList);
         container.add(registerButton);
     }
-    public static void main(String[] args) {
+    public void createAndShowGui() {
         addUserGUI frame = new addUserGUI();
         frame.setTitle("Create New Account");
         frame.setVisible(true);
@@ -236,6 +236,14 @@ public class addUserGUI extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
+//    public static void main(String[] args) {
+//        addUserGUI frame = new addUserGUI();
+//        frame.setTitle("Create New Account");
+//        frame.setVisible(true);
+//        frame.setBounds(500, 100, 500, 1000);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setResizable(true);
+//    }
 
     // Class for formatting DOB information
     public class DateLabelFormatter extends AbstractFormatter {
