@@ -17,11 +17,11 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
     Date checkOut;
 
     public Reservation(String []data) throws ParseException {
-        username = data[1];
-        reserved = new Room(new String[]{data[2], "suite"});
-        payed = Boolean.parseBoolean(data[3]);
-        checkIn = new SimpleDateFormat("MM/dd/yyyy").parse(data[4]);
-        checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[5]);
+        username = data[0];
+        reserved = new Room(new String[]{data[1], "suite"});
+        payed = Boolean.parseBoolean(data[2]);
+        checkIn = new SimpleDateFormat("MM/dd/yyyy").parse(data[3]);
+        checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[4]);
     }
 
     public Reservation(String username, Room reserved, boolean payed, Date checkIn, Date checkOut){
