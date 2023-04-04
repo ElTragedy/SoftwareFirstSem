@@ -9,19 +9,14 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ReservationDatabase {
-    HashMap<Integer, Reservation> reservations;
-    HashMap<Room, ArrayList<Reservation>> database;
+    HashMap<Integer, ArrayList<Reservation>> database;
 
     public ReservationDatabase(){
-        reservations = new HashMap<>();
         database = new HashMap<>();
 
-        BufferedReader reader = null;
-
-        reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Reservations.csv")));
+        BufferedReader reader =  new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Reservations.csv")));
 
         String line = null;
         try {
@@ -31,12 +26,11 @@ public class ReservationDatabase {
                 String[] split = line.split(",");
 
                 Reservation current = new Reservation(split);
-                reservations.put(Integer.parseInt(split[0]), current);
 
-                if(database.get(new Room(new String[]{split[2], "suite"})) == null){
-                    database.put(new Room(new String[]{split[2], "suite"}), new ArrayList<>(List.of(current)));
+                if(database.get(Integer.parseInt(split[1])) == null){
+                    database.put(Integer.parseInt(split[1]), new ArrayList<>(List.of(current)));
                 } else{
-                    database.get(new Room(new String[]{split[2], "suite"})).add(current);
+                    database.get(Integer.parseInt(split[1])).add(current);
                 }
             }
         } catch(IOException | ParseException e){
@@ -45,8 +39,13 @@ public class ReservationDatabase {
         }
     }
 
-    public Reservation getReservationDetails(int reservationID){
-        return reservations.get(reservationID);
+    public Reservation getReservationDetails(String reservationID){
+        for(Reservation r : database.get(Integer.parseInt(reservationID.substring(0, 2), 16))){
+            if(r.getReservationID().equals(reservationID)){
+                return r;
+            }
+        }
+        return null;
     }
 
     public boolean attemptUpdate(int reservationIm, Reservation modified){
@@ -54,7 +53,7 @@ public class ReservationDatabase {
     }
 
     public void confirmUpdate(){
-        reservations.put(null, null);
+
     }
 
     public Reservation getUpdateReservation(int reservationID){
@@ -65,12 +64,11 @@ public class ReservationDatabase {
     public boolean reserveRoom(Reservation r){
         boolean reserved = false;
 
-        if(database.get(r.getRoom()) == null){
-            database.put(r.getRoom(), new ArrayList<>(List.of(r)));
-            reservations.put(r.getReservationID(), r);
+        if(database.get(r.getRoom().getNumber()) == null){
+            database.put(r.getRoom().getNumber(), new ArrayList<>(List.of(r)));
             return true;
         }else{
-            ArrayList<Reservation> reserveList = database.get(r.getRoom());
+            ArrayList<Reservation> reserveList = database.get(r.getRoom().getNumber());
 
             for (Reservation reservation : reserveList) {
                 reserved = reservation.overlap(r);
@@ -81,8 +79,7 @@ public class ReservationDatabase {
 
             if(!reserved){
                 reserveList.add(r);
-                database.put(r.getRoom(), reserveList);
-                reservations.put(r.getReservationID(), r);
+                database.put(r.getRoom().getNumber(), reserveList);
             }
         }
 
@@ -90,14 +87,12 @@ public class ReservationDatabase {
     }
 
     public boolean cancelReservation(int reservationID){
-
-        return reservations.get(reservationID) != null;
+        return false;
     }
-
 
 
     public static void main(String[] args) throws IOException, ParseException {
         ReservationDatabase temp = new ReservationDatabase();
-
+        System.out.println(new Reservation(new String[]{"1111","username1234","312","false","01/01/2023","01/05/2023"}).getReservationID());
     }
 }
