@@ -1,0 +1,4 @@
+id,access,firstName,lastName,DOB,sex,phoneNumber,email,password,address,zipcode,city,state,country
+001,guest,John,Doe,07/15/1985,M,123-456-7890,johndoe@example.com,mysecret,123 Main St,12345,Anytown,NY,USA
+002,clerk,Jane,Smith,03/20/1992,F,555-555-1212,janesmith@example.com,supersecret,456 Elm St,54321,Anycity,CA,USA
+003,admin,Bob,Johnson,11/01/1976,M,987-654-3210,bobjohnson@example.com,topsecret,789 Oak St,67890,Someplace,TX,USA
