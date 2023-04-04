@@ -236,14 +236,6 @@ public class addUserGUI extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
-//    public static void main(String[] args) {
-//        addUserGUI frame = new addUserGUI();
-//        frame.setTitle("Create New Account");
-//        frame.setVisible(true);
-//        frame.setBounds(500, 100, 500, 1000);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setResizable(true);
-//    }
 
     // Class for formatting DOB information
     public class DateLabelFormatter extends AbstractFormatter {
