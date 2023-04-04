@@ -3,9 +3,9 @@ package backend;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
-public class Reservation {
-    int reservationID;
+public class Reservation { //TODO: Make reservation ID equal to room number as hex + ReservationHash(In Hex)
 
     String username;
 
@@ -17,7 +17,6 @@ public class Reservation {
     Date checkOut;
 
     public Reservation(String []data) throws ParseException {
-        reservationID = Integer.parseInt(data[0]);
         username = data[1];
         reserved = new Room(new String[]{data[2], "suite"});
         payed = Boolean.parseBoolean(data[3]);
@@ -25,13 +24,25 @@ public class Reservation {
         checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[5]);
     }
 
-    public Reservation(int id, String username, Room reserved, boolean payed, Date checkIn, Date checkOut){
-        this.reservationID = id;
+    public Reservation(String username, Room reserved, boolean payed, Date checkIn, Date checkOut){
         this.username = username;
         this.reserved = reserved;
         this.payed = payed;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reservation that = (Reservation) o;
+        return Objects.equals(username, that.username) && Objects.equals(reserved, that.reserved) && Objects.equals(checkIn, that.checkIn) && Objects.equals(checkOut, that.checkOut);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, reserved, checkIn, checkOut);
     }
 
     public boolean overlap(Reservation r){
@@ -41,12 +52,9 @@ public class Reservation {
         return true;
     }
 
-    public int getReservationID() {
-        return reservationID;
-    }
 
-    public void setReservationID(int reservationID) {
-        this.reservationID = reservationID;
+    public String getReservationID() {
+        return ((Integer.toHexString(reserved.number).length() == 2) ? "0": "") + Integer.toHexString(reserved.number).toUpperCase() + Integer.toHexString(this.hashCode()).toUpperCase();
     }
 
     public String getUsername() {
