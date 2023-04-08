@@ -169,6 +169,14 @@ public class createAccountGUI extends JFrame {
 
         // Add register button
         registerButton = new JButton("Register");
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                accountPortalGUI accountPortalGUI = new accountPortalGUI();
+                accountPortalGUI.createAndShowGui();
+                dispose();
+            }
+        });
 
         // Add and set container
         container = getContentPane();
@@ -252,7 +260,7 @@ public class createAccountGUI extends JFrame {
         createAccountGUI frame = new createAccountGUI();
         frame.setTitle("Create New Account");
         frame.setVisible(true);
-        frame.setBounds(500, 100, 500, 1000);
+        frame.setBounds(500, 15, 500, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
