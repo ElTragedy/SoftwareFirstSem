@@ -36,7 +36,7 @@ public class loginGUI extends JFrame implements ActionListener{
 
         // Set header for window
         message = new JLabel("Welcome back, please enter your information to login.");
-        message.setFont(new Font("Courier", Font.BOLD, 20));
+        message.setFont(new Font("Barlow", Font.PLAIN, 20));
 
         // Add contact/login info labels and fields
         emailLabel = new JLabel("Email");

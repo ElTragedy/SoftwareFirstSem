@@ -20,10 +20,10 @@ public class welcomeGUI extends JFrame implements ActionListener {
     public welcomeGUI() { // OVERRIDE BUTTONS BY LAMBDA FUNCTIONS
         // Set All Components
         welcomeLabel = new JLabel("Welcome" );
-        welcomeLabel.setFont(new Font("Courier", Font.BOLD, 30));
+        welcomeLabel.setFont(new Font("Barlow", Font.BOLD, 30));
 
         promptLabel = new JLabel("Would you like to sign in or create a new account?");
-        promptLabel.setFont(new Font("Courier", Font.BOLD, 12));
+        promptLabel.setFont(new Font("Barlow", Font.PLAIN, 15));
 
         returningUserButton = new JButton("Sign In");
         returningUserButton.addActionListener(new ActionListener() {
@@ -54,8 +54,8 @@ public class welcomeGUI extends JFrame implements ActionListener {
 
     // Sets all labels/fields bounds
     public void setBounds() {
-        welcomeLabel.setBounds(175, 10, 200, 30);
-        promptLabel.setBounds(100, 60, 300, 30);
+        welcomeLabel.setBounds(175, 10, 250, 30);
+        promptLabel.setBounds(100, 60, 350, 30);
         returningUserButton.setBounds(50, 110, 200, 30);
         newUserButton.setBounds(250, 110, 200, 30);
     }
