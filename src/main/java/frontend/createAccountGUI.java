@@ -1,7 +1,8 @@
 package frontend;
 
-import java.awt.Container;
-import java.awt.Font;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -12,7 +13,9 @@ import javax.swing.JFormattedTextField.AbstractFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-public class addUserGUI extends JFrame {
+
+public class createAccountGUI extends JFrame {
+    private JButton backButton;
     private JLabel message;
     private JLabel firstNameLabel, lastNameLabel, dobLabel, sexLabel, dobFormat;
     private JTextField firstNameField, lastNameField;
@@ -37,7 +40,22 @@ public class addUserGUI extends JFrame {
     private JDatePanelImpl datePanel;
     private JDatePickerImpl datePicker;
 
-    public addUserGUI() {
+    public createAccountGUI() {
+        // Implement Back Button
+        backButton = new JButton();
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                welcomeGUI welcomeGUI = new welcomeGUI();
+                welcomeGUI.createAndShowGui();
+                dispose();
+            }
+        });
+        ImageIcon imageIcon = new ImageIcon("C:/Users/carma/Desktop/left.png");
+        Image image = imageIcon.getImage().getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(image);
+        backButton.setIcon(imageIcon);
+
         // Set header for window
         message = new JLabel("Register a New Account");
         message.setFont(new Font("Courier", Font.BOLD, 20));
@@ -161,6 +179,7 @@ public class addUserGUI extends JFrame {
 
     // Sets all labels/fields bounds
     public void setBounds() {
+        backButton.setBounds(0, 0, 30, 30);
         message.setBounds(50, 10, 600, 30);
         firstNameLabel.setBounds(50, 60, 100, 30);
         firstNameField.setBounds(130, 60, 200, 30);
@@ -196,6 +215,7 @@ public class addUserGUI extends JFrame {
 
     // Adds labels and fields to container
     public void addComponents() {
+        container.add(backButton);
         container.add(message);
         container.add(firstNameLabel);
         container.add(firstNameField);
@@ -229,7 +249,7 @@ public class addUserGUI extends JFrame {
         container.add(registerButton);
     }
     public void createAndShowGui() {
-        addUserGUI frame = new addUserGUI();
+        createAccountGUI frame = new createAccountGUI();
         frame.setTitle("Create New Account");
         frame.setVisible(true);
         frame.setBounds(500, 100, 500, 1000);
