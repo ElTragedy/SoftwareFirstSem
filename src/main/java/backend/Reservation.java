@@ -8,12 +8,9 @@ import java.util.Objects;
 public class Reservation { //TODO: Make reservation ID equal to room number as hex + ReservationHash(In Hex)
 
     String username;
-
     Room reserved;
     boolean payed;
-
     Date checkIn;
-
     Date checkOut;
 
     public Reservation(String []data) throws ParseException {
@@ -24,7 +21,8 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
         checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[4]);
     }
 
-    public Reservation(String username, Room reserved, boolean payed, Date checkIn, Date checkOut){
+    public Reservation(String username, Room reserved, boolean payed, 
+        Date checkIn, Date checkOut){
         this.username = username;
         this.reserved = reserved;
         this.payed = payed;
@@ -37,7 +35,10 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reservation that = (Reservation) o;
-        return Objects.equals(username, that.username) && Objects.equals(reserved, that.reserved) && Objects.equals(checkIn, that.checkIn) && Objects.equals(checkOut, that.checkOut);
+        return Objects.equals(username, that.username) && 
+            Objects.equals(reserved, that.reserved) && 
+            Objects.equals(checkIn, that.checkIn) && 
+            Objects.equals(checkOut, that.checkOut);
     }
 
     @Override
@@ -54,7 +55,9 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
 
 
     public String getReservationID() {
-        return ((Integer.toHexString(reserved.number).length() == 2) ? "0": "") + Integer.toHexString(reserved.number).toUpperCase() + Integer.toHexString(this.hashCode()).toUpperCase();
+        return ((Integer.toHexString(reserved.number).length() == 2) ? "0": "")
+         + Integer.toHexString(reserved.number).toUpperCase()
+         + Integer.toHexString(this.hashCode()).toUpperCase();
     }
 
     public String getUsername() {
