@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<roomReservations>
+    <reserveMap>
+        <entry>
+            <key>321</key>
+            <value>
+                <reserveList>
+                    <username>username1234</username>
+                    <payed>false</payed>
+                    <checkIn>2023-01-05T00:00:00-06:00</checkIn>
+                    <checkOut>2023-01-10T00:00:00-06:00</checkOut>
+                </reserveList>
+            </value>
+        </entry>
+        <entry>
+            <key>123</key>
+            <value>
+                <reserveList>
+                    <username>bobstone123</username>
+                    <payed>true</payed>
+                    <checkIn>2023-01-01T00:00:00-06:00</checkIn>
+                    <checkOut>2023-01-05T00:00:00-06:00</checkOut>
+                </reserveList>
+            </value>
+        </entry>
+    </reserveMap>
+</roomReservations>
