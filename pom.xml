@@ -30,6 +30,16 @@
             <artifactId>junit-jupiter</artifactId>
             <version>RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-jxc</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.json.bind</groupId>
+            <artifactId>javax.json.bind-api</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
 </project>

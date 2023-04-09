@@ -1,41 +1,28 @@
 package backend;
 
-/*
-* this would normally interface with a database server ie sql, but for now it'll just loads
-* from a csv*/
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
+import jakarta.xml.bind.annotation.*;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
 
 public class ReservationDatabase {
+
     HashMap<Integer, ArrayList<Reservation>> database;
 
-    public ReservationDatabase(){
-        database = new HashMap<>();
+    public ReservationDatabase() {
+        try{
+            JAXBContext context = JAXBContext.newInstance(ReservationMap.class);
+            Unmarshaller um = context.createUnmarshaller();
 
-        BufferedReader reader =  new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Reservations.csv")));
-
-        String line = null;
-        try {
-            reader.readLine(); //for header
-            while ((line = reader.readLine()) != null) {
-
-                String[] split = line.split(",");
-
-                Reservation current = new Reservation(split);
-
-                if(database.get(Integer.parseInt(split[1])) == null){
-                    database.put(Integer.parseInt(split[1]), new ArrayList<>(List.of(current)));
-                } else{
-                    database.get(Integer.parseInt(split[1])).add(current);
-                }
-            }
-        } catch(IOException | ParseException e){
-            e.printStackTrace();
-            System.err.println("CSV Read: FATAL ERROR");
+            xmlToDatabase((ReservationMap) um.unmarshal(this.getClass().getResourceAsStream("/inReservations.xml")));
+        }catch (JAXBException e){
         }
     }
 
@@ -64,11 +51,12 @@ public class ReservationDatabase {
     public boolean reserveRoom(Reservation r){
         boolean reserved = false;
 
-        if(database.get(r.getRoom().getNumber()) == null){
-            database.put(r.getRoom().getNumber(), new ArrayList<>(List.of(r)));
+        if(database.get(r.getRoomNumber()) == null){
+            database.put(r.getRoomNumber(), new ArrayList<>(List.of(r)));
+
             return true;
         }else{
-            ArrayList<Reservation> reserveList = database.get(r.getRoom().getNumber());
+            ArrayList<Reservation> reserveList = database.get(r.getRoomNumber());
 
             for (Reservation reservation : reserveList) {
                 reserved = reservation.overlap(r);
@@ -79,7 +67,7 @@ public class ReservationDatabase {
 
             if(!reserved){
                 reserveList.add(r);
-                database.put(r.getRoom().getNumber(), reserveList);
+                database.put(r.getRoomNumber(), reserveList);
             }
         }
 
@@ -90,9 +78,83 @@ public class ReservationDatabase {
         return false;
     }
 
+    public void storeDatabase() {
+        try{
+            JAXBContext context = JAXBContext.newInstance(ReservationMap.class);
 
-    public static void main(String[] args) throws IOException, ParseException {
+            Marshaller m = context.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            m.marshal(mapToXML(database), new File((Paths.get("src", "main", "resources", "outReservations.xml")).toAbsolutePath().toUri()));
+
+        } catch(JAXBException e){
+        }
+    }
+
+    private ReservationMap mapToXML(HashMap<Integer, ArrayList<Reservation>> data){
+        ReservationMap output = new ReservationMap();
+
+        HashMap<Integer, ReservationList> temp = output.getMap();
+
+        data.forEach((i, n) -> {
+            ReservationList tmp = new ReservationList();
+
+            tmp.setReserveList(n);
+            temp.put(i, tmp);
+        });
+
+        output.setMap(temp);
+
+        return output;
+    }
+
+    private void xmlToDatabase(ReservationMap data){
+        database = new HashMap<>();
+
+        HashMap<Integer, ReservationList> tmpDatabase = data.getMap();
+
+        tmpDatabase.forEach((n, i) -> {
+            database.put(n, i.getReserveList());
+        });
+
+        System.out.println(database.get(123));
+    }
+
+    @XmlRootElement (name="reservations")
+    @XmlAccessorType(XmlAccessType.FIELD)
+    private static class ReservationList{
+        public ArrayList<Reservation> getReserveList() {
+            return reserveList;
+        }
+
+        public void setReserveList(ArrayList<Reservation> reserveList) {
+            this.reserveList = reserveList;
+        }
+
+        @XmlElement
+        private ArrayList<Reservation> reserveList = new ArrayList<>();
+    }
+
+    @XmlRootElement (name="roomReservations")
+    @XmlAccessorType(XmlAccessType.FIELD)
+    private static class ReservationMap{
+
+        @XmlElement
+        private HashMap<Integer, ReservationList> reserveMap = new HashMap<>();
+
+        public HashMap<Integer, ReservationList> getMap() {
+            return reserveMap;
+        }
+
+        public void setMap(HashMap<Integer, ReservationList> temp) {
+            this.reserveMap = temp;
+        }
+    }
+
+    public static void main(String[] args) throws ParseException{
         ReservationDatabase temp = new ReservationDatabase();
-        System.out.println(new Reservation(new String[]{"1111","username1234","312","false","01/01/2023","01/05/2023"}).getReservationID());
+        temp.reserveRoom(new Reservation(new String[]{"username1234","321","false","01/05/2023","01/10/2023"}));
+
+        temp.storeDatabase();
     }
 }
