@@ -60,7 +60,7 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
     }
 
     public boolean overlap(Reservation r){
-        if(r.checkIn.compareTo(checkOut)  <= 0 || r.checkOut.compareTo(checkIn) >= 0){
+        if(r.checkIn.compareTo(checkOut)  >= 0 || r.checkOut.compareTo(checkIn) <= 0){
             return false;
         }
         return true;
