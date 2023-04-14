@@ -27,7 +27,7 @@ public class ReservationDatabase {
     }
 
     public Reservation getReservationDetails(String reservationID){
-        for(Reservation r : database.get(Integer.parseInt(reservationID.substring(0, 2), 16))){
+        for(Reservation r : database.get(roomNumFromID(reservationID))){
             if(r.getReservationID().equals(reservationID)){
                 return r;
             }
@@ -35,17 +35,18 @@ public class ReservationDatabase {
         return null;
     }
 
-    public boolean attemptUpdate(int reservationIm, Reservation modified){
-        return true;
+    public String attemptUpdate(String reservationID, Reservation modified){
+        Reservation hold = getReservationDetails(reservationID);
+        cancelReservation(reservationID);
+
+        if(reserveRoom(modified)){
+            return modified.getReservationID();
+        }
+        return null;
     }
 
     public void confirmUpdate(){
-
-    }
-
-    public Reservation getUpdateReservation(int reservationID){
-
-        return null;
+        storeDatabase();
     }
 
     public boolean reserveRoom(Reservation r){
@@ -74,8 +75,8 @@ public class ReservationDatabase {
         return !reserved;
     }
 
-    public boolean cancelReservation(int reservationID){
-        return false;
+    public boolean cancelReservation(String reservationID){
+        return database.get(roomNumFromID(reservationID)).removeIf((n) -> n.getReservationID().equals(reservationID));
     }
 
     public void storeDatabase() {
@@ -89,6 +90,10 @@ public class ReservationDatabase {
 
         } catch(JAXBException e){
         }
+    }
+
+    private int roomNumFromID(String ID){
+        return Integer.parseInt(ID.substring(0, 2), 16);
     }
 
     private ReservationMap mapToXML(HashMap<Integer, ArrayList<Reservation>> data){
