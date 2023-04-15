@@ -1,7 +1,8 @@
 package frontend;
 
-import java.awt.Container;
-import java.awt.Font;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -12,32 +13,49 @@ import javax.swing.JFormattedTextField.AbstractFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-public class addUserGUI extends JFrame {
-    JLabel message;
-    JLabel firstNameLabel, lastNameLabel, dobLabel, sexLabel, dobFormat;
-    JTextField firstNameField, lastNameField;
-    JRadioButton sexMale, sexFemale, sexUnassigned;
-    ButtonGroup sexGroup;
-    JLabel emailLabel, mobileNoLabel;
-    JTextField emailField, mobileNoField;
-    JLabel passwordLabel, rePasswordLabel;
-    JPasswordField passwordField, rePasswordField;
-    JLabel addressLabel;
-    JTextField addressField;
-    JLabel cityLabel;
-    JTextField cityField;
-    JLabel stateLabel;
-    JComboBox<String> stateList;
-    JLabel zipLabel;
-    JTextField zipField;
-    JLabel countryLabel;
-    JComboBox<String> countryList;
-    JButton registerButton;
-    Container container;
-    JDatePanelImpl datePanel;
-    JDatePickerImpl datePicker;
 
-    public addUserGUI() {
+public class createAccountGUI extends JFrame {
+    private JButton backButton;
+    private JLabel message;
+    private JLabel firstNameLabel, lastNameLabel, dobLabel, sexLabel, dobFormat;
+    private JTextField firstNameField, lastNameField;
+    private JRadioButton sexMale, sexFemale, sexUnassigned;
+    private ButtonGroup sexGroup;
+    private JLabel emailLabel, mobileNoLabel;
+    private JTextField emailField, mobileNoField;
+    private JLabel passwordLabel, rePasswordLabel;
+    private JPasswordField passwordField, rePasswordField;
+    private JLabel addressLabel;
+    private JTextField addressField;
+    private JLabel cityLabel;
+    private JTextField cityField;
+    private JLabel stateLabel;
+    private JComboBox<String> stateList;
+    private JLabel zipLabel;
+    private JTextField zipField;
+    private JLabel countryLabel;
+    private JComboBox<String> countryList;
+    private JButton registerButton;
+    private Container container;
+    private JDatePanelImpl datePanel;
+    private JDatePickerImpl datePicker;
+
+    public createAccountGUI() {
+        // Implement Back Button
+        backButton = new JButton();
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                welcomeGUI welcomeGUI = new welcomeGUI();
+                welcomeGUI.createAndShowGui();
+                dispose();
+            }
+        });
+        ImageIcon imageIcon = new ImageIcon("C:/Users/carma/Desktop/left.png");
+        Image image = imageIcon.getImage().getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(image);
+        backButton.setIcon(imageIcon);
+
         // Set header for window
         message = new JLabel("Register a New Account");
         message.setFont(new Font("Courier", Font.BOLD, 20));
@@ -151,6 +169,14 @@ public class addUserGUI extends JFrame {
 
         // Add register button
         registerButton = new JButton("Register");
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                accountPortalGUI accountPortalGUI = new accountPortalGUI();
+                accountPortalGUI.createAndShowGui();
+                dispose();
+            }
+        });
 
         // Add and set container
         container = getContentPane();
@@ -161,6 +187,7 @@ public class addUserGUI extends JFrame {
 
     // Sets all labels/fields bounds
     public void setBounds() {
+        backButton.setBounds(0, 0, 30, 30);
         message.setBounds(50, 10, 600, 30);
         firstNameLabel.setBounds(50, 60, 100, 30);
         firstNameField.setBounds(130, 60, 200, 30);
@@ -196,6 +223,7 @@ public class addUserGUI extends JFrame {
 
     // Adds labels and fields to container
     public void addComponents() {
+        container.add(backButton);
         container.add(message);
         container.add(firstNameLabel);
         container.add(firstNameField);
@@ -228,11 +256,11 @@ public class addUserGUI extends JFrame {
         container.add(countryList);
         container.add(registerButton);
     }
-    public static void main(String[] args) {
-        addUserGUI frame = new addUserGUI();
+    public void createAndShowGui() {
+        createAccountGUI frame = new createAccountGUI();
         frame.setTitle("Create New Account");
         frame.setVisible(true);
-        frame.setBounds(500, 100, 500, 1000);
+        frame.setBounds(500, 15, 500, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }

@@ -1,21 +1,35 @@
 package backend;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
+
+import java.beans.Transient;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+
+@XmlRootElement(name = "reservation")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Reservation { //TODO: Make reservation ID equal to room number as hex + ReservationHash(In Hex)
 
     String username;
     Room reserved;
+
     boolean payed;
     Date checkIn;
     Date checkOut;
 
+    public Reservation(){
+
+    }
+
     public Reservation(String []data) throws ParseException {
         username = data[0];
-        reserved = new Room(new String[]{data[1], "suite"});
+        roomNumber = Integer.parseInt(data[1]);
         payed = Boolean.parseBoolean(data[2]);
         checkIn = new SimpleDateFormat("MM/dd/yyyy").parse(data[3]);
         checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[4]);
@@ -23,8 +37,9 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
 
     public Reservation(String username, Room reserved, boolean payed, 
         Date checkIn, Date checkOut){
+
         this.username = username;
-        this.reserved = reserved;
+        this.roomNumber = roomNumber;
         this.payed = payed;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -43,11 +58,11 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, reserved, checkIn, checkOut);
+        return Objects.hash(username, roomNumber, checkIn, checkOut);
     }
 
     public boolean overlap(Reservation r){
-        if(r.checkIn.compareTo(checkOut)  <= 0 || r.checkOut.compareTo(checkIn) >= 0){
+        if(r.checkIn.compareTo(checkOut)  >= 0 || r.checkOut.compareTo(checkIn) <= 0){
             return false;
         }
         return true;
@@ -68,12 +83,15 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
         this.username = username;
     }
 
-    public Room getRoom() {
-        return reserved;
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
-    public void getRoom(Room reserved) {
-        this.reserved = reserved;
+    public void setRoomNumber(Room reserved) {
+        this.roomNumber = reserved.getNumber();
+    }
+    public void setRoomNumber(int reserved) {
+        this.roomNumber = reserved;
     }
 
     public boolean isPayed() {
