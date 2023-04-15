@@ -1,5 +1,9 @@
 package frontend;
 
+/*
+ * No need for black box connections, this is log in GUI thing
+ */
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

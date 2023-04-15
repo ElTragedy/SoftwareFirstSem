@@ -1,5 +1,12 @@
 package frontend;
 
+
+/*
+ * this code is for making an account but currently does not save the 
+ * account to the database, we need to connect this to the UIBlackBox. with
+ * a "CreateAccount" function in the UIBlackBox.
+ */
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
