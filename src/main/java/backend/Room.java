@@ -14,6 +14,11 @@ public class Room implements Comparator<Room> {
         roomType = RoomType.valueOf(data[1]);
     }
 
+    public Room(String roomType, int number) {
+        this.roomType = RoomType.valueOf(roomType);
+        this.number = number;
+    }
+
     public RoomType getRoomType() {
         return roomType;
     }

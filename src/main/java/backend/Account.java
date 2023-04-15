@@ -6,8 +6,14 @@ import jakarta.xml.bind.annotation.*;
 
 
 
+@XmlEnum
 enum Access {
-    guest, clerk, admin
+    @XmlEnumValue("guest")
+    guest,
+    @XmlEnumValue("clerk")
+    clerk,
+    @XmlEnumValue("admin")
+    admin
 }
 
 @XmlRootElement (name = "account")
@@ -43,6 +49,14 @@ public class Account {
     private String country;
 
     public Account(){
+    }
+
+    public Access getAccess() {
+        return access;
+    }
+
+    public void setAccess(Access access) {
+        this.access = access;
     }
 
     public Account(String id, String firstName, String lastName, String DOB, String sex, String phoneNumber, String email,

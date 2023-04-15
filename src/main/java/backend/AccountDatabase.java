@@ -8,15 +8,18 @@ import jakarta.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AccountDatabase {
 
-    public void load(){
-        xmlAccount xml = new xmlAccount();
-        AccountDatabase a = xml.load("accounts.xml");
-        this.accountList = a.getAccountList();
-    }
-
     @XmlElementWrapper(name = "users")
     @XmlElement(name = "account")
     private ArrayList<Account> accountList;
+
+    public void load(String s){
+        AccountDatabase a = xmlAccount.load(s);
+        this.accountList = a.getAccountList();
+    }
+
+    public static void save(){
+        xmlAccount.doSave("accounts.xml", new AccountDatabase());
+    }
 
     public AccountDatabase() {
         accountList = new ArrayList<Account>();
@@ -44,6 +47,12 @@ public class AccountDatabase {
 
     public ArrayList<Account> getAccountList() {
         return accountList;
+    }
+
+    public void printAll(){
+        for (Account account : accountList) {
+            System.out.println(account);
+        }
     }
 
     @Override

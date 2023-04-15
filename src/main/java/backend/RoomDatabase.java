@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 public class RoomDatabase {
-    HashMap<Integer, Room> rooms;
+    static HashMap<Integer, Room> rooms;
 
     public RoomDatabase() throws IOException {
         rooms = new HashMap<>();
@@ -25,19 +25,23 @@ public class RoomDatabase {
         }
     }
 
-    public HashMap<Integer, Room> getRooms() {
+    public static HashMap<Integer, Room> getRooms() {
         return rooms;
     }
 
-    public Room getRoom(int roomNum){
+    public static Room getRoom(int roomNum){
         return rooms.get(roomNum);
     }
 
-    public void addRoom(Room newRoom) throws Exception {
+    public static void addRoom(Room newRoom) throws Exception {
         if(rooms.get(newRoom.getNumber()) != null){
             throw new Exception("Room number already exists");
         }
         rooms.put(newRoom.getNumber(), newRoom);
+    }
+
+    public void printAll() throws IOException {
+        RoomDatabase.getRooms().forEach((k, v) -> System.out.println(k + ": " + v));
     }
 
     public static void main(String[] args) {
