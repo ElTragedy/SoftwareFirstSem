@@ -1,0 +1,2 @@
+username, roomId(number), payed(bool), checkIn(MM,DD,YYYY), checkOut(MM,DD,YYYY)
+bobstone123,123,true,01/01/2023,01/05/2023
