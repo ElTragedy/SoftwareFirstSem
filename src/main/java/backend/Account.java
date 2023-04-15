@@ -2,26 +2,48 @@ package backend;
 
 import java.util.Objects;
 
+import jakarta.xml.bind.annotation.*;
+
+
 
 enum Access {
     guest, clerk, admin
 }
 
+@XmlRootElement (name = "account")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Account {
+    @XmlAttribute
     private Access access;
+    @XmlAttribute
     private String id;
+    @XmlElement
     private String firstName;
+    @XmlElement
     private String lastName;
+    @XmlElement
     private String DOB;
+    @XmlElement
     private String sex;
+    @XmlElement
     private String phoneNumber;
+    @XmlElement
     private String email;
+    @XmlElement
     private String password;
+    @XmlElement
     private String address;
+    @XmlElement
     private String zipcode;
+    @XmlElement
     private String city;
+    @XmlElement 
     private String state;
+    @XmlElement
     private String country;
+
+    public Account(){
+    }
 
     public Account(String id, String firstName, String lastName, String DOB, String sex, String phoneNumber, String email,
                    String password, String address, String zipcode, String city, String state, String country) {
@@ -202,6 +224,6 @@ public class Account {
                 this.city + ',' +
                 this.state + ',' +
                 this.country;
-     }
+    }
 
 }

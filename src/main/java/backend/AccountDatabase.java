@@ -1,102 +1,77 @@
 package backend;
 
-import java.io.*;
-import java.net.URISyntaxException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import jakarta.xml.bind.*;
+import jakarta.xml.bind.annotation.*;
 
+@XmlRootElement(name = "accounts")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class AccountDatabase {
-    private HashMap<String, Account> users;
 
-    public AccountDatabase() throws IOException {
-        users = new HashMap<>();
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Users.csv")));
-
-        // skip header
-        reader.readLine();
-
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            String[] split = line.split(",");
-
-            // email : user
-            users.put(split[7], new Account(split));
-        }
+    public void load(){
+        xmlAccount xml = new xmlAccount();
+        AccountDatabase a = xml.load("accounts.xml");
+        this.accountList = a.getAccountList();
     }
 
-    public HashMap<String, Account> getUsers() {
-        return users;
+    @XmlElementWrapper(name = "users")
+    @XmlElement(name = "account")
+    private ArrayList<Account> accountList;
+
+    public AccountDatabase() {
+        accountList = new ArrayList<Account>();
     }
 
-    boolean addAccount(String[] data) {
-        Account newUser = new Account(data);
+    public AccountDatabase(ArrayList<Account> accountList) {
+        this.accountList = accountList;
+    }
 
-        // write user to CSV file
-        File outFile = null;
-        try {
-            outFile = new File(this.getClass().getResource("/Users.csv").toURI());
-        } catch (URISyntaxException e) {
+    public void setAccountList(ArrayList<Account> accountList) {
+        this.accountList = accountList;
+    }
+
+    public int getSize() {
+        return accountList.size();
+    }
+
+    public Account getAccount(int i) {
+        return accountList.get(i);
+    }
+
+    public void insertAccount(Account account) {
+        accountList.add(account);
+    }
+
+    public ArrayList<Account> getAccountList() {
+        return accountList;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((accountList == null) ? 0 : accountList.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
             return false;
-            //throw new RuntimeException(e);
-        }
-        BufferedWriter writer = null;
-        try {
-            writer = new BufferedWriter(new FileWriter(outFile.getPath(), true));
-        } catch (IOException e) {
+        if (getClass() != obj.getClass())
             return false;
-            //throw new RuntimeException(e);
-        }
-
-        try {
-            writer.write(newUser.toCSV());
-            writer.newLine();
-        } catch (IOException e) {
+        AccountDatabase other = (AccountDatabase) obj;
+        if (accountList == null) {
+            if (other.accountList != null)
+                return false;
+        } else if (!accountList.equals(other.accountList))
             return false;
-            //throw new RuntimeException(e);
-        } finally {
-            try {
-                writer.close(); // close the writer to release resources
-            } catch (IOException e) {
-                // log or handle the exception
-            }
-        }
-
-        // write user to map
-        users.put(data[7], newUser);
-
-        return true; // user added correctly
+        return true;
     }
 
-    boolean hasExistingAccount(String email) {
-        return users.containsKey(email);
-    }
-
-    public static void main(String [] args) {
-        try {
-            AccountDatabase db = new AccountDatabase();
-
-            // print current users
-            db.getUsers().forEach((email, user) -> {
-                System.out.println(user.toCSV());
-            });
-
-            // add one user
-            String[] data = {"004", "admin", "Julie", "Richards", "01/12/2001", "F", "111-222-3333", "julierichards@example.com", "topsecret", "1234 One Way St", "12345", "Somewhere", "NJ", "USA"};
-
-            boolean add = db.addAccount(data);
-
-            if(add) {
-                System.out.println("Successfully added account");
-            } else {
-                System.out.println("Couldn't add account");
-            }
-
-            if(db.hasExistingAccount(data[7])) {
-                System.out.println("Found User");
-            }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
+
+
+

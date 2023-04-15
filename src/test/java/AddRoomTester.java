@@ -1,11 +1,11 @@
 import backend.Room;
 import backend.RoomDatabase;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.Assert.assertNotNull;
 
 public class AddRoomTester {
     RoomDatabase tester = new RoomDatabase();
