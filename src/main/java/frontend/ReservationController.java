@@ -1,5 +1,9 @@
 package frontend;
 
+/*
+ * this code is for reservations, this needs to be connected to the BlackBox
+ */
+
 import backend.*;
 
 import javax.swing.*;

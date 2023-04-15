@@ -18,7 +18,7 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
 
     String username;
     Room reserved;
-
+    int roomNumber;
     boolean payed;
     Date checkIn;
     Date checkOut;

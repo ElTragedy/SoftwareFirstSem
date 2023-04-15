@@ -1,5 +1,11 @@
 package frontend;
 
+/*
+ * this code is for Adding a room but it currently does not add any rooms. We
+ * TODO: need to connect this to the UIBlackBox. We should just make a
+ * "addRoom" function and then we just pass in parameters from the GUI.
+ */
+
 import backend.Room;
 
 import javax.swing.*;

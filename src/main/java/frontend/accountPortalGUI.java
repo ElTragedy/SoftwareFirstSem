@@ -1,5 +1,11 @@
 package frontend;
 
+/*
+ * This code uses a lot of functions like "Create User" and "create reservation"
+ * which will need to commuicate with the UIBlackBox. This is a TODO: connect
+ * this to the UIBlackBox.
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
