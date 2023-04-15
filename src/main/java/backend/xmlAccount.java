@@ -5,22 +5,22 @@ import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.bind.Marshaller;
 import java.io.File;
+import java.io.InputStream;
 
 public class xmlAccount {
     //parse xml file class done
 
-  public AccountDatabase load(String s) {
+  public static AccountDatabase load(String s) {
     JAXBContext jaxbContext;
     AccountDatabase a = new AccountDatabase();
-    s = "accounts.xml";
     try {
       jaxbContext = JAXBContext.newInstance(AccountDatabase.class);
 
-      File file = new File(s);
+      InputStream inputStream = xmlAccount.class.getClassLoader().getResourceAsStream(s);
 
       Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-      a = (AccountDatabase) jaxbUnmarshaller.unmarshal(file);
+      a = (AccountDatabase) jaxbUnmarshaller.unmarshal(inputStream);
 
     } catch (JAXBException e) {
       e.printStackTrace();
@@ -28,7 +28,7 @@ public class xmlAccount {
     return a;
   }
 
-  public void doSave(String filename, AccountDatabase bookstore) {
+  public static void doSave(String filename, AccountDatabase bookstore) {
     try {
       JAXBContext jaxbContext = JAXBContext.newInstance(AccountDatabase.class);
       Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
