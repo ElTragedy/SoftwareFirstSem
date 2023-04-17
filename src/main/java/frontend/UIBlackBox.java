@@ -3,6 +3,7 @@ package frontend;
 
 import backend.*;
 import backend.Room;
+import java.util.Date;
 
 public class UIBlackBox {
     //this is where you will send commands to the Controller from the UI
@@ -33,11 +34,39 @@ public class UIBlackBox {
         return Controller.createRoom(r); 
     }
 
-    //TODO: complete the implementation of createReservation
-    public static boolean createReservation(/*insert parameters */){
-        //make the reservation
-        //return the result of the controller
+    //public Reservation(String username, Room reserved, boolean payed, 
+        //Date checkIn, Date checkOut)
+    public static boolean createReservation(String username, Room reserved, boolean payed, 
+        Date checkIn, Date checkOut){
+        
+        Reservation r = new Reservation(username,reserved,payed, 
+        checkIn,checkOut);
+
+        Controller.createReservation(r);
+
         return false;
+    }
+
+    public static Room getRoom(/* parameters */){
+        //filler
+        Room a = null;
+        return a;
+    }
+
+    public static Room getReservation(/* parameters */){
+        //filler
+        Room a = null;
+        return a;
+    }
+
+    public static Room getAccount(/* parameters */){
+        //filler
+        Room a = null;
+        return a;
+    }
+
+    public static boolean saveAll(){
+        return Controller.saveAll();
     }
 
 

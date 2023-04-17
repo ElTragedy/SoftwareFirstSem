@@ -35,6 +35,10 @@ public class ReservationDatabase {
         return null;
     }
 
+    public int getSize(){
+        return database.size();
+    }
+
     public String attemptUpdate(String reservationID, Reservation modified){
         Reservation hold = getReservationDetails(reservationID);
         cancelReservation(reservationID);
