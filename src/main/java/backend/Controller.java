@@ -7,6 +7,8 @@ public class Controller {
 
     static AccountDatabase accountDatabase = new AccountDatabase();
     static RoomDatabase roomDatabase;
+    static ReservationDatabase reservationDatabase = new ReservationDatabase();
+
     static {
         try {
             roomDatabase = new RoomDatabase();
@@ -76,8 +78,46 @@ public class Controller {
         }
     }
 
+    /*
+     * createReservation
+     * This function will create a reservation and it will attempt to add it 
+     * to the database. This is a static class that will be called by the 
+     * black box UI.
+     */
     public static boolean createReservation(Reservation r){
-        return false;
+        int size = reservationDatabase.getSize();
+        return reservationDatabase.reserveRoom(r); 
+    }
+
+
+    public static Room getRoom(/* parameters */){
+        //filler
+        Room a = null;
+        return a;
+    }
+
+    public static Room getReservation(/* parameters */){
+        //filler
+        Room a = null;
+        return a;
+    }
+
+    public static Room getAccount(/* parameters */){
+        //filler
+        Room a = null;
+        return a;
+    }
+    
+    public static boolean saveAll(){
+        accountDatabase.save();
+        reservationDatabase.storeDatabase();
+        try{
+            roomDatabase.storeDatabase();
+        }
+        catch(Exception e){
+            System.out.println("Room database failed to save");
+        }
+        return true;
     }
 
     

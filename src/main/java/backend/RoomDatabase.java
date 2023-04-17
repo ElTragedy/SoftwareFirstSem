@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.io.FileWriter;
 
 public class RoomDatabase {
     static HashMap<Integer, Room> rooms;
@@ -27,6 +28,22 @@ public class RoomDatabase {
 
     public static HashMap<Integer, Room> getRooms() {
         return rooms;
+    }
+
+    //save all the rooms to /Rooms.csv
+    public void storeDatabase() throws IOException {
+        String csv = "Room Number,Room Type\n";
+        for (Room r : rooms.values()) {
+            csv += r.getNumber() + "," + r.getRoomType() + "\n";
+        }
+        try{
+            FileWriter fw = new FileWriter("Rooms.csv");
+            fw.write(csv);
+            fw.close();
+        }
+        catch (Exception e){
+            System.out.println("Error writing to file");
+        }
     }
 
     public static Room getRoom(int roomNum){
