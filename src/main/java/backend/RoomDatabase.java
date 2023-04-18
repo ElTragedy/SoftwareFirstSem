@@ -5,70 +5,88 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import jakarta.xml.bind.*;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
+
+@XmlRootElement(name = "roomDatabase")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RoomDatabase {
-    static HashMap<Integer, Room> rooms;
 
-    public RoomDatabase() throws IOException {
-        rooms = new HashMap<>();
+    @XmlElementWrapper(name = "rooms")
+    @XmlElement(name = "room")
+    private ArrayList<Room> rooms;
 
-        BufferedReader reader = null;
-
-        reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/Rooms.csv")));
-
-        // skip header
-        reader.readLine();
-
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            String[] split = line.split(",");
-            rooms.put(Integer.parseInt(split[0]), new Room(split));
-        }
+    public RoomDatabase()  {
+        rooms = new ArrayList<Room>();
     }
 
-    public static HashMap<Integer, Room> getRooms() {
+    public ArrayList<Room> getRooms() {
         return rooms;
     }
 
     //save all the rooms to /Rooms.csv
-    public void storeDatabase() throws IOException {
-        String csv = "Room Number,Room Type\n";
-        for (Room r : rooms.values()) {
-            csv += r.getNumber() + "," + r.getRoomType() + "\n";
-        }
-        try{
-            FileWriter fw = new FileWriter("Rooms.csv");
-            fw.write(csv);
-            fw.close();
-        }
-        catch (Exception e){
-            System.out.println("Error writing to file");
-        }
+    public void save() {
+        xmlRoom.doSave("rooms.xml",this); 
     }
 
-    public static Room getRoom(int roomNum){
+    public int getSize() {
+        return rooms.size();
+    }
+
+    public void load(String s){
+        RoomDatabase a = xmlRoom.load(s);
+        this.rooms = a.getRooms();
+    }
+
+    public Room getRoom(int roomNum){
         return rooms.get(roomNum);
     }
 
-    public static void addRoom(Room newRoom) throws Exception {
+    public void removeRoom(int roomNum){
+        rooms.remove(roomNum);
+    }
+    
+    public void updateRoom(int roomNum, Room newRoom){
+        rooms.set(roomNum, newRoom);
+    }
+
+    public RoomCondition getRoomCondition(int roomNum){
+        return rooms.get(roomNum).getRoomCondition();
+    }
+    
+    public RoomStatus getRoomStatus(int roomNum){
+        return rooms.get(roomNum).getRoomStatus();
+    }
+
+    public void setRoomCondition(int roomNum, String roomCondition){
+        rooms.get(roomNum).setRoomCondition(roomCondition);
+    }
+
+    public void setRoomStatus(int roomNum, String roomStatus){
+        rooms.get(roomNum).setRoomStatus(roomStatus);
+    }
+
+    public void addRoom(Room newRoom) throws Exception {
         if(rooms.get(newRoom.getNumber()) != null){
             throw new Exception("Room number already exists");
         }
-        rooms.put(newRoom.getNumber(), newRoom);
+        rooms.set(newRoom.getNumber(), newRoom);
     }
 
-    public void printAll() throws IOException {
-        RoomDatabase.getRooms().forEach((k, v) -> System.out.println(k + ": " + v));
+    public void printAll(){
+        for (Room room : rooms) {
+            System.out.println(room);
+        }
     }
 
     public static void main(String[] args) {
-        try {
-            RoomDatabase rd = new RoomDatabase();
-            rd.getRooms().forEach((k, v) -> System.out.println(k + ": " + v));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        RoomDatabase rd = new RoomDatabase();
 
     }
 

@@ -2,41 +2,35 @@ package backend;
 
 import java.io.IOException;
 
-
 public class Controller {
 
     static AccountDatabase accountDatabase = new AccountDatabase();
-    static RoomDatabase roomDatabase;
+    static RoomDatabase roomDatabase = new RoomDatabase();
     static ReservationDatabase reservationDatabase = new ReservationDatabase();
 
-    static {
-        try {
-            roomDatabase = new RoomDatabase();
-        } catch (IOException e) {
-            System.out.println("RoomDatabase failed to load");
-        }
-    }
+    
     //this will be our main function. This will speak to everything else.
     //this class will class on the others in order to do stuff.
 
     public static void main(String[] args) {
 
-
         System.out.println("hello world");
         //declaration of the AccountDatabase class
         //this calls the xml function from Account database to load the csv
         accountDatabase.load("accounts.xml");
+        roomDatabase.load("rooms.xml");
         if(accountDatabase.getSize() == 0){
             System.out.println("no accounts");
         }
         else{
             System.out.println("accounts exist");
         }
-        try{
-            roomDatabase.printAll();
+
+        if(roomDatabase.getSize() == 0){
+            System.out.println("no rooms");
         }
-        catch (Exception e){
-            System.out.println("no accounts");
+        else{
+            System.out.println("rooms exist");
         }
     
     }
@@ -111,15 +105,11 @@ public class Controller {
     public static boolean saveAll(){
         accountDatabase.save();
         reservationDatabase.storeDatabase();
-        try{
-            roomDatabase.storeDatabase();
-        }
-        catch(Exception e){
-            System.out.println("Room database failed to save");
-        }
+        roomDatabase.save();
+        
+        
         return true;
     }
-
     
 }
 

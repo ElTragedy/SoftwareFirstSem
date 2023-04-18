@@ -17,8 +17,8 @@ public class AccountDatabase {
         this.accountList = a.getAccountList();
     }
 
-    public static void save(){
-        xmlAccount.doSave("accounts.xml", new AccountDatabase());
+    public void save(){
+        xmlAccount.doSave("accounts.xml", this);
     }
 
     public AccountDatabase() {
