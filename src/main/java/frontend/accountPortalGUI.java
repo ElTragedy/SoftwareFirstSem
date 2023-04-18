@@ -48,8 +48,8 @@ public class accountPortalGUI extends JFrame implements ActionListener {
         newReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // loginGUI loginGUI = new loginGUI();
-                // loginGUI.createAndShowGui();
+                reservationGUI reservationGUI = new reservationGUI();
+                reservationGUI.createAndShowGui();
                 dispose();
             }
         });

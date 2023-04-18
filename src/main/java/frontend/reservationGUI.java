@@ -1,7 +1,14 @@
 package frontend;
 
+import backend.Account;
+import backend.Controller;
 import backend.Reservation;
 import backend.ReservationDatabase;
+import org.jdatepicker.JDatePicker;
+import org.jdatepicker.impl.DateComponentFormatter;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,129 +17,144 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Properties;
 
-public class reservationGUI extends JFrame implements ActionListener {
+public class reservationGUI extends JFrame{
 
-    static JFrame frame;
+    private Container container;
+    private JButton reserve, backButton;
+    private JComboBox bedTypes;
+    private JLabel startLabel, endLabel, reservationLabel, header, bedSize, dateFormat, dateFormat1;
+    private JDatePanelImpl datePanel, datePanel1;
+    private JDatePickerImpl datePicker, datePicker1;
+    private Reservation reservation;
 
-    static JLabel startLabel;
-
-    static Reservation reservation;
-
-    static ReservationDatabase resDatabase;
-
-    reservationGUI() {};
-
-    public static void main(String[] args) {
-        createWindow();
+    public static void main(String args[]){
+        reservationGUI reservationGUI = new reservationGUI();
+        reservationGUI.createAndShowGui();
     }
 
-    private static void createWindow() {
-        JFrame frame = new JFrame("Hotel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        createUI(frame);
-        frame.setSize(700, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
+    public reservationGUI(){
+        backButton = new JButton();
 
-    private static void createUI(final JFrame frame){
-        reservationGUI r = new reservationGUI();
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                accountPortalGUI accountPortalGUI = new accountPortalGUI();
+                accountPortalGUI.createAndShowGui();
+                dispose();
+            }
+        });
 
         //title
-        JLabel header = new JLabel("Reserve a Room");
+        header = new JLabel("Reserve a Room");
         header.setFont(new Font("Calibri", Font.BOLD, 20));
-        header.setBounds(300, 50, 200, 50);
 
         //start date
         startLabel = new JLabel("Enter Start Date:");
-        startLabel.setBounds(150,100,100,20);
-
-        JTextField startDate = new JFormattedTextField("MM/dd/yyyy");
-        startDate.setBounds(300,100,100,20);
-        startDate.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                startDate.setText("");
-            }
-        });
+        UtilDateModel model1 = new UtilDateModel();
+        Properties p1 = new Properties();
+        p1.put("text.today", "Today");
+        p1.put("text.month", "Month");
+        p1.put("text.year", "Year");
+        datePanel1 = new JDatePanelImpl(model1, p1);
+        datePicker1 = new JDatePickerImpl(datePanel1, new DateLabelFormatter());
+        dateFormat1 = new JLabel("(yyyy-MM-dd)");
 
         //end date
-        JLabel endLabel = new JLabel("Enter End Date:");
-        endLabel.setBounds(150,150,100,20);
-
-        JTextField endDate = new JFormattedTextField("MM/dd/yyyy");
-        endDate.setBounds(300,150,100,20);
-        endDate.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                endDate.setText("");
-            }
-        });
+        endLabel = new JLabel("Enter End Date:");
+        UtilDateModel model = new UtilDateModel();
+        Properties p = new Properties();
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        datePanel = new JDatePanelImpl(model, p);
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        dateFormat = new JLabel("(yyyy-MM-dd)");
 
 
         //bed option list
-        JLabel bedSize = new JLabel("Bed Type:");
-        bedSize.setBounds(150, 200, 100, 20);
+        bedSize = new JLabel("Bed Type:");
 
         String[] bedOptions = {"Select", "doubleQueen", "singleKing", "suite"};
-        JComboBox bedTypes = new JComboBox(bedOptions);
-        bedTypes.setBounds(300, 200, 100, 20);
+        bedTypes = new JComboBox(bedOptions);
         bedTypes.setSelectedIndex(0);
-//        bedTypes.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JComboBox cb = (JComboBox)e.getSource();
-//                String bedType = (String)cb.getSelectedItem();
-//                cb.setSelectedIndex();
-//            }
-//        });
 
 
         //reserve button
-        JButton reserve = new JButton("Reserve Room");
-        reserve.setBounds(300, 300, 100, 40);
+        reserve = new JButton("Reserve Room");
         reserve.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String []data = new String[5];
-                data[0] = "1";
-                data[1] = "username";
-                data[2] = startDate.getText();
-                data[3] = endDate.getText();
-                data[4] = (String) bedTypes.getSelectedItem();
-                try {
-                    reservation = new Reservation(data);
-                } catch (ParseException ex) {
-                    throw new RuntimeException(ex);
-                }
-                if(resDatabase.reserveRoom(reservation)){
-                    JOptionPane.showMessageDialog(null, "You have reserved a room!");
+                //when implemented use UIBlackBox.getCurrentAccount()
+                if(true){
+                    JOptionPane.showMessageDialog(null,"You have succefully reserved a Room!");
                 }
             }
         });
 
-        JPanel panel = new JPanel();
-//        LayoutManager layout = new BoxLayout(panel, BoxLayout.PAGE_AXIS);
-//        panel.setLayout(layout);
-
-        panel.setLayout(null);
-
-        panel.add(header);
-        panel.add(startLabel);
-        panel.add(startDate);
-        panel.add(endLabel);
-        panel.add(endDate);
-        panel.add(bedSize);
-        panel.add(bedTypes);
-        panel.add(reserve);
-
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        container = getContentPane();
+        container.setLayout(null);
+        setBounds();
+        addComponents();
     }
 
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+    public void setBounds(){
+        backButton.setBounds(0,0, 30, 30);
+        header.setBounds(200, 50, 200, 50);
+        startLabel.setBounds(100,100,100,20);
+        datePicker1.setBounds(200,100,200,30);
+        endLabel.setBounds(100,150,100,20);
+        datePicker.setBounds(200,150,200,30);
+        bedSize.setBounds(100, 200, 100, 20);
+        bedTypes.setBounds(200, 200, 100, 20);
+        reserve.setBounds(200, 300, 100, 40);
     }
+
+    public void addComponents(){
+        container.add(backButton);
+        container.add(header);
+        container.add(startLabel);
+        container.add(endLabel);
+        container.add(bedSize);
+        container.add(bedTypes);
+        container.add(reserve);
+        container.add(datePicker1);
+        container.add(datePicker);
+        container.add(dateFormat);
+        container.add(dateFormat1);
+    }
+
+    public void createAndShowGui() {
+        reservationGUI frame = new reservationGUI();
+        frame.setTitle("Make a Reservation");
+        frame.setVisible(true);
+        frame.setBounds(500,15, 500, 800);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+    }
+
+    public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter{
+
+        private String datePattern = "yyyy-MM-dd";
+        private SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
+
+        @Override
+        public Object stringToValue(String text) throws ParseException{
+            return dateFormat.parseObject(text);
+        }
+
+        @Override
+        public String valueToString(Object value) throws ParseException{
+            if (value != null){
+                Calendar cal = (Calendar) value;
+                return dateFormat.format(cal.getTime());
+            }
+            return "";
+        }
+    }
+
 }
