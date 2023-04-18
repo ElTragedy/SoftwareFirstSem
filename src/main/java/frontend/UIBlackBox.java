@@ -59,9 +59,13 @@ public class UIBlackBox {
         return a;
     }
 
-    public static Room getAccount(/* parameters */){
+    //public static Account getCurrentUser(){
+        //return Controller.getCurrentUser();
+    //}
+
+    public static Account getAccount(/* parameters */){
         //filler
-        Room a = null;
+        Account a = null;
         return a;
     }
 
