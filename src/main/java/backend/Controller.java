@@ -1,6 +1,6 @@
 package backend;
 
-import java.io.IOException;
+import java.util.Arrays;
 
 public class Controller {
 
@@ -96,10 +96,15 @@ public class Controller {
         return a;
     }
 
-    public static Room getAccount(/* parameters */){
-        //filler
-        Room a = null;
-        return a;
+    public static Account getAccount(String email, char[] password){
+        Account account = null;
+        for(Account acc : accountDatabase.getAccountList()) {
+            if(acc.getEmail().equals(email) && Arrays.equals(acc.getPassword().toCharArray(), password)) {
+                account = acc;
+                break;
+            }
+        }
+        return account;
     }
     
     public static boolean saveAll(){
