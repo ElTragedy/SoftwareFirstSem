@@ -21,7 +21,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-public class createAccountGUI extends JFrame {
+public class createAccountUI extends JFrame {
     private JButton backButton;
     private JLabel message;
     private JLabel firstNameLabel, lastNameLabel, dobLabel, sexLabel, dobFormat;
@@ -47,7 +47,7 @@ public class createAccountGUI extends JFrame {
     private JDatePanelImpl datePanel;
     private JDatePickerImpl datePicker;
 
-    public createAccountGUI() {
+    public createAccountUI() {
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
@@ -179,8 +179,8 @@ public class createAccountGUI extends JFrame {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                accountPortalGUI accountPortalGUI = new accountPortalGUI();
-                accountPortalGUI.createAndShowGui();
+                accountPortalUI accountPortalUI = new accountPortalUI();
+                accountPortalUI.createAndShowGui();
                 dispose();
             }
         });
@@ -264,7 +264,7 @@ public class createAccountGUI extends JFrame {
         container.add(registerButton);
     }
     public void createAndShowGui() {
-        createAccountGUI frame = new createAccountGUI();
+        createAccountUI frame = new createAccountUI();
         frame.setTitle("Create New Account");
         frame.setVisible(true);
         frame.setBounds(500, 15, 500, 800);

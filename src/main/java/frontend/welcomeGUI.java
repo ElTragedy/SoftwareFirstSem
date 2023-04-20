@@ -29,8 +29,8 @@ public class welcomeGUI extends JFrame implements ActionListener {
         returningUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginGUI loginGUI = new loginGUI();
-                loginGUI.createAndShowGui();
+                loginUI loginUI = new loginUI();
+                loginUI.createAndShowGui();
                 dispose();
             }
         });
@@ -39,8 +39,8 @@ public class welcomeGUI extends JFrame implements ActionListener {
         newUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                createAccountGUI createAccountGUI = new createAccountGUI();
-                createAccountGUI.createAndShowGui();
+                createAccountUI createAccountUI = new createAccountUI();
+                createAccountUI.createAndShowGui();
                 dispose();
             }
         });

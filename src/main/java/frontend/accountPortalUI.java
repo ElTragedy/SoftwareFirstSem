@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class accountPortalGUI extends JFrame implements ActionListener {
+public class accountPortalUI extends JFrame implements ActionListener {
     // Main Container
     private Container container;
 
@@ -24,7 +24,7 @@ public class accountPortalGUI extends JFrame implements ActionListener {
     private JButton newReservationButton;
     private JButton modifyReservationButton;
 
-    public accountPortalGUI() {
+    public accountPortalUI() {
         // Set All Components
         greetingLabel = new JLabel("Hello, "); // TODO: Add Hello, "user's name"
         greetingLabel.setFont(new Font("Barlow", Font.BOLD, 30));
@@ -59,8 +59,6 @@ public class accountPortalGUI extends JFrame implements ActionListener {
         modifyReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // createAccountGUI createAccountGUI = new createAccountGUI();
-                // createAccountGUI.createAndShowGui();
                 dispose();
             }
         });
@@ -89,7 +87,7 @@ public class accountPortalGUI extends JFrame implements ActionListener {
     }
 
     public void createAndShowGui() {
-        accountPortalGUI frame = new accountPortalGUI();
+        accountPortalUI frame = new accountPortalUI();
         frame.setTitle("Account Portal");
         frame.setVisible(true);
         frame.setBounds(500, 100, 500, 300);

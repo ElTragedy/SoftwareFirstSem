@@ -1,11 +1,6 @@
 package frontend;
 
-import backend.Account;
-import backend.Controller;
 import backend.Reservation;
-import backend.ReservationDatabase;
-import org.jdatepicker.JDatePicker;
-import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -14,12 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Properties;
 
 public class reservationGUI extends JFrame{
@@ -43,8 +35,8 @@ public class reservationGUI extends JFrame{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                accountPortalGUI accountPortalGUI = new accountPortalGUI();
-                accountPortalGUI.createAndShowGui();
+                accountPortalUI accountPortalUI = new accountPortalUI();
+                accountPortalUI.createAndShowGui();
                 dispose();
             }
         });

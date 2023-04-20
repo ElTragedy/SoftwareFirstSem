@@ -12,7 +12,7 @@ import java.util.Objects;
 import javax.swing.*;
 
 
-public class loginGUI extends JFrame implements ActionListener{
+public class loginUI extends JFrame implements ActionListener{
     private JButton backButton;
     private Container container;
     private JLabel message;
@@ -22,7 +22,7 @@ public class loginGUI extends JFrame implements ActionListener{
     private JPasswordField passwordField;
     private JButton loginButton;
 
-    public loginGUI() {
+    public loginUI() {
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
@@ -103,7 +103,7 @@ public class loginGUI extends JFrame implements ActionListener{
     }
 
     public void createAndShowGui() {
-        loginGUI frame = new loginGUI();
+        loginUI frame = new loginUI();
         frame.setTitle("Login");
         frame.setVisible(true);
         frame.setBounds(500, 100, 800, 500);
