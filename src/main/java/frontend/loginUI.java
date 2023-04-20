@@ -44,6 +44,10 @@ public class loginUI extends JFrame implements ActionListener{
                     // MAKE FUNCTION TO ITERATE THROUGH ALL FIELDS
                     JOptionPane.showMessageDialog(container, "Please fill out both fields!",
                             "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+                } else if (Objects.equals(emailField.getText(), "admin") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
+                    adminPortalUI adminPortalUI = new adminPortalUI();
+                    adminPortalUI.createAndShowGui();
+                    dispose();
                 }
                 //String email = emailField.getText();
                 //String password = Arrays.toString(passwordField.getPassword());
@@ -75,10 +79,10 @@ public class loginUI extends JFrame implements ActionListener{
         message.setHorizontalAlignment(JLabel.CENTER);
 
         emailLabel.setBounds(50, 100, 100, 30);
-        message.setHorizontalAlignment(JLabel.CENTER);
+        //message.setHorizontalAlignment(JLabel.CENTER);
 
         emailField.setBounds(150, 100, 200, 30);
-        emailField.setHorizontalAlignment(JLabel.CENTER);
+        //emailField.setHorizontalAlignment(JLabel.CENTER);
 
         passwordLabel.setBounds(50, 150, 100, 30);
         passwordField.setBounds(150, 150, 200, 30);
@@ -119,12 +123,12 @@ public class loginUI extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-        loginUI frame = new loginUI();
-        frame.setTitle("Landing Page");
-        frame.setVisible(true);
-        frame.setBounds(500, 100, 500, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(true);
+//        loginUI frame = new loginUI();
+//        frame.setTitle("Landing Page");
+//        frame.setVisible(true);
+//        frame.setBounds(500, 100, 500, 500);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setResizable(true);
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShowGui();
