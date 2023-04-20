@@ -1,3 +1,0 @@
-type,id,firstname,lastname,dob,sex,phone,email,password,address,zipcode,city,state
-guest,0001,bob,stevens,09/24/2002,m,8064216369,bob_stevens@gmail.com,bobiscool123!,1208 meridith ave,79084,bumas,tx
-guest,0002,jane,doe,08/25/2003,f,4325467384,jane_doe@gmail.com,janeiscool124!,567 pine dr,76492,ballas,tx

@@ -62,7 +62,7 @@ public class createAccountGUI extends JFrame {
                 dispose();
             }
         });
-        ImageIcon imageIcon = new ImageIcon("C:/Users/carma/Desktop/left.png");
+        ImageIcon imageIcon = new ImageIcon("src/main/resources/Frontend_Resources/backButton.png");
         Image image = imageIcon.getImage().getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(image);
         backButton.setIcon(imageIcon);

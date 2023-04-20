@@ -38,7 +38,7 @@ public class newReservationUI extends JFrame {
         });
         // Add Image To Back Button
         ImageIcon imageIcon = new ImageIcon("C:/Users/carma/Desktop/left.png");
-        Image image = imageIcon.getImage().getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
+        Image image = imageIcon.getImage().getScaledInstance(30, 30,  Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(image);
         backButton.setIcon(imageIcon);
 
