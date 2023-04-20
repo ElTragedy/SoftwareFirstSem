@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class accountPortalGUI extends JFrame implements ActionListener {
+public class accountPortalUI extends JFrame implements ActionListener {
     // Main Container
     private Container container;
 

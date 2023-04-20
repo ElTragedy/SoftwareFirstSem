@@ -85,8 +85,8 @@ public class newReservationUI extends JFrame {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                accountPortalGUI accountPortalGUI = new accountPortalGUI();
-                accountPortalGUI.createAndShowGui();
+                accountPortalUI accountPortalUI = new accountPortalUI();
+                accountPortalUI.createAndShowGui();
                 dispose();
             }
         });
