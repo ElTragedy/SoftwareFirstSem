@@ -57,19 +57,20 @@ public class createAccountGUI extends JFrame {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                welcomeGUI welcomeGUI = new welcomeGUI();
-                welcomeGUI.createAndShowGui();
+                loginUI loginUI = new loginUI();
+                loginUI.createAndShowGui();
                 dispose();
             }
         });
+
         ImageIcon imageIcon = new ImageIcon("src/main/resources/Frontend_Resources/backButton.png");
-        Image image = imageIcon.getImage().getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
+        Image image = imageIcon.getImage().getScaledInstance(30, 30,  Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(image);
         backButton.setIcon(imageIcon);
 
         // Set header for window
         message = new JLabel("Register a New Account");
-        message.setFont(new Font("Courier", Font.BOLD, 20));
+        message.setFont(new Font("Barlow", Font.BOLD, 20));
 
         // Add name labels and fields
         firstNameLabel = new JLabel("First Name");
