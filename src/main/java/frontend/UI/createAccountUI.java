@@ -1,4 +1,4 @@
-package frontend;
+package frontend.UI;
 
 
 /*
@@ -17,6 +17,7 @@ import java.util.Properties;
 import javax.swing.*;
 
 import javax.swing.JFormattedTextField.AbstractFormatter;
+
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;

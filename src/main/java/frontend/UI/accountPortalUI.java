@@ -1,4 +1,4 @@
-package frontend;
+package frontend.UI;
 
 /*
  * This code uses a lot of functions like "Create User" and "create reservation"

@@ -1,4 +1,4 @@
-package frontend;
+package frontend.UI;
 
 import backend.Reservation;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Properties;
 
-public class reservationGUI extends JFrame{
+public class reservationUI extends JFrame{
 
     private Container container;
     private JButton reserve, backButton;
@@ -25,11 +25,11 @@ public class reservationGUI extends JFrame{
     private Reservation reservation;
 
     public static void main(String args[]){
-        reservationGUI reservationGUI = new reservationGUI();
-        reservationGUI.createAndShowGui();
+        reservationUI reservationUI = new reservationUI();
+        reservationUI.createAndShowGui();
     }
 
-    public reservationGUI(){
+    public reservationUI(){
         backButton = new JButton();
 
         backButton.addActionListener(new ActionListener() {
@@ -121,7 +121,7 @@ public class reservationGUI extends JFrame{
     }
 
     public void createAndShowGui() {
-        reservationGUI frame = new reservationGUI();
+        reservationUI frame = new reservationUI();
         frame.setTitle("Make a Reservation");
         frame.setVisible(true);
         frame.setBounds(500,15, 500, 800);
