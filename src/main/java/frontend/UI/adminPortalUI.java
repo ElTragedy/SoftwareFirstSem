@@ -1,4 +1,4 @@
-package frontend;
+package frontend.UI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
     private Container container;
 
     // Labels to identify the fields
-    private JLabel greetingLabel;
+    private JLabel adminMessage;
 
     // Button for confirmation
     private JButton signOutButton;
@@ -20,8 +20,8 @@ public class adminPortalUI extends JFrame implements ActionListener {
 
     public adminPortalUI() {
         // Set All Components
-        greetingLabel = new JLabel("Admin Portal"); // TODO: Add Hello, "user's name"
-        greetingLabel.setFont(new Font("Barlow", Font.BOLD, 30));
+        adminMessage = new JLabel("Admin Portal"); // TODO: Add Hello, "user's name"
+        adminMessage.setFont(new Font("Barlow", Font.BOLD, 30));
 
         signOutButton = new JButton("Sign Out");
         signOutButton.addActionListener(new ActionListener() {
@@ -66,7 +66,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
 
     // Sets all labels/fields bounds
     public void setBounds() {
-        greetingLabel.setBounds(50, 10, 250, 30);
+        adminMessage.setBounds(50, 10, 250, 30);
         signOutButton.setBounds(300, 10, 100, 30);
         // promptLabel.setBounds(100, 60, 350, 30);
         newReservationButton.setBounds(50, 110, 200, 30);
@@ -74,7 +74,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
     }
 
     public void addComponents() {
-        container.add(greetingLabel);
+        container.add(adminMessage);
         container.add(signOutButton);
         container.add(newReservationButton);
         container.add(modifyReservationButton);

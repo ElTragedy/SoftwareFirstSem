@@ -1,4 +1,4 @@
-package frontend;
+package frontend.UI;
 
 /*
  * No need for black box connections, this is log in GUI thing
