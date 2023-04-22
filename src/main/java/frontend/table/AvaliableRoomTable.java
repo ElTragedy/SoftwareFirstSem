@@ -11,26 +11,16 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
 
 public class AvaliableRoomTable extends JPanel {
-    private String[] columnNames = {"First Name",
-            "Last Name",
-            "Sport",
-            "# of Years",
-            "Vegetarian"};
+    private String[] columnNames = {
+            "Room Number",
+            "Room Size"
+    };
     private Object[][] data = {
-            {"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
-            {"John", "Doe", "Rowing", new Integer(3), new Boolean(true)},
-            {"Sue", "Black", "Knitting", new Integer(2), new Boolean(false)},
-            {"Jane", "White", "Speed reading", new Integer(20), new Boolean(true)},
-            {"Joe", "Brown", "Pool", new Integer(10), new Boolean(false)}
+            {"123", "Suite"},
+            {"69", "Single King"},
+            {"20", "Double King"}
     };
     private boolean DEBUG = false;
     private JTable table;
@@ -64,13 +54,13 @@ public class AvaliableRoomTable extends JPanel {
 //        b1.add(Box.createHorizontalGlue());
 //        add(b1);
 
-        DeleteRowFromTableAction deleteAction = new DeleteRowFromTableAction(table, (DefaultTableModel)table.getModel());
-        JToolBar toolbar = new JToolBar();
-        Box floatRightBox = Box.createHorizontalBox();
-        floatRightBox.add(Box.createHorizontalGlue());
-        toolbar.add(deleteAction);
-        floatRightBox.add(toolbar);
-        add(floatRightBox);
+//        DeleteRowFromTableAction deleteAction = new DeleteRowFromTableAction(table, (DefaultTableModel)table.getModel());
+//        JToolBar toolbar = new JToolBar();
+//        Box floatRightBox = Box.createHorizontalBox();
+//        floatRightBox.add(Box.createHorizontalGlue());
+//        toolbar.add(deleteAction);
+//        floatRightBox.add(toolbar);
+//        add(floatRightBox);
 
 
         table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -126,20 +116,6 @@ public class AvaliableRoomTable extends JPanel {
         JButton button = new JButton("Remove");
         button.addActionListener( new RemoveLineActionLister());
         add(button);
-
-        JButton dialogButton = new JButton("Dialog");
-        dialogButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        MyDialog dialog = new MyDialog(table);
-                    }
-                });
-            }
-        });
-        add(dialogButton);
     }
 
     private void newFilter() {
@@ -317,43 +293,6 @@ public class AvaliableRoomTable extends JPanel {
 
         public M getModel() {
             return model;
-        }
-
-    }
-    public static class DeleteRowFromTableAction extends AbstractTableAction<JTable, DefaultTableModel> {
-
-        public DeleteRowFromTableAction(JTable table, DefaultTableModel model) {
-            super(table, model);
-            putValue(NAME, "Delete selected rows");
-            putValue(SHORT_DESCRIPTION, "Delete selected rows");
-            table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-                @Override
-                public void valueChanged(ListSelectionEvent e) {
-                    setEnabled(getTable().getSelectedRowCount() > 0);
-                }
-            });
-            setEnabled(getTable().getSelectedRowCount() > 0);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("...");
-            JTable table = getTable();
-            if (table.getSelectedRowCount() > 0) {
-                List<Vector> selectedRows = new ArrayList<>(25);
-                DefaultTableModel model = getModel();
-                Vector rowData = model.getDataVector();
-                for (int row : table.getSelectedRows()) {
-                    int modelRow = table.convertRowIndexToModel(row);
-                    Vector rowValue = (Vector) rowData.get(modelRow);
-                    selectedRows.add(rowValue);
-                }
-
-                for (Vector rowValue : selectedRows) {
-                    int rowIndex = rowData.indexOf(rowValue);
-                    model.removeRow(rowIndex);
-                }
-            }
         }
     }
 }

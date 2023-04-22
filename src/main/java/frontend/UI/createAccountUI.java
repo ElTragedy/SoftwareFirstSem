@@ -18,6 +18,7 @@ import javax.swing.*;
 
 import javax.swing.JFormattedTextField.AbstractFormatter;
 
+import frontend.utilities.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -272,23 +273,5 @@ public class createAccountUI extends JFrame {
         frame.setBounds(500, 15, 500, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
-    }
-
-    // Class for formatting DOB information
-    public class DateLabelFormatter extends AbstractFormatter {
-        private String datePattern = "yyyy-MM-dd";
-        private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-        @Override
-        public Object stringToValue(String text) throws ParseException, ParseException {
-            return dateFormatter.parseObject(text);
-        }
-        @Override
-        public String valueToString(Object value) throws ParseException {
-            if (value != null) {
-                Calendar cal = (Calendar) value;
-                return dateFormatter.format(cal.getTime());
-            }
-            return "";
-        }
     }
 }
