@@ -1,6 +1,7 @@
 package frontend.UI;
 
 import backend.Reservation;
+import frontend.utilities.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -127,26 +128,6 @@ public class reservationUI extends JFrame{
         frame.setBounds(500,15, 500, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
-    }
-
-    public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter{
-
-        private String datePattern = "yyyy-MM-dd";
-        private SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
-
-        @Override
-        public Object stringToValue(String text) throws ParseException{
-            return dateFormat.parseObject(text);
-        }
-
-        @Override
-        public String valueToString(Object value) throws ParseException{
-            if (value != null){
-                Calendar cal = (Calendar) value;
-                return dateFormat.format(cal.getTime());
-            }
-            return "";
-        }
     }
 
 }

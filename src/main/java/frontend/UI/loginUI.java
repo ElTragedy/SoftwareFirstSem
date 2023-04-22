@@ -130,7 +130,10 @@ public class loginUI extends JFrame implements ActionListener{
         loginUI frame = new loginUI();
         frame.setTitle("Login");
         frame.setVisible(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        //frame.pack();
         frame.setBounds(500, 100, 500, 500);
+        //frame.setSize(screenSize.width, screenSize.height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }

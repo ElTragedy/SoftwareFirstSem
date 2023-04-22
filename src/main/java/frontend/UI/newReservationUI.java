@@ -1,6 +1,7 @@
 package frontend.UI;
 
 import frontend.table.AvaliableRoomTable;
+import frontend.utilities.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -48,7 +49,6 @@ public class newReservationUI extends JFrame {
         message = new JLabel("Schedule You Stay");
         message.setFont(new Font("Barlow", Font.BOLD, 20));
 
-
         // Start Date Panel
         startDateLabel = new JLabel("Start Date");
         UtilDateModel startDateModel = new UtilDateModel();
@@ -59,7 +59,7 @@ public class newReservationUI extends JFrame {
         startProperties.put("text.month", "Month");
         startProperties.put("text.year", "Year");
         startDatePanel = new JDatePanelImpl(startDateModel, startProperties);
-        startDatePicker = new JDatePickerImpl(startDatePanel, new newReservationUI.DateLabelFormatter());
+        startDatePicker = new JDatePickerImpl(startDatePanel, new DateLabelFormatter());
 
         // End Date Panel
         endDateLabel = new JLabel("End Date");
@@ -71,7 +71,7 @@ public class newReservationUI extends JFrame {
         endProperties.put("text.month", "Month");
         endProperties.put("text.year", "Year");
         endDatePanel = new JDatePanelImpl(endDateModel, startProperties);
-        endDatePicker = new JDatePickerImpl(endDatePanel, new newReservationUI.DateLabelFormatter());
+        endDatePicker = new JDatePickerImpl(endDatePanel, new DateLabelFormatter());
 
         // Room Type Drop Down
         roomTypeLabel = new JLabel("Room Size");
@@ -146,24 +146,5 @@ public class newReservationUI extends JFrame {
         frame.setBounds(500, 15, 800, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
-    }
-
-    public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
-        private String datePattern = "yyyy-MM-dd";
-        private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-
-        @Override
-        public Object stringToValue(String text) throws ParseException, ParseException {
-            return dateFormatter.parseObject(text);
-        }
-
-        @Override
-        public String valueToString(Object value) throws ParseException {
-            if (value != null) {
-                Calendar cal = (Calendar) value;
-                return dateFormatter.format(cal.getTime());
-            }
-            return "";
-        }
     }
 }
