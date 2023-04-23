@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<roomDatabase>
+    <rooms>
+        <room>
+            <roomType>doubleQueen</roomType>
+            <number>101</number>
+            <roomCondition>nonSmoking</roomCondition>
+            <roomStatus>available</roomStatus>
+        </room>
+        <room>
+            <roomType>singleKing</roomType>
+            <number>102</number>
+            <roomCondition>smoking</roomCondition>
+            <roomStatus>occupied</roomStatus>
+        </room>
+        <room>
+            <roomType>suite</roomType>
+            <number>103</number>
+            <roomCondition>nonSmoking</roomCondition>
+            <roomStatus>reserved</roomStatus>
+        </room>
+    </rooms>
+</roomDatabase>

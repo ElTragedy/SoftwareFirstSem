@@ -37,7 +37,9 @@ public class xmlAccount {
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
       // Save the XML to a file
-      File file = new File(filename);
+      File file = new File("src/main/resources/" + filename);
+
+
       jaxbMarshaller.marshal(bookstore, file);
 
     } catch (JAXBException e) {

@@ -73,6 +73,10 @@ public class UIBlackBox {
         return Controller.saveAll();
     }
 
+    public static boolean loadAll(){
+        return Controller.loadAll();
+    }
+
 
 }
     
