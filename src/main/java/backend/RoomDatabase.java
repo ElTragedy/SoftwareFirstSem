@@ -72,12 +72,9 @@ public class RoomDatabase {
         rooms.get(roomNum).setRoomStatus(roomStatus);
     }
 
-    public void addRoom(Room newRoom) throws Exception {
-        if(rooms.get(newRoom.getNumber()) != null){
-            throw new Exception("Room number already exists");
-        }
-        rooms.set(newRoom.getNumber(), newRoom);
-    }
+    public void addRoom(Room newRoom){
+        rooms.add(newRoom);
+    } 
 
     public void printAll(){
         for (Room room : rooms) {

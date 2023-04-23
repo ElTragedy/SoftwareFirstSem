@@ -69,11 +69,7 @@ public class Controller {
      */
     public static boolean createRoom(Room r){
         int size = roomDatabase.getRooms().size();
-        try {
-            roomDatabase.addRoom(r);
-        } catch (Exception e) {
-            return false;
-        }
+        roomDatabase.addRoom(r);
         if (size == roomDatabase.getRooms().size()){
             return false;
         }
