@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Objects;
 import javax.swing.*;
+import backend.*;
 
 
 public class loginGUI extends JFrame implements ActionListener{
@@ -60,9 +61,26 @@ public class loginGUI extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(container, "Please fill out both fields!",
                             "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
                 }
-                //String email = emailField.getText();
-                //String password = Arrays.toString(passwordField.getPassword());
-                //System.out.println(email + " " + password);
+                String email = emailField.getText();
+                char[] password = passwordField.getPassword();
+                if(email.isEmpty() || password.length == 0){
+                     JOptionPane.showMessageDialog(container, "Please fill out both fields!",
+                    "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    Account a = UIBlackBox.getAccount(email, password);
+                    if(a == null){
+                        JOptionPane.showMessageDialog(container, "Invalid Email or Password",
+                        "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
+                        UIBlackBox.setCurrentAccount(a);
+                        accountPortalGUI accountPortalGUI = new accountPortalGUI();
+                        accountPortalGUI.createAndShowGui();
+                        dispose();
+                        
+                    }
+                }
             }
         });
 

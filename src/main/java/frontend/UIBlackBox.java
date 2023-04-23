@@ -63,9 +63,9 @@ public class UIBlackBox {
         //return Controller.getCurrentUser();
     //}
 
-    public static Account getAccount(/* parameters */){
-        //filler
+    public static Account getAccount(String email, char[] password){
         Account a = null;
+        a = Controller.getAccount(email, password);
         return a;
     }
 
@@ -75,6 +75,14 @@ public class UIBlackBox {
 
     public static boolean loadAll(){
         return Controller.loadAll();
+    }
+
+    public static Account setCurrentAccount(Account a){
+        return Controller.setCurrentAccount(a);
+    }
+
+    public static Account getCurrentAccount(){
+        return Controller.getCurrentAccount();
     }
 
 
