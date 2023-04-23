@@ -27,7 +27,7 @@ public class accountPortalGUI extends JFrame implements ActionListener {
     public accountPortalGUI() {
         UIBlackBox.saveAll();
         // Set All Components
-        greetingLabel = new JLabel("Hello, "); // TODO: Add Hello, "user's name"
+        greetingLabel = new JLabel("Hello, " + UIBlackBox.getCurrentAccount().getFirstName()); // TODO: Add Hello, "user's name"
         greetingLabel.setFont(new Font("Barlow", Font.BOLD, 30));
 
         signOutButton = new JButton("Sign Out");

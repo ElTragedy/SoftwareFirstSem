@@ -7,6 +7,7 @@ public class Controller {
     static AccountDatabase accountDatabase = new AccountDatabase();
     static RoomDatabase roomDatabase = new RoomDatabase();
     static ReservationDatabase reservationDatabase = new ReservationDatabase();
+    static Account currentAccount = new Account();
 
     
     //this will be our main function. This will speak to everything else.
@@ -44,6 +45,7 @@ public class Controller {
         int size = accountDatabase.getSize();
         accountDatabase.insertAccount(a);
         System.out.println("account created");
+        Controller.setCurrentAccount(a);
         if (size == accountDatabase.getSize()){
             return false;
         }
@@ -122,6 +124,15 @@ public class Controller {
         
         
         return true;
+    }
+
+    public static Account setCurrentAccount(Account a){
+        currentAccount = a;
+        return currentAccount;
+    }
+
+    public static Account getCurrentAccount(){
+        return currentAccount;
     }
     
 }
