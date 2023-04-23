@@ -15,6 +15,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Properties;
 import javax.swing.*;
+import org.jdatepicker.JDateComponentFactory;
+import org.jdatepicker.JDatePicker;
+import java.util.Random;
+
 
 import javax.swing.JFormattedTextField.AbstractFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -179,9 +183,35 @@ public class createAccountGUI extends JFrame {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                //create a random 4 digit number for the account ID
+                Random rand = new Random();
+                int randomNum = rand.nextInt((9999 - 1000) + 1) + 1000;
+                String id = Integer.toString(randomNum);
+                String firstName = firstNameField.getText();
+                String lastName = lastNameField.getText();
+                String DOB = datePicker.getJFormattedTextField().getText();
+                String sex = sexMale.isSelected() ? "Male" : (sexFemale.isSelected() ? "Female" : "Unassigned");
+                String phoneNumber = mobileNoField.getText();
+                String email = emailField.getText();
+                String password = new String(passwordField.getPassword());
+                String address = addressField.getText();
+                String zipcode = zipField.getText();
+                String city = cityField.getText();
+                String state = stateList.getSelectedItem().toString();
+                String country = countryList.getSelectedItem().toString();
+
+                boolean success = UIBlackBox.createAccount(id, firstName, lastName, DOB, sex, phoneNumber, email,
+                        password, address, zipcode, city, state, country);
+
+                if (success){
                 accountPortalGUI accountPortalGUI = new accountPortalGUI();
                 accountPortalGUI.createAndShowGui();
                 dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Account creation failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 

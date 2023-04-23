@@ -25,6 +25,7 @@ public class accountPortalGUI extends JFrame implements ActionListener {
     private JButton modifyReservationButton;
 
     public accountPortalGUI() {
+        UIBlackBox.saveAll();
         // Set All Components
         greetingLabel = new JLabel("Hello, "); // TODO: Add Hello, "user's name"
         greetingLabel.setFont(new Font("Barlow", Font.BOLD, 30));

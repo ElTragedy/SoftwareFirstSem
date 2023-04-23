@@ -19,6 +19,7 @@ public class welcomeGUI extends JFrame implements ActionListener {
 
     public welcomeGUI() { // OVERRIDE BUTTONS BY LAMBDA FUNCTIONS
         // Set All Components
+        UIBlackBox.loadAll();
         welcomeLabel = new JLabel("Welcome" );
         welcomeLabel.setFont(new Font("Barlow", Font.BOLD, 30));
 

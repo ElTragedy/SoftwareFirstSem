@@ -19,6 +19,7 @@ public class AccountDatabase {
 
     public void save(){
         xmlAccount.doSave("accounts.xml", this);
+        System.out.println("Saved to accounts.xml");
     }
 
     public AccountDatabase() {

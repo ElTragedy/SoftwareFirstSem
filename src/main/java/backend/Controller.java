@@ -43,12 +43,20 @@ public class Controller {
     public static boolean createAccount(Account a){
         int size = accountDatabase.getSize();
         accountDatabase.insertAccount(a);
+        System.out.println("account created");
         if (size == accountDatabase.getSize()){
             return false;
         }
         else{
             return true;
         }
+    }
+
+    public static boolean loadAll(){
+        accountDatabase.load("accounts.xml");
+        roomDatabase.load("rooms.xml");
+        //reservationDatabase.loadDatabase();
+        return true;
     }
 
     /*

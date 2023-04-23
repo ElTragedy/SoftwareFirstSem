@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <accounts>
     <users>
-        <account id="001" access="guest">
+        <account access="guest" id="001">
             <firstName>John</firstName>
             <lastName>Doe</lastName>
             <DOB>07/15/1985</DOB>
@@ -15,7 +15,7 @@
             <state>NY</state>
             <country>USA</country>
         </account>
-        <account id="002" access="clerk">
+        <account access="clerk" id="002">
             <firstName>Jane</firstName>
             <lastName>Smith</lastName>
             <DOB>03/20/1992</DOB>
@@ -29,7 +29,7 @@
             <state>CA</state>
             <country>USA</country>
         </account>
-        <account id="003" access="admin">
+        <account access="admin" id="003">
             <firstName>Bob</firstName>
             <lastName>Johnson</lastName>
             <DOB>11/01/1976</DOB>
@@ -42,6 +42,20 @@
             <city>Someplace</city>
             <state>TX</state>
             <country>USA</country>
+        </account>
+        <account id="9943">
+            <firstName>Aaron</firstName>
+            <lastName>Sierra</lastName>
+            <DOB>2000-02-12</DOB>
+            <sex>Male</sex>
+            <phoneNumber>8079443847</phoneNumber>
+            <email>aaron_sierra1@baylor.edu</email>
+            <password>bob123</password>
+            <address>1174 melinda ln</address>
+            <zipcode>79029</zipcode>
+            <city>dumas</city>
+            <state>TX</state>
+            <country>United States</country>
         </account>
     </users>
 </accounts>
