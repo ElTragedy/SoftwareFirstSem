@@ -27,9 +27,9 @@ public class UIBlackBox {
 
     }
 
-    public static boolean createRoom(String type, int roomNum){
+    public static boolean createRoom(String type, int roomNum, String roomCondition, String roomStatus){
         //make the room
-        Room r = new Room(type, roomNum);
+        Room r = new Room(type, roomNum, roomCondition, roomStatus);
         //return the result of the controller
         return Controller.createRoom(r); 
     }

@@ -1,23 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <roomDatabase>
     <rooms>
         <room>
-            <number>101</number>
             <roomType>doubleQueen</roomType>
+            <number>101</number>
             <roomCondition>nonSmoking</roomCondition>
             <roomStatus>available</roomStatus>
         </room>
         <room>
-            <number>102</number>
             <roomType>singleKing</roomType>
+            <number>102</number>
             <roomCondition>smoking</roomCondition>
             <roomStatus>occupied</roomStatus>
         </room>
         <room>
-            <number>103</number>
             <roomType>suite</roomType>
+            <number>103</number>
             <roomCondition>nonSmoking</roomCondition>
             <roomStatus>reserved</roomStatus>
+        </room>
+        <room>
+            <roomType>singleKing</roomType>
+            <number>421</number>
+            <roomCondition>nonSmoking</roomCondition>
+            <roomStatus>reserved</roomStatus>
+        </room>
+        <room>
+            <roomType>doubleQueen</roomType>
+            <number>574</number>
+            <roomCondition>smoking</roomCondition>
+            <roomStatus>available</roomStatus>
+        </room>
+        <room>
+            <roomType>suite</roomType>
+            <number>7463</number>
+            <roomCondition>nonSmoking</roomCondition>
+            <roomStatus>occupied</roomStatus>
         </room>
     </rooms>
 </roomDatabase>

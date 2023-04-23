@@ -39,6 +39,13 @@ public class Room implements Comparator<Room> {
         this.number = number;
     }
 
+    public Room(String roomType, int number, String roomCondition, String roomStatus) {
+        this.roomType = RoomType.valueOf(roomType);
+        this.number = number;
+        this.roomCondition = RoomCondition.valueOf(roomCondition);
+        this.roomStatus = RoomStatus.valueOf(roomStatus);
+    }
+
     public RoomType getRoomType() {
         return roomType;
     }
