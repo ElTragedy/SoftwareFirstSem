@@ -6,6 +6,9 @@ package frontend.UI;
  * this to the UIBlackBox.
  */
 
+import frontend.UIBlackBox;
+import frontend.addRoomUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,7 +28,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
     private JButton newReservationButton;
     private JButton modifyReservationButton;
 
-    public accountPortalGUI() {
+    public accountPortalUI() {
         UIBlackBox.saveAll();
         // Set All Components
         greetingLabel = new JLabel("Hello, " + UIBlackBox.getCurrentAccount().getFirstName()); // TODO: Add Hello, "user's name"
@@ -74,7 +77,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
             createRoomButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    addRoomGUI  addRoomGUI = new addRoomGUI();
+                    addRoomUI addRoomGUI = new addRoomUI();
                     addRoomGUI.createAndShowGui();
                     dispose();
                 }
@@ -108,7 +111,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
     }
 
     public void createAndShowGui() {
-        accountPortalGUI frame = new accountPortalGUI();
+        accountPortalUI frame = new accountPortalUI();
         frame.setTitle("Account Portal");
         frame.setVisible(true);
         frame.setBounds(500, 100, 500, 300);

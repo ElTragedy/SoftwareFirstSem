@@ -7,6 +7,7 @@ package frontend;
  */
 
 import backend.Room;
+import frontend.UI.accountPortalUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class addRoomGUI extends JFrame implements ActionListener {
+public class addRoomUI extends JFrame implements ActionListener {
 
     // Main Container
     private Container container;
@@ -33,12 +34,12 @@ public class addRoomGUI extends JFrame implements ActionListener {
     //private JTextField roomStatusField;
     private JButton submitButton;
 
-    public addRoomGUI() {
+    public addRoomUI() {
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                accountPortalGUI accountPortalGUI = new accountPortalGUI();
+                accountPortalUI accountPortalGUI = new accountPortalUI();
                 accountPortalGUI.createAndShowGui();
                 dispose();
             }
@@ -128,7 +129,7 @@ public class addRoomGUI extends JFrame implements ActionListener {
     }
 
     public void createAndShowGui() {
-        addRoomGUI frame = new addRoomGUI();
+        addRoomUI frame = new addRoomUI();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 200);
         frame.setVisible(true);

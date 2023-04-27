@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import javax.swing.*;
 import backend.*;
+import frontend.UIBlackBox;
 
 
 public class loginUI extends JFrame implements ActionListener{
@@ -64,7 +65,7 @@ public class loginUI extends JFrame implements ActionListener{
                     }
                     else{
                         UIBlackBox.setCurrentAccount(a);
-                        accountPortalGUI accountPortalGUI = new accountPortalGUI();
+                        accountPortalUI accountPortalGUI = new accountPortalUI();
                         accountPortalGUI.createAndShowGui();
                         dispose();
                         
