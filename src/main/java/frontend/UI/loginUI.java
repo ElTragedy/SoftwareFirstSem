@@ -25,6 +25,8 @@ public class loginUI extends JFrame implements ActionListener{
     private JButton createAccountButton;
 
     public loginUI() {
+        UIBlackBox.loadAll();
+
         // Set header for window
         message = new JLabel("Welcome To <HOTEL NAME>");
         message.setFont(new Font("Barlow", Font.BOLD, 30));
