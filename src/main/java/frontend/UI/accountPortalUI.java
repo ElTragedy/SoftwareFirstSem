@@ -7,7 +7,6 @@ package frontend.UI;
  */
 
 import frontend.UIBlackBox;
-import frontend.addRoomUI;
 
 import javax.swing.*;
 import java.awt.*;
