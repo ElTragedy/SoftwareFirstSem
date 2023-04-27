@@ -21,7 +21,7 @@ public class ReservationDatabase {
             JAXBContext context = JAXBContext.newInstance(ReservationMap.class);
             Unmarshaller um = context.createUnmarshaller();
 
-            xmlToDatabase((ReservationMap) um.unmarshal(this.getClass().getResourceAsStream("/inReservations.xml")));
+            xmlToDatabase((ReservationMap) um.unmarshal(this.getClass().getResourceAsStream("/reservations.xml")));
         }catch (JAXBException e){
         }
     }
@@ -90,7 +90,7 @@ public class ReservationDatabase {
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-            m.marshal(mapToXML(database), new File((Paths.get("src", "main", "resources", "outReservations.xml")).toAbsolutePath().toUri()));
+            m.marshal(mapToXML(database), new File((Paths.get("src", "main", "resources", "reservations.xml")).toAbsolutePath().toUri()));
 
         } catch(JAXBException e){
         }
