@@ -1,4 +1,4 @@
-package frontend;
+package frontend.UI;
 
 /*
  * this code is for Adding a room but it currently does not add any rooms. We
@@ -6,12 +6,8 @@ package frontend;
  * "addRoom" function and then we just pass in parameters from the GUI.
  */
 
-import backend.Room;
-import frontend.UI.accountPortalUI;
+import frontend.UIBlackBox;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -111,7 +107,7 @@ public class addRoomUI extends JFrame implements ActionListener {
                 String roomStatus = (String) roomStatusField.getSelectedItem();
 
 
-                UIBlackBox.createRoom(roomType, a, roomCondition, roomStatus); 
+                UIBlackBox.createRoom(roomType, a, roomCondition, roomStatus);
 
                 numField1.setText("");
                 //numField2.setText("");
