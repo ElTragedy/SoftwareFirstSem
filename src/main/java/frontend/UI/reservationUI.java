@@ -1,11 +1,7 @@
-package frontend;
+package frontend.UI;
 
-import backend.Account;
-import backend.Controller;
 import backend.Reservation;
-import backend.ReservationDatabase;
-import org.jdatepicker.JDatePicker;
-import org.jdatepicker.impl.DateComponentFormatter;
+import frontend.utilities.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -14,15 +10,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Properties;
 
-public class reservationGUI extends JFrame{
+public class reservationUI extends JFrame{
 
     private Container container;
     private JButton reserve, backButton;
@@ -33,18 +26,18 @@ public class reservationGUI extends JFrame{
     private Reservation reservation;
 
     public static void main(String args[]){
-        reservationGUI reservationGUI = new reservationGUI();
-        reservationGUI.createAndShowGui();
+        reservationUI reservationUI = new reservationUI();
+        reservationUI.createAndShowGui();
     }
 
-    public reservationGUI(){
+    public reservationUI(){
         backButton = new JButton();
 
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                accountPortalGUI accountPortalGUI = new accountPortalGUI();
-                accountPortalGUI.createAndShowGui();
+                accountPortalUI accountPortalUI = new accountPortalUI();
+                accountPortalUI.createAndShowGui();
                 dispose();
             }
         });
@@ -129,32 +122,12 @@ public class reservationGUI extends JFrame{
     }
 
     public void createAndShowGui() {
-        reservationGUI frame = new reservationGUI();
+        reservationUI frame = new reservationUI();
         frame.setTitle("Make a Reservation");
         frame.setVisible(true);
         frame.setBounds(500,15, 500, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
-    }
-
-    public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter{
-
-        private String datePattern = "yyyy-MM-dd";
-        private SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
-
-        @Override
-        public Object stringToValue(String text) throws ParseException{
-            return dateFormat.parseObject(text);
-        }
-
-        @Override
-        public String valueToString(Object value) throws ParseException{
-            if (value != null){
-                Calendar cal = (Calendar) value;
-                return dateFormat.format(cal.getTime());
-            }
-            return "";
-        }
     }
 
 }

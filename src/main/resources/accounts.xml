@@ -1,70 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <accounts>
     <users>
-        <account access="guest" id="001">
-            <firstName>John</firstName>
-            <lastName>Doe</lastName>
-            <DOB>07/15/1985</DOB>
-            <sex>M</sex>
-            <phoneNumber>123-456-7890</phoneNumber>
-            <email>johndoe@example.com</email>
-            <password>mysecret</password>
-            <address>123 Main St</address>
-            <zipcode>12345</zipcode>
-            <city>Anytown</city>
-            <state>NY</state>
-            <country>USA</country>
-        </account>
-        <account access="clerk" id="002">
-            <firstName>Jane</firstName>
-            <lastName>Smith</lastName>
-            <DOB>03/20/1992</DOB>
-            <sex>F</sex>
-            <phoneNumber>555-555-1212</phoneNumber>
-            <email>janesmith@example.com</email>
-            <password>supersecret</password>
-            <address>456 Elm St</address>
-            <zipcode>54321</zipcode>
-            <city>Anycity</city>
-            <state>CA</state>
-            <country>USA</country>
-        </account>
-        <account access="admin" id="003">
-            <firstName>Bob</firstName>
-            <lastName>Johnson</lastName>
-            <DOB>11/01/1976</DOB>
-            <sex>M</sex>
-            <phoneNumber>987-654-3210</phoneNumber>
-            <email>bobjohnson@example.com</email>
-            <password>topsecret</password>
-            <address>789 Oak St</address>
-            <zipcode>67890</zipcode>
-            <city>Someplace</city>
-            <state>TX</state>
-            <country>USA</country>
-        </account>
-        <account id="9943">
-            <firstName>Aaron</firstName>
-            <lastName>Sierra</lastName>
-            <DOB>2000-02-12</DOB>
-            <sex>Male</sex>
-            <phoneNumber>8079443847</phoneNumber>
-            <email>aaron_sierra1@baylor.edu</email>
-            <password>bob123</password>
-            <address>1174 melinda ln</address>
-            <zipcode>79029</zipcode>
-            <city>dumas</city>
-            <state>TX</state>
-            <country>United States</country>
-        </account>
-        <account id="9880">
-            <firstName>admin</firstName>
+        <account id="8701">
+            <firstName></firstName>
             <lastName></lastName>
             <DOB>2000-02-12</DOB>
             <sex>Male</sex>
             <phoneNumber></phoneNumber>
-            <email>admin</email>
-            <password>admin</password>
+            <email></email>
+            <password></password>
             <address></address>
             <zipcode></zipcode>
             <city></city>

@@ -1,4 +1,4 @@
-package frontend;
+package frontend.UI;
 
 /*
  * No need for black box connections, this is log in GUI thing
@@ -11,10 +11,10 @@ import java.util.Arrays;
 import java.util.Objects;
 import javax.swing.*;
 import backend.*;
+import frontend.UIBlackBox;
 
 
-public class loginGUI extends JFrame implements ActionListener{
-    private JButton backButton;
+public class loginUI extends JFrame implements ActionListener{
     private Container container;
     private JLabel message;
     private JLabel emailLabel;
@@ -22,26 +22,12 @@ public class loginGUI extends JFrame implements ActionListener{
     private JLabel passwordLabel;
     private JPasswordField passwordField;
     private JButton loginButton;
+    private JButton createAccountButton;
 
-    public loginGUI() {
-        // Implement Back Button
-        backButton = new JButton();
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                welcomeGUI welcomeGUI = new welcomeGUI();
-                welcomeGUI.createAndShowGui();
-                dispose();
-            }
-        });
-        ImageIcon imageIcon = new ImageIcon("C:/Users/carma/Desktop/left.png");
-        Image image = imageIcon.getImage().getScaledInstance(30, 30,  Image.SCALE_DEFAULT);
-        imageIcon = new ImageIcon(image);
-        backButton.setIcon(imageIcon);
-
+    public loginUI() {
         // Set header for window
-        message = new JLabel("Welcome back, please enter your information to login.");
-        message.setFont(new Font("Barlow", Font.PLAIN, 20));
+        message = new JLabel("Welcome To <HOTEL NAME>");
+        message.setFont(new Font("Barlow", Font.BOLD, 30));
 
         // Add contact/login info labels and fields
         emailLabel = new JLabel("Email");
@@ -50,7 +36,7 @@ public class loginGUI extends JFrame implements ActionListener{
         passwordLabel = new JLabel("Password");
         passwordField = new JPasswordField();
 
-        // Add register button
+        // Add login button
         loginButton = new JButton("Login");
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -60,6 +46,10 @@ public class loginGUI extends JFrame implements ActionListener{
                     // MAKE FUNCTION TO ITERATE THROUGH ALL FIELDS
                     JOptionPane.showMessageDialog(container, "Please fill out both fields!",
                             "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+                } else if (Objects.equals(emailField.getText(), "admin") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
+                    adminPortalUI adminPortalUI = new adminPortalUI();
+                    adminPortalUI.createAndShowGui();
+                    dispose();
                 }
                 String email = emailField.getText();
                 char[] password = passwordField.getPassword();
@@ -75,12 +65,23 @@ public class loginGUI extends JFrame implements ActionListener{
                     }
                     else{
                         UIBlackBox.setCurrentAccount(a);
-                        accountPortalGUI accountPortalGUI = new accountPortalGUI();
+                        accountPortalUI accountPortalGUI = new accountPortalUI();
                         accountPortalGUI.createAndShowGui();
                         dispose();
                         
                     }
                 }
+            }
+        });
+
+        // Add Create Account Button
+        createAccountButton = new JButton("Create Account");
+        createAccountButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                createAccountUI createAccountUI = new createAccountUI();
+                createAccountUI.createAndShowGui();
+                dispose();
             }
         });
 
@@ -93,22 +94,27 @@ public class loginGUI extends JFrame implements ActionListener{
 
     // Sets all labels/fields bounds
     public void setBounds() {
-        backButton.setBounds(0, 0, 30, 30);
+        message.setBounds(20, 20, 460, 30);
+        message.setHorizontalAlignment(JLabel.CENTER);
 
-        message.setBounds(50, 10, 600, 30);
-        emailLabel.setBounds(50, 60, 100, 30);
-        emailField.setBounds(130, 60, 200, 30);
+        emailLabel.setBounds(50, 100, 100, 30);
+        //message.setHorizontalAlignment(JLabel.CENTER);
 
-        passwordLabel.setBounds(50, 110, 100, 30);
-        passwordField.setBounds(130, 110, 200, 30);
+        emailField.setBounds(150, 100, 200, 30);
+        //emailField.setHorizontalAlignment(JLabel.CENTER);
 
-        loginButton.setBounds(130, 160, 200, 30);
+        passwordLabel.setBounds(50, 150, 100, 30);
+        passwordField.setBounds(150, 150, 200, 30);
+
+        loginButton.setBounds(150, 200, 200, 30);
+        loginButton.setHorizontalAlignment(JLabel.CENTER);
+
+        createAccountButton.setBounds(150, 250, 200, 30);
+        createAccountButton.setHorizontalAlignment(JLabel.CENTER);
     }
 
     // Adds labels and fields to container
     public void addComponents() {
-        container.add(backButton);
-
         container.add(message);
 
         container.add(emailLabel);
@@ -118,13 +124,17 @@ public class loginGUI extends JFrame implements ActionListener{
         container.add(passwordField);
 
         container.add(loginButton);
+        container.add(createAccountButton);
     }
 
-    public void createAndShowGui() {
-        loginGUI frame = new loginGUI();
+    public static void createAndShowGui() {
+        loginUI frame = new loginUI();
         frame.setTitle("Login");
         frame.setVisible(true);
-        frame.setBounds(500, 100, 800, 500);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        //frame.pack();
+        frame.setBounds(500, 100, 500, 500);
+        //frame.setSize(screenSize.width, screenSize.height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
@@ -132,6 +142,20 @@ public class loginGUI extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    public static void main(String[] args) {
+//        loginUI frame = new loginUI();
+//        frame.setTitle("Landing Page");
+//        frame.setVisible(true);
+//        frame.setBounds(500, 100, 500, 500);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setResizable(true);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGui();
+            }
+        });
     }
 }
 

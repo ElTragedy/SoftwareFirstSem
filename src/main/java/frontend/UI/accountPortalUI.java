@@ -1,4 +1,4 @@
-package frontend;
+package frontend.UI;
 
 /*
  * This code uses a lot of functions like "Create User" and "create reservation"
@@ -6,12 +6,15 @@ package frontend;
  * this to the UIBlackBox.
  */
 
+import frontend.UIBlackBox;
+import frontend.addRoomUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class accountPortalGUI extends JFrame implements ActionListener {
+public class accountPortalUI extends JFrame implements ActionListener {
     // Main Container
     private Container container;
 
@@ -21,11 +24,10 @@ public class accountPortalGUI extends JFrame implements ActionListener {
     // Button for confirmation
     private JButton signOutButton;
     private JButton accountButton;
-    private JButton createRoomButton;
     private JButton newReservationButton;
     private JButton modifyReservationButton;
 
-    public accountPortalGUI() {
+    public accountPortalUI() {
         UIBlackBox.saveAll();
         // Set All Components
         greetingLabel = new JLabel("Hello, " + UIBlackBox.getCurrentAccount().getFirstName()); // TODO: Add Hello, "user's name"
@@ -50,8 +52,8 @@ public class accountPortalGUI extends JFrame implements ActionListener {
         newReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reservationGUI reservationGUI = new reservationGUI();
-                reservationGUI.createAndShowGui();
+                newReservationUI newReservationUI = new newReservationUI();
+                newReservationUI.createAndShowGui();
                 dispose();
             }
         });
@@ -66,20 +68,6 @@ public class accountPortalGUI extends JFrame implements ActionListener {
                 dispose();
             }
         });
-
-        //if user is admin, show admin button
-        if (UIBlackBox.getCurrentAccount().getFirstName().equals("admin")) {
-            //accountButton = new JButton("Create Room");
-            createRoomButton = new JButton("Create Room");
-            createRoomButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    addRoomGUI  addRoomGUI = new addRoomGUI();
-                    addRoomGUI.createAndShowGui();
-                    dispose();
-                }
-            });
-        }
 
 
         // Add and set container
@@ -96,7 +84,7 @@ public class accountPortalGUI extends JFrame implements ActionListener {
         // promptLabel.setBounds(100, 60, 350, 30);
         newReservationButton.setBounds(50, 110, 200, 30);
         modifyReservationButton.setBounds(250, 110, 200, 30);
-        createRoomButton.setBounds(50, 160, 200, 30);
+        //createRoomButton.setBounds(50, 160, 200, 30);
     }
 
     public void addComponents() {
@@ -104,11 +92,10 @@ public class accountPortalGUI extends JFrame implements ActionListener {
         container.add(signOutButton);
         container.add(newReservationButton);
         container.add(modifyReservationButton);
-        container.add(createRoomButton);
     }
 
     public void createAndShowGui() {
-        accountPortalGUI frame = new accountPortalGUI();
+        accountPortalUI frame = new accountPortalUI();
         frame.setTitle("Account Portal");
         frame.setVisible(true);
         frame.setBounds(500, 100, 500, 300);

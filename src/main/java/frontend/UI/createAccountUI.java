@@ -1,4 +1,4 @@
-package frontend;
+package frontend.UI;
 
 
 /*
@@ -15,17 +15,21 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Properties;
 import javax.swing.*;
+
+import frontend.UIBlackBox;
 import org.jdatepicker.JDateComponentFactory;
 import org.jdatepicker.JDatePicker;
 import java.util.Random;
 
 
 import javax.swing.JFormattedTextField.AbstractFormatter;
+
+import frontend.utilities.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-public class createAccountGUI extends JFrame {
+public class createAccountUI extends JFrame {
     private JButton backButton;
     private JLabel message;
     private JLabel firstNameLabel, lastNameLabel, dobLabel, sexLabel, dobFormat;
@@ -51,25 +55,26 @@ public class createAccountGUI extends JFrame {
     private JDatePanelImpl datePanel;
     private JDatePickerImpl datePicker;
 
-    public createAccountGUI() {
+    public createAccountUI() {
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                welcomeGUI welcomeGUI = new welcomeGUI();
-                welcomeGUI.createAndShowGui();
+                loginUI loginUI = new loginUI();
+                loginUI.createAndShowGui();
                 dispose();
             }
         });
-        ImageIcon imageIcon = new ImageIcon("C:/Users/carma/Desktop/left.png");
-        Image image = imageIcon.getImage().getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);
+
+        ImageIcon imageIcon = new ImageIcon("src/main/resources/Frontend_Resources/backButton.png");
+        Image image = imageIcon.getImage().getScaledInstance(30, 30,  Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(image);
         backButton.setIcon(imageIcon);
 
         // Set header for window
         message = new JLabel("Register a New Account");
-        message.setFont(new Font("Courier", Font.BOLD, 20));
+        message.setFont(new Font("Barlow", Font.BOLD, 20));
 
         // Add name labels and fields
         firstNameLabel = new JLabel("First Name");
@@ -204,9 +209,9 @@ public class createAccountGUI extends JFrame {
                 boolean success = UIBlackBox.createAccount(id, firstName, lastName, DOB, sex, phoneNumber, email,
                         password, address, zipcode, city, state, country);
                 if (success){
-                accountPortalGUI accountPortalGUI = new accountPortalGUI();
-                accountPortalGUI.createAndShowGui();
-                dispose();
+                    accountPortalUI accountPortalGUI = new accountPortalUI();
+                    accountPortalGUI.createAndShowGui();
+                    dispose();
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Account creation failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -293,29 +298,11 @@ public class createAccountGUI extends JFrame {
         container.add(registerButton);
     }
     public void createAndShowGui() {
-        createAccountGUI frame = new createAccountGUI();
+        createAccountUI frame = new createAccountUI();
         frame.setTitle("Create New Account");
         frame.setVisible(true);
         frame.setBounds(500, 15, 500, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
-    }
-
-    // Class for formatting DOB information
-    public class DateLabelFormatter extends AbstractFormatter {
-        private String datePattern = "yyyy-MM-dd";
-        private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-        @Override
-        public Object stringToValue(String text) throws ParseException, ParseException {
-            return dateFormatter.parseObject(text);
-        }
-        @Override
-        public String valueToString(Object value) throws ParseException {
-            if (value != null) {
-                Calendar cal = (Calendar) value;
-                return dateFormatter.format(cal.getTime());
-            }
-            return "";
-        }
     }
 }
