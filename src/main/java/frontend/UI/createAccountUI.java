@@ -220,9 +220,14 @@ public class createAccountUI extends JFrame {
         });
 
         // Add and set container
-        container = getContentPane();
+
+        container = new JPanel();
         container.setLayout(null);
+        JScrollPane scrollPane = new JScrollPane(container, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        getContentPane().add(scrollPane);
+
         setBounds();
+        container.setPreferredSize(new Dimension(500, 800));
         addComponents();
     }
 
@@ -301,7 +306,7 @@ public class createAccountUI extends JFrame {
         createAccountUI frame = new createAccountUI();
         frame.setTitle("Create New Account");
         frame.setVisible(true);
-        frame.setBounds(500, 15, 500, 800);
+        frame.setBounds(500, 15, 500, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
