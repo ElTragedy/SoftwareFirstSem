@@ -1,5 +1,6 @@
 package frontend.table;
 
+import frontend.UI.newReservationUI;
 import net.coderazzi.filters.gui.AutoChoices;
 import net.coderazzi.filters.gui.TableFilterHeader;
 
@@ -27,8 +28,7 @@ public class ReservationStatusTable extends JPanel {
     };
     private boolean DEBUG = false;
     private JTable table;
-    private JTextField filterText;
-    private JTextField statusText;
+
     private TableRowSorter<DefaultTableModel> sorter;
 
     public ReservationStatusTable() {
@@ -54,42 +54,27 @@ public class ReservationStatusTable extends JPanel {
 
 
         table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        table.getSelectionModel().addListSelectionListener(
-                new ListSelectionListener() {
-                    public void valueChanged(ListSelectionEvent event) {
-                        int viewRow = table.getSelectedRow();
-                        if (viewRow < 0) {
-                            //Selection got filtered away.
-                            statusText.setText("");
-                        } else {
-                            int modelRow =
-                                    table.convertRowIndexToModel(viewRow);
-                            statusText.setText(
-                                    String.format("Selected Row in view: %d. " + "Selected Row in model: %d.", viewRow, modelRow));
-                        }
-                    }
-                }
-        );
+
 
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane);
 
         TableFilterHeader filterHeader = new TableFilterHeader(table, AutoChoices.ENABLED);
 
-        JButton button = new JButton("Remove");
-        button.addActionListener( new RemoveLineActionLister());
-        add(button);
-    }
+        JButton createNewReservationButton = new JButton("New Reservation");
+        createNewReservationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newReservationUI newReservationUI = new newReservationUI();
+                newReservationUI.createAndShowGui();
+            }
+        });
+        createNewReservationButton.setBounds(50, 60, 200, 30);
+        add(createNewReservationButton);
 
-    private void newFilter() {
-        RowFilter<DefaultTableModel, Object> rf = null;
-        //If current expression doesn't parse, don't update.
-        try {
-            rf = RowFilter.regexFilter(filterText.getText(), 0, 1, 2);
-        } catch (java.util.regex.PatternSyntaxException e) {
-            return;
-        }
-        sorter.setRowFilter(rf);
+        JButton removeButton = new JButton("Remove");
+        removeButton.addActionListener( new RemoveLineActionLister());
+        add(removeButton);
     }
 
     private static void createAndShowGUI() {
@@ -107,7 +92,7 @@ public class ReservationStatusTable extends JPanel {
         frame.setVisible(true);
     }
 
-    private final class RemoveLineActionLister implements ActionListener {
+    public final class RemoveLineActionLister implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             int viewRow = table.getSelectedRow();

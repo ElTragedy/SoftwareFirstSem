@@ -25,6 +25,8 @@ public class accountPortalUI extends JFrame implements ActionListener {
     private JButton signOutButton;
     private JButton accountButton;
     private JButton newReservationButton;
+    private JButton cancelReservationButton;
+
 
     ReservationStatusTable reservationStatusTable;
 
@@ -51,6 +53,9 @@ public class accountPortalUI extends JFrame implements ActionListener {
             }
         });
 
+        // Initialize Table
+        reservationStatusTable = new ReservationStatusTable();
+
         // Button for creating new reservation
         newReservationButton = new JButton("New Reservation");
         newReservationButton.addActionListener(new ActionListener() {
@@ -62,8 +67,10 @@ public class accountPortalUI extends JFrame implements ActionListener {
             }
         });
 
-        // Initialize Table
-        reservationStatusTable = new ReservationStatusTable();
+        cancelReservationButton = new JButton("Cancel Reservation");
+        //cancelReservationButton.addActionListener();
+
+
 
 
         // Add and set container
