@@ -7,12 +7,12 @@ package frontend.UI;
  */
 
 import frontend.UIBlackBox;
-//import frontend.table.ReservationStatusTable;
-import net.coderazzi.filters.gui.AutoChoices;
-import net.coderazzi.filters.gui.TableFilterHeader;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 public class accountPortalUI extends JFrame implements ActionListener {
     // Main Container
     private Container container;
+    private JPanel panel;
 
     // Labels to identify the fields
     private JLabel greetingLabel;
@@ -31,24 +32,34 @@ public class accountPortalUI extends JFrame implements ActionListener {
     private JButton cancelReservationButton;
 
     // Table Attributes
-    private DefaultTableModel model;
-    private JTable reservationStatusTable;
-    private TableRowSorter<DefaultTableModel> sorter;
-    private JScrollPane scrollPane;
+    private JTable table;
 
-    private String[] columnNames = {
-            "Room Number",
-            "Room Size"
-    };
-    private Object[][] data = {
-            {"123", "Suite"},
-            {"69", "Single King"},
-            {"20", "Double King"}
-    };
 
     //  Constructor
     public accountPortalUI() {
         UIBlackBox.saveAll();
+
+        panel = new JPanel();
+        panel.setBorder(BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder()));
+
+        String[] columnHeader = {"Room Number", "Room Size"};
+        String[][] data = {
+                {"123", "Suite"},
+                {"69", "Single King"},
+                {"20", "Double King"}
+        };
+        TableModel model = new DefaultTableModel(data, columnHeader) {
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
+        table = new JTable(model);
+        table.setPreferredScrollableViewportSize(new Dimension(500, 50));
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.setFillsViewportHeight(false);
+
+        panel.add(new JScrollPane(table));
+
 
         // Set All Components
         greetingLabel = new JLabel("Hello, " + UIBlackBox.getCurrentAccount().getFirstName()); // TODO: Add Hello, "user's name"
@@ -72,28 +83,6 @@ public class accountPortalUI extends JFrame implements ActionListener {
             }
         });
 
-        // Initialize Table
-        final Class<?>[] columnClass = new Class[] {
-                String.class, String.class, String.class, Integer.class, Boolean.class
-        };
-        model = new DefaultTableModel(data, columnNames) {
-            @Override
-            public boolean isCellEditable(int row, int column) { return false; }
-            @Override
-            public Class<?> getColumnClass(int columnIndex) { return columnClass[columnIndex]; }
-        };
-        sorter = new TableRowSorter<DefaultTableModel>(model);
-        reservationStatusTable = new JTable(model);
-
-        reservationStatusTable.setRowSorter(sorter);
-        reservationStatusTable.setPreferredScrollableViewportSize(new Dimension(50, 50));
-        reservationStatusTable.setFillsViewportHeight(true);
-
-        scrollPane = new JScrollPane(reservationStatusTable);
-        //reservationStatusTable.add(scrollPane);
-
-        TableFilterHeader filterHeader = new TableFilterHeader(reservationStatusTable, AutoChoices.ENABLED);
-        reservationStatusTable.add(filterHeader);
 
 
         // Button for creating new reservation
@@ -122,15 +111,14 @@ public class accountPortalUI extends JFrame implements ActionListener {
         greetingLabel.setBounds(50, 10, 250, 30);
         signOutButton.setBounds(300, 10, 100, 30);
         newReservationButton.setBounds(50, 60, 200, 30);
-        reservationStatusTable.setBounds(50, 90, 500, 50);
+        panel.setBounds(50, 90, 500, 100);
     }
 
     public void addComponents() {
         container.add(greetingLabel);
         container.add(signOutButton);
-        container.add(newReservationButton);
-        container.add(reservationStatusTable);
-        //container.add(sorter);
+        //container.add(newReservationButton);
+        container.add(panel);
     }
 
     public void createAndShowGui() {
