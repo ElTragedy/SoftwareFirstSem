@@ -2,11 +2,12 @@ package frontend.UI;
 
 /*
  * This code uses a lot of functions like "Create User" and "create reservation"
- * which will need to commuicate with the UIBlackBox. This is a TODO: connect
+ * which will need to communicate with the UIBlackBox. This is a TODO: connect
  * this to the UIBlackBox.
  */
 
 import frontend.UIBlackBox;
+import frontend.table.ReservationStatusTable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +25,9 @@ public class accountPortalUI extends JFrame implements ActionListener {
     private JButton signOutButton;
     private JButton accountButton;
     private JButton newReservationButton;
-    private JButton modifyReservationButton;
+
+    ReservationStatusTable reservationStatusTable;
+
 
     public accountPortalUI() {
         UIBlackBox.saveAll();
@@ -41,6 +44,8 @@ public class accountPortalUI extends JFrame implements ActionListener {
                         JOptionPane.YES_NO_OPTION);
 
                 if (confirmed == JOptionPane.YES_OPTION) {
+                    loginUI loginUI = new loginUI();
+                    loginUI.createAndShowGui();
                     dispose();
                 }
             }
@@ -57,16 +62,8 @@ public class accountPortalUI extends JFrame implements ActionListener {
             }
         });
 
-        // Button for modifying reservation
-        modifyReservationButton = new JButton("Modify Reservation");
-        modifyReservationButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // createAccountGUI createAccountGUI = new createAccountGUI();
-                // createAccountGUI.createAndShowGui();
-                dispose();
-            }
-        });
+        // Initialize Table
+        reservationStatusTable = new ReservationStatusTable();
 
 
         // Add and set container
@@ -80,24 +77,22 @@ public class accountPortalUI extends JFrame implements ActionListener {
     public void setBounds() {
         greetingLabel.setBounds(50, 10, 250, 30);
         signOutButton.setBounds(300, 10, 100, 30);
-        // promptLabel.setBounds(100, 60, 350, 30);
-        newReservationButton.setBounds(50, 110, 200, 30);
-        modifyReservationButton.setBounds(250, 110, 200, 30);
-        //createRoomButton.setBounds(50, 160, 200, 30);
+        newReservationButton.setBounds(50, 60, 200, 30);
+        reservationStatusTable.setBounds(50, 90, 500, 200);
     }
 
     public void addComponents() {
         container.add(greetingLabel);
         container.add(signOutButton);
         container.add(newReservationButton);
-        container.add(modifyReservationButton);
+        container.add(reservationStatusTable);
     }
 
     public void createAndShowGui() {
         accountPortalUI frame = new accountPortalUI();
         frame.setTitle("Account Portal");
         frame.setVisible(true);
-        frame.setBounds(500, 100, 500, 300);
+        frame.setBounds(500, 100, 600, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
