@@ -7,9 +7,13 @@ package frontend.UI;
  */
 
 import frontend.UIBlackBox;
-import frontend.table.ReservationStatusTable;
+//import frontend.table.ReservationStatusTable;
+import net.coderazzi.filters.gui.AutoChoices;
+import net.coderazzi.filters.gui.TableFilterHeader;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,20 +27,34 @@ public class accountPortalUI extends JFrame implements ActionListener {
 
     // Button for confirmation
     private JButton signOutButton;
-    private JButton accountButton;
     private JButton newReservationButton;
     private JButton cancelReservationButton;
 
+    // Table Attributes
+    private DefaultTableModel model;
+    private JTable reservationStatusTable;
+    private TableRowSorter<DefaultTableModel> sorter;
+    private JScrollPane scrollPane;
 
-    ReservationStatusTable reservationStatusTable;
+    private String[] columnNames = {
+            "Room Number",
+            "Room Size"
+    };
+    private Object[][] data = {
+            {"123", "Suite"},
+            {"69", "Single King"},
+            {"20", "Double King"}
+    };
 
-
+    //  Constructor
     public accountPortalUI() {
         UIBlackBox.saveAll();
+
         // Set All Components
         greetingLabel = new JLabel("Hello, " + UIBlackBox.getCurrentAccount().getFirstName()); // TODO: Add Hello, "user's name"
         greetingLabel.setFont(new Font("Barlow", Font.BOLD, 30));
 
+        // Add and overwrite sign out button
         signOutButton = new JButton("Sign Out");
         signOutButton.addActionListener(new ActionListener() {
             @Override
@@ -45,6 +63,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
                         "Are you sure you want to exit the program?", "Exit Program Message Box",
                         JOptionPane.YES_NO_OPTION);
 
+                // If user selects yes, go to login page
                 if (confirmed == JOptionPane.YES_OPTION) {
                     loginUI loginUI = new loginUI();
                     loginUI.createAndShowGui();
@@ -54,7 +73,28 @@ public class accountPortalUI extends JFrame implements ActionListener {
         });
 
         // Initialize Table
-        reservationStatusTable = new ReservationStatusTable();
+        final Class<?>[] columnClass = new Class[] {
+                String.class, String.class, String.class, Integer.class, Boolean.class
+        };
+        model = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) { return false; }
+            @Override
+            public Class<?> getColumnClass(int columnIndex) { return columnClass[columnIndex]; }
+        };
+        sorter = new TableRowSorter<DefaultTableModel>(model);
+        reservationStatusTable = new JTable(model);
+
+        reservationStatusTable.setRowSorter(sorter);
+        reservationStatusTable.setPreferredScrollableViewportSize(new Dimension(50, 50));
+        reservationStatusTable.setFillsViewportHeight(true);
+
+        scrollPane = new JScrollPane(reservationStatusTable);
+        //reservationStatusTable.add(scrollPane);
+
+        TableFilterHeader filterHeader = new TableFilterHeader(reservationStatusTable, AutoChoices.ENABLED);
+        reservationStatusTable.add(filterHeader);
+
 
         // Button for creating new reservation
         newReservationButton = new JButton("New Reservation");
@@ -70,9 +110,6 @@ public class accountPortalUI extends JFrame implements ActionListener {
         cancelReservationButton = new JButton("Cancel Reservation");
         //cancelReservationButton.addActionListener();
 
-
-
-
         // Add and set container
         container = getContentPane();
         container.setLayout(null);
@@ -85,7 +122,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
         greetingLabel.setBounds(50, 10, 250, 30);
         signOutButton.setBounds(300, 10, 100, 30);
         newReservationButton.setBounds(50, 60, 200, 30);
-        reservationStatusTable.setBounds(50, 90, 500, 200);
+        reservationStatusTable.setBounds(50, 90, 500, 50);
     }
 
     public void addComponents() {
@@ -93,6 +130,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
         container.add(signOutButton);
         container.add(newReservationButton);
         container.add(reservationStatusTable);
+        //container.add(sorter);
     }
 
     public void createAndShowGui() {
