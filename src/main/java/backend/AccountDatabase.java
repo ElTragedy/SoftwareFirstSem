@@ -26,6 +26,10 @@ public class AccountDatabase {
         accountList = new ArrayList<Account>();
     }
 
+    public void removeAccount(Account account) {
+        accountList.remove(account);
+    }
+
     public AccountDatabase(ArrayList<Account> accountList) {
         this.accountList = accountList;
     }
