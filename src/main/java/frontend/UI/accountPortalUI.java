@@ -17,6 +17,8 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class accountPortalUI extends JFrame implements ActionListener {
     // Main Container
@@ -36,20 +38,21 @@ public class accountPortalUI extends JFrame implements ActionListener {
     private JTable table;
 
 
-    //  Constructor
     public accountPortalUI() {
         UIBlackBox.saveAll();
 
         panel = new JPanel();
         //panel.setBorder(BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder()));
 
+        // Declare Column Headers
         String[] columnHeader = {"Room Number", "Room Size", "Start Date", "End Date"};
         String[][] data = {
-                {"123", "Suite", "5/1/2023", "5/6/2023"},
-                {"69", "Single King", "5/1/2023", "5/6/2023"},
-                {"20", "Double King", "5/1/2023", "5/6/2023"}
+                {"123", "Suite", "2023-05-01", "2023-05-07"},
+                {"69", "Single King", "2023-04-28", "2023-05-07"},
+                {"20", "Double King", "2023-05-01", "2023-05-07"}
         };
 
+        // Configure Table Basics
         TableModel model = new DefaultTableModel(data, columnHeader) {
             public boolean isCellEditable(int rowIndex, int mColIndex) {
                 return false;
@@ -59,17 +62,17 @@ public class accountPortalUI extends JFrame implements ActionListener {
         table.setPreferredScrollableViewportSize(new Dimension(500, 150));
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setFillsViewportHeight(true);
-
         panel.add(new JScrollPane(table));
 
-        // Set All Components
-        greetingLabel = new JLabel("Hello, " + UIBlackBox.getCurrentAccount().getFirstName()); // TODO: Add Hello, "user's name"
+        // Greeting label that pulls the user's name
+        greetingLabel = new JLabel("Hello, " + UIBlackBox.getCurrentAccount().getFirstName());
         greetingLabel.setFont(new Font("Barlow", Font.BOLD, 30));
 
+        // Reservation Table Header
         reservationStatusLabel = new JLabel("Current Reservations:");
         reservationStatusLabel.setFont(new Font("Barlow", Font.PLAIN, 20));
 
-        // Add and overwrite sign out button
+        // Sign out button
         signOutButton = new JButton("Sign Out");
         signOutButton.addActionListener(new ActionListener() {
             @Override
@@ -87,8 +90,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
             }
         });
 
-
-        // Button for creating new reservation
+        // New reservation Button
         newReservationButton = new JButton("New Reservation");
         newReservationButton.addActionListener(new ActionListener() {
             @Override
@@ -99,7 +101,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
             }
         });
 
-
+        // Cancel Reservation Button
         cancelReservationButton = new JButton("Cancel Reservation");
         cancelReservationButton.addActionListener(new ActionListener() {
             @Override
@@ -110,11 +112,21 @@ public class accountPortalUI extends JFrame implements ActionListener {
                 } else {
                     int modelRow = table.convertRowIndexToModel(viewRow);
                     DefaultTableModel model = (DefaultTableModel) table.getModel();
-                    int answer = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel your reservation for " +
-                                    model.getValueAt(modelRow, 2) + " to " + model.getValueAt(modelRow, 3) + "?",
-                            "Warning", JOptionPane.YES_NO_OPTION);
-                    if (answer == 0) {
-                        model.removeRow(modelRow);
+
+                    // Create string for date comparison
+                    String dateFromTable = (String) model.getValueAt(modelRow, 2);
+
+                    // Check if date is too late to cancel reservation
+                    if (dateFromTable.equals(LocalDate.now().toString())) {
+                        JOptionPane.showMessageDialog(null, "You are unable to cancel your reservation this late.",
+                                "Warning", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        int answer = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel your reservation for " +
+                                        model.getValueAt(modelRow, 2) + " to " + model.getValueAt(modelRow, 3) + "?",
+                                "Warning", JOptionPane.YES_NO_OPTION);
+                        if (answer == 0) {
+                            model.removeRow(modelRow);
+                        }
                     }
                 }
             }
