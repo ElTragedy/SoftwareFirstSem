@@ -19,6 +19,9 @@ public class adminPortalUI extends JFrame implements ActionListener {
     private JButton modifyReservationButton;
     private JButton createClerkButton;
 
+    // button for reset user account passwords
+    private JButton adminResetUserPassword;
+
     public adminPortalUI() {
         // Set All Components
         adminMessage = new JLabel("Admin Portal"); // TODO: Add Hello, "user's name"
@@ -45,6 +48,17 @@ public class adminPortalUI extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 newReservationUI newReservationUI = new newReservationUI();
                 newReservationUI.createAndShowGui();
+                dispose();
+            }
+        });
+
+        // button for admin reset user passwords
+        adminResetUserPassword = new JButton("Reset User Passwords");
+        adminResetUserPassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adminResetUserPasswordUI adminResetUserPasswordUI = new adminResetUserPasswordUI();
+                adminResetUserPasswordUI.createAndShowGui();
                 dispose();
             }
         });
@@ -84,6 +98,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
         newReservationButton.setBounds(50, 110, 200, 30);
         modifyReservationButton.setBounds(250, 110, 200, 30);
         createClerkButton.setBounds(150, 160, 200, 30);
+        adminResetUserPassword.setBounds(150, 210, 200, 30);
     }
 
     public void addComponents() {
@@ -92,6 +107,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
         container.add(newReservationButton);
         container.add(modifyReservationButton);
         container.add(createClerkButton);
+        container.add(adminResetUserPassword);
     }
 
     public void createAndShowGui() {

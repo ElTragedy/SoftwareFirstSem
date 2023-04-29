@@ -1,6 +1,7 @@
 package backend;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -130,6 +131,33 @@ public class Controller {
     public static Account getCurrentAccount(){
         return currentAccount;
     }
-    
+
+    public static ArrayList<Account> getAllAccounts(){
+        return accountDatabase.getAccountList();
+    }
+
+    public static boolean resetPassword(Account a){
+        //getAccount(a.getEmail(),a.getPassword().toCharArray());
+        //a.setPassword("password");
+        for(Account acc : accountDatabase.getAccountList()){
+            if(a.getEmail().equals(acc.getEmail())){
+                acc.setPassword("password");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean deleteAccount(Account a){
+        for(Account acc : accountDatabase.getAccountList()){
+            if(a.getEmail().equals(acc.getEmail())){
+                accountDatabase.removeAccount(acc);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 

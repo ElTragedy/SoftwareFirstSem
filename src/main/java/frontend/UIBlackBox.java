@@ -3,6 +3,7 @@ package frontend;
 
 import backend.*;
 import backend.Room;
+import java.util.*;
 import java.util.Date;
 
 public class UIBlackBox {
@@ -102,6 +103,17 @@ public class UIBlackBox {
         return Controller.getCurrentAccount();
     }
 
+    public static ArrayList<Account> getAllAccounts(){
+        return Controller.getAllAccounts();
+    }
+
+    public static boolean resetPassword(Account a){
+        return Controller.resetPassword(a);
+    }
+
+    public static boolean deleteAccount(Account a){
+        return Controller.deleteAccount(a);
+    }
 
 }
     
