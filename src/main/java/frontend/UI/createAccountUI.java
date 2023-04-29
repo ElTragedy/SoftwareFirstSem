@@ -208,6 +208,7 @@ public class createAccountUI extends JFrame {
 
                 boolean success = UIBlackBox.createAccount(id, firstName, lastName, DOB, sex, phoneNumber, email,
                         password, address, zipcode, city, state, country);
+
                 if (success){
                     accountPortalUI accountPortalGUI = new accountPortalUI();
                     accountPortalGUI.createAndShowGui();

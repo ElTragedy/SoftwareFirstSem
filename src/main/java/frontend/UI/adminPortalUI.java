@@ -82,7 +82,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
 
     public void createAndShowGui() {
         adminPortalUI frame = new adminPortalUI();
-        frame.setTitle("Account Portal");
+        frame.setTitle("Admin Portal");
         frame.setVisible(true);
         frame.setBounds(500, 100, 500, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
