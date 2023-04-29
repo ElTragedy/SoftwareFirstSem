@@ -27,6 +27,23 @@ public class UIBlackBox {
 
     }
 
+    /*
+     * This is the create account that specifies the access level
+     */
+    public static boolean createAccount(String id, String firstName, String lastName,
+        String DOB, String sex, String phoneNumber, String email,
+        String password, String address, String zipcode, String city,
+        String state, String country, String access){
+
+        //make the account
+        Account a = new Account (id, firstName, lastName, DOB, sex, phoneNumber, email,
+        password,  address,  zipcode,  city,  state,  country, access);
+
+        //attempt to contact the controller.
+        return Controller.createAccount(a);
+
+    }
+
     public static boolean createRoom(String type, int roomNum, String roomCondition, String roomStatus){
         //make the room
         Room r = new Room(type, roomNum, roomCondition, roomStatus);
