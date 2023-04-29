@@ -1,12 +1,13 @@
 package frontend.UI;
 
-
-/*
- * this code is for making an account but currently does not save the 
- * account to the database, we need to connect this to the UIBlackBox. with
- * a "CreateAccount" function in the UIBlackBox.
- */
-
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Objects;
+import javax.swing.*;
+import backend.*;
+import frontend.UIBlackBox;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,8 +30,12 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-public class createAccountUI extends JFrame {
+
+
+
+public class createClerkUI extends JFrame {
     private JButton backButton;
+    private JButton createDefaultAccountButton;
     private JLabel message;
     private JLabel firstNameLabel, lastNameLabel, dobLabel, sexLabel, dobFormat;
     private JTextField firstNameField, lastNameField;
@@ -55,17 +60,48 @@ public class createAccountUI extends JFrame {
     private JDatePanelImpl datePanel;
     private JDatePickerImpl datePicker;
 
-    public createAccountUI() {
+    public createClerkUI() {
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginUI loginUI = new loginUI();
-                loginUI.createAndShowGui();
+                //loginUI loginUI = new loginUI();
+                adminPortalUI adminPortalUI = new adminPortalUI();
+                //loginUI.createAndShowGui();
+                adminPortalUI.createAndShowGui();
                 dispose();
             }
         });
+
+        
+    // Implement Create Default Account Button
+    // create action listener
+    createDefaultAccountButton = new JButton("Create Default Account");
+    createDefaultAccountButton.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String username = JOptionPane.showInputDialog(null, "Please enter a username for the default account", "Username", JOptionPane.QUESTION_MESSAGE);
+        
+        if (username != null && !username.trim().isEmpty()) {
+            int randomNum = (int)(Math.random() * (9999 - 1000 + 1) + 1000);
+            String id = Integer.toString(randomNum);
+            boolean success = UIBlackBox.createAccount(id, "John", "Doe", "01/01/2000", "Male", "8069223212", username, "password", "123 Dog ln", "12345", "dogCity", "TX", "none", "clerk");
+
+            if(success){
+                JOptionPane.showMessageDialog(null, "Default account created successfully");
+                UIBlackBox.saveAll();
+                adminPortalUI adminPortalUI = new adminPortalUI();
+                adminPortalUI.createAndShowGui();
+                dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Default account creation failed");
+            }
+        }
+    }
+});
+
 
         ImageIcon imageIcon = new ImageIcon("src/main/resources/Frontend_Resources/backButton.png");
         Image image = imageIcon.getImage().getScaledInstance(30, 30,  Image.SCALE_SMOOTH);
@@ -73,7 +109,7 @@ public class createAccountUI extends JFrame {
         backButton.setIcon(imageIcon);
 
         // Set header for window
-        message = new JLabel("Register a New Account");
+        message = new JLabel("Register a New Clerk");
         message.setFont(new Font("Barlow", Font.BOLD, 20));
 
         // Add name labels and fields
@@ -207,11 +243,17 @@ public class createAccountUI extends JFrame {
                 String country = countryList.getSelectedItem().toString();
 
                 boolean success = UIBlackBox.createAccount(id, firstName, lastName, DOB, sex, phoneNumber, email,
-                        password, address, zipcode, city, state, country, "guest");
+                        password, address, zipcode, city, state, country, "clerk");
                 if (success){
+                    //accountPortalUI accountPortalGUI = new accountPortalUI();
+                    //accountPortalGUI.createAndShowGui();
+                    //dispose();
+                    //JOptionPane.showMessageDialog(null, "Account creation failed. Please try again.", "Success", JOptionPane.INFORMATION_M);
+                    //make J option pane to say account created successfully
                     UIBlackBox.saveAll();
-                    accountPortalUI accountPortalGUI = new accountPortalUI();
-                    accountPortalGUI.createAndShowGui();
+                    JOptionPane.showMessageDialog(null, "Account created successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    adminPortalUI adminPortalUI = new adminPortalUI();
+                    adminPortalUI.createAndShowGui();
                     dispose();
                 }
                 else{
@@ -235,6 +277,8 @@ public class createAccountUI extends JFrame {
     // Sets all labels/fields bounds
     public void setBounds() {
         backButton.setBounds(0, 0, 30, 30);
+        //createDefaultAccount Button should be on the top right of screen
+        createDefaultAccountButton.setBounds(270, 0, 175, 30);
         message.setBounds(50, 10, 600, 30);
         firstNameLabel.setBounds(50, 60, 100, 30);
         firstNameField.setBounds(130, 60, 200, 30);
@@ -270,6 +314,7 @@ public class createAccountUI extends JFrame {
 
     // Adds labels and fields to container
     public void addComponents() {
+        container.add(createDefaultAccountButton);
         container.add(backButton);
         container.add(message);
         container.add(firstNameLabel);
@@ -304,11 +349,12 @@ public class createAccountUI extends JFrame {
         container.add(registerButton);
     }
     public void createAndShowGui() {
-        createAccountUI frame = new createAccountUI();
-        frame.setTitle("Create New Account");
+        createClerkUI frame = new createClerkUI();
+        frame.setTitle("Create New Clerk");
         frame.setVisible(true);
         frame.setBounds(500, 15, 500, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
+    
 }

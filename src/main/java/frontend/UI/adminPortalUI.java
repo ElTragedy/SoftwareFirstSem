@@ -17,6 +17,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
     private JButton accountButton;
     private JButton newReservationButton;
     private JButton modifyReservationButton;
+    private JButton createClerkButton;
 
     public adminPortalUI() {
         // Set All Components
@@ -57,6 +58,17 @@ public class adminPortalUI extends JFrame implements ActionListener {
             }
         });
 
+        // Button vor creating new clerk
+        createClerkButton = new JButton("Create Clerk");
+        createClerkButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                createClerkUI createClerkUI = new createClerkUI();
+                createClerkUI.createAndShowGui();
+                dispose();
+            }
+        });
+
         // Add and set container
         container = getContentPane();
         container.setLayout(null);
@@ -71,6 +83,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
         // promptLabel.setBounds(100, 60, 350, 30);
         newReservationButton.setBounds(50, 110, 200, 30);
         modifyReservationButton.setBounds(250, 110, 200, 30);
+        createClerkButton.setBounds(150, 160, 200, 30);
     }
 
     public void addComponents() {
@@ -78,6 +91,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
         container.add(signOutButton);
         container.add(newReservationButton);
         container.add(modifyReservationButton);
+        container.add(createClerkButton);
     }
 
     public void createAndShowGui() {
