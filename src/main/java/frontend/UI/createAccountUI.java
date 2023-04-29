@@ -206,8 +206,7 @@ public class createAccountUI extends JFrame {
                 String state = stateList.getSelectedItem().toString();
                 String country = countryList.getSelectedItem().toString();
 
-                boolean success = UIBlackBox.createAccount(id, firstName, lastName, DOB, sex, phoneNumber, email,
-                        password, address, zipcode, city, state, country, "guest");
+                boolean success = UIBlackBox.createAccount(id, firstName, lastName, DOB, sex, phoneNumber, email, password, address, zipcode, city, state, country, "guest");
                 if (success){
                     UIBlackBox.saveAll();
                     accountPortalUI accountPortalGUI = new accountPortalUI();
