@@ -68,7 +68,9 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         modifyProfile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO create a portal to change current account info
+                editProfileUI editProfileUI = new editProfileUI();
+                editProfileUI.createAndShowGui();
+                dispose();
             }
         });
 
