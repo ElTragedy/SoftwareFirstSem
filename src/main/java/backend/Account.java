@@ -51,8 +51,8 @@ public class Account {
     public Account(){
     }
 
-    public Access getAccess() {
-        return access;
+    public String getAccess() {
+        return access.name();
     }
 
     public void setAccess(String access) {
