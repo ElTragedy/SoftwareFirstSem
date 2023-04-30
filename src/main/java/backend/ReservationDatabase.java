@@ -17,40 +17,23 @@ public class ReservationDatabase {
     HashMap<Integer, ArrayList<Reservation>> database;
 
     public ReservationDatabase() {
-        try{
-            JAXBContext context = JAXBContext.newInstance(ReservationMap.class);
-            Unmarshaller um = context.createUnmarshaller();
-
-            xmlToDatabase((ReservationMap) um.unmarshal(this.getClass().getResourceAsStream("/reservations.xml")));
-        }catch (JAXBException e){
-        }
+        database = null;
     }
 
     public Reservation getReservationDetails(String reservationID){
-        for(Reservation r : database.get(roomNumFromID(reservationID))){
-            if(r.getReservationID().equals(reservationID)){
-                return r;
+        if(database.get(roomNumFromID(reservationID)) != null){
+            for(Reservation r : database.get(roomNumFromID(reservationID))){
+                if(r.getReservationID().equals(reservationID)){
+                    return r;
+                }
             }
         }
-        return null;
-    }
 
-    public int getSize(){
-        return database.size();
-    }
-
-    public String attemptUpdate(String reservationID, Reservation modified){
-        Reservation hold = getReservationDetails(reservationID);
-        cancelReservation(reservationID);
-
-        if(reserveRoom(modified)){
-            return modified.getReservationID();
-        }
         return null;
     }
 
     public void confirmUpdate(){
-        storeDatabase();
+        save();
     }
 
     public boolean reserveRoom(Reservation r){
@@ -60,7 +43,7 @@ public class ReservationDatabase {
             database.put(r.getRoomNumber(), new ArrayList<>(List.of(r)));
 
             return true;
-        }else{
+        } else{
             ArrayList<Reservation> reserveList = database.get(r.getRoomNumber());
 
             for (Reservation reservation : reserveList) {
@@ -83,7 +66,7 @@ public class ReservationDatabase {
         return database.get(roomNumFromID(reservationID)).removeIf((n) -> n.getReservationID().equals(reservationID));
     }
 
-    public void storeDatabase() {
+    public void save() {
         try{
             JAXBContext context = JAXBContext.newInstance(ReservationMap.class);
 
@@ -96,8 +79,40 @@ public class ReservationDatabase {
         }
     }
 
+    public void load(String filename){
+        try{
+            JAXBContext context = JAXBContext.newInstance(ReservationMap.class);
+            Unmarshaller um = context.createUnmarshaller();
+
+            xmlToDatabase((ReservationMap) um.unmarshal(this.getClass().getResourceAsStream("/" + filename)));
+        }catch (JAXBException e){
+        }
+    }
+
+    public List<Reservation> getReservationsByRoomNum(Integer roomNum){
+        if(database.get(roomNum) == null){
+            return new ArrayList<>();
+        } else{
+            return database.get(roomNum);
+        }
+    }
+
+    public int getSize(){
+        return database.size();
+    }
+
+    public String attemptUpdate(String reservationID, Reservation modified){
+        Reservation hold = getReservationDetails(reservationID);
+        cancelReservation(reservationID);
+
+        if(reserveRoom(modified)){
+            return modified.getReservationID();
+        }
+        return null;
+    }
+
     private int roomNumFromID(String ID){
-        return Integer.parseInt(ID.substring(0, 2), 16);
+        return Integer.parseInt(ID.substring(0, 3), 16);
     }
 
     private ReservationMap mapToXML(HashMap<Integer, ArrayList<Reservation>> data){
@@ -125,8 +140,20 @@ public class ReservationDatabase {
         tmpDatabase.forEach((n, i) -> {
             database.put(n, i.getReserveList());
         });
+    }
 
-        System.out.println(database.get(123));
+    public ArrayList<Room> getAvailableRooms(Date start, Date end, ArrayList<Room> rooms) {
+        ArrayList<Room> out = rooms;
+        for(Room i : rooms){
+            if(database.get(i.getNumber()) != null){
+                for(Reservation k : database.get(i.getNumber())){
+//                    if(end.compareTo(k.checkIn)  > 0 && start.compareTo(k.checkOut) < 0){
+//                        out.removeIf(n -> n.getNumber() == k.roomNumber);
+//                    }
+                }
+            }
+        }
+        return out;
     }
 
     @XmlRootElement (name="reservations")
@@ -162,8 +189,9 @@ public class ReservationDatabase {
 
     public static void main(String[] args) throws ParseException{
         ReservationDatabase temp = new ReservationDatabase();
+        temp.load("reservations.xml");
         temp.reserveRoom(new Reservation(new String[]{"username1234","321","false","01/05/2023","01/10/2023"}));
 
-        temp.storeDatabase();
+        temp.save();
     }
 }

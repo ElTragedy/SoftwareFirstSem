@@ -37,7 +37,6 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
 
     public Reservation(String username, Room reserved, boolean payed, 
         Date checkIn, Date checkOut){
-
         this.username = username;
         this.roomNumber = roomNumber;
         this.payed = payed;
@@ -70,8 +69,8 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
 
 
     public String getReservationID() {
-        return ((Integer.toHexString(reserved.number).length() == 2) ? "0": "")
-         + Integer.toHexString(reserved.number).toUpperCase()
+        return ((Integer.toHexString(roomNumber).length() == 2) ? "0": "")
+         + Integer.toHexString(roomNumber).toUpperCase()
          + Integer.toHexString(this.hashCode()).toUpperCase();
     }
 

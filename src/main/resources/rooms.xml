@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <roomDatabase>
-    <rooms/>
+    <rooms>
+        <room>
+            <roomType>singleKing</roomType>
+            <number>222</number>
+        </room>
+        <room>
+            <roomType>singleKing</roomType>
+            <number>123</number>
+        </room>
+        <room>
+            <roomType>singleKing</roomType>
+            <number>321</number>
+        </room>
+        <room>
+            <roomType>singleKing</roomType>
+            <number>111</number>
+        </room>
+        <room>
+            <roomType>singleKing</roomType>
+            <number>212</number>
+        </room>
+        <room>
+            <roomType>singleKing</roomType>
+            <number>211</number>
+        </room>
+    </rooms>
 </roomDatabase>

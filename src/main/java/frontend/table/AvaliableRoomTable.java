@@ -11,6 +11,9 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 public class AvaliableRoomTable extends JPanel {
     private String[] columnNames = {
@@ -26,6 +29,8 @@ public class AvaliableRoomTable extends JPanel {
     private JTable table;
     private JTextField filterText;
     private JTextField statusText;
+
+    private DefaultTableModel model;
     private TableRowSorter<DefaultTableModel> sorter;
 
     public AvaliableRoomTable() {
@@ -36,7 +41,7 @@ public class AvaliableRoomTable extends JPanel {
         final Class<?>[] columnClass = new Class[] {
                 String.class, String.class, String.class, Integer.class, Boolean.class
         };
-        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+        model = new DefaultTableModel(null, columnNames) {
             @Override
             public boolean isCellEditable(int row, int column) { return false; }
             @Override
@@ -116,6 +121,16 @@ public class AvaliableRoomTable extends JPanel {
         JButton button = new JButton("Remove");
         button.addActionListener( new RemoveLineActionLister());
         add(button);
+    }
+
+    public void updateTable(Vector<Vector<String>> rooms){
+        model.setRowCount(0);
+        if(rooms.isEmpty()){
+            return;
+        }
+        for(Vector<String> i: rooms){
+            model.addRow(i);
+        }
     }
 
     private void newFilter() {

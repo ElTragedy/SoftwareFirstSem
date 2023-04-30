@@ -65,16 +65,18 @@ public class UIBlackBox {
         return false;
     }
 
-    public static Room getRoom(/* parameters */){
+    public static Room getRSoom(/* parameters */){
         //filler
         Room a = null;
         return a;
     }
 
-    public static Room getReservation(/* parameters */){
-        //filler
-        Room a = null;
-        return a;
+    public static Reservation getReservation(String reservationId){
+        return Controller.getReservation(reservationId);
+    }
+
+    public static Vector<Vector<String>> getAvailableRooms(Date start, Date end, String roomType){
+        return Controller.getAvailableRooms(start, end, roomType);
     }
 
     //public static Account getCurrentUser(){
