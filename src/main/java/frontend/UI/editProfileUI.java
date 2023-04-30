@@ -223,9 +223,10 @@ public class editProfileUI extends JFrame{
                 String state = stateList.getSelectedItem().toString();
                 String country = countryList.getSelectedItem().toString();
 
-                boolean success = UIBlackBox.createAccount(id, firstName, lastName, DOB, sex, phoneNumber, email, password, address, zipcode, city, state, country, "clerk");
+
+                Account newAccount = new Account(id, firstName, lastName, DOB, sex, phoneNumber, email, password, address, zipcode, city, state, country, "clerk");
+                boolean success = UIBlackBox.createAccount(newAccount.getId(), newAccount.getFirstName(), newAccount.getLastName(), newAccount.getDOB(), newAccount.getSex(), newAccount.getPhoneNumber(), newAccount.getEmail(), newAccount.getPassword(), newAccount.getAddress(), newAccount.getZipcode(), newAccount.getCity(), newAccount.getState(), newAccount.getCountry(), newAccount.getAccess());
                 if (success){
-                    Account newAccount = new Account(id, firstName, lastName, DOB, sex, phoneNumber, email, password, address, zipcode, city, state, country, "clerk");
                     UIBlackBox.setCurrentAccount(newAccount);
                     UIBlackBox.deleteAccount(account);
                     UIBlackBox.saveAll();
