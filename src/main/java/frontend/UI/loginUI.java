@@ -52,7 +52,6 @@ public class loginUI extends JFrame implements ActionListener{
                 String email = emailField.getText();
                 char[] password = passwordField.getPassword();
 
-
                 Account a = UIBlackBox.getAccount(email, password);
 
                 if(email.isEmpty() || password.length == 0){
@@ -64,7 +63,6 @@ public class loginUI extends JFrame implements ActionListener{
                     adminPortalUI adminPortalUI = new adminPortalUI();
                     adminPortalUI.createAndShowGui();
                     dispose();
-
                 }else if(a.getAccess() == "clerk"){
                     UIBlackBox.setCurrentAccount(a);
                     clerkPortalUI clerkPortalUI = new clerkPortalUI();
