@@ -89,6 +89,10 @@ public class UIBlackBox {
         return a;
     }
 
+    public static void sendEmail(String toEmail, String subject, String body) {
+        Controller.sendEmail(toEmail, subject, body);
+    }
+
     public static boolean saveAll(){
         return Controller.saveAll();
     }

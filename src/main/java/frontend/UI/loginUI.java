@@ -40,15 +40,25 @@ public class loginUI extends JFrame implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(Arrays.toString(passwordField.getPassword()));
-
+                if (Objects.equals(emailField.getText(), "") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
+                    // MAKE FUNCTION TO ITERATE THROUGH ALL FIELDS
+                    JOptionPane.showMessageDialog(container, "Please fill out both fields!",
+                            "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+                } else if (Objects.equals(emailField.getText(), "admin") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
+                    adminPortalUI adminPortalUI = new adminPortalUI();
+                    adminPortalUI.createAndShowGui();
+                    dispose();
+                }
                 String email = emailField.getText();
                 char[] password = passwordField.getPassword();
+
 
                 Account a = UIBlackBox.getAccount(email, password);
 
                 if(email.isEmpty() || password.length == 0){
                     JOptionPane.showMessageDialog(container, "Please fill out both fields!",
                     "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+
                 } else if (Objects.equals(emailField.getText(), "admin") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[a]")) {
                     //} else if (Objects.equals(, "admin") && ObjectIs.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
                     adminPortalUI adminPortalUI = new adminPortalUI();
@@ -61,7 +71,7 @@ public class loginUI extends JFrame implements ActionListener{
                     clerkPortalUI.createAndShowGui();
                     dispose();
                 } else{
-
+                
                     if(a == null){
                         JOptionPane.showMessageDialog(container, "Invalid Email or Password",
                         "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
