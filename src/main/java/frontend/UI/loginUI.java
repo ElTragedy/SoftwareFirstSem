@@ -1,9 +1,5 @@
 package frontend.UI;
 
-/*
- * No need for black box connections, this is log in GUI thing
- */
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,24 +40,36 @@ public class loginUI extends JFrame implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(Arrays.toString(passwordField.getPassword()));
-
-                String email = emailField.getText();
-                char[] password = passwordField.getPassword();
-
-                if(email.isEmpty() && password.length == 0){
-                     JOptionPane.showMessageDialog(container, "Please fill out both fields!",
-                    "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+                if (Objects.equals(emailField.getText(), "") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
+                    // MAKE FUNCTION TO ITERATE THROUGH ALL FIELDS
+                    JOptionPane.showMessageDialog(container, "Please fill out both fields!",
+                            "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
                 } else if (Objects.equals(emailField.getText(), "admin") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
                     adminPortalUI adminPortalUI = new adminPortalUI();
                     adminPortalUI.createAndShowGui();
                     dispose();
-                } else if (Objects.equals(emailField.getText(), "employee") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
-                    // TODO: ADD EMPLOYEE PORTAL
-                    employeePortalUI employeePortalUI = new employeePortalUI();
-                    employeePortalUI.createAndShowGui();
+                }
+                String email = emailField.getText();
+                char[] password = passwordField.getPassword();
+
+                Account a = UIBlackBox.getAccount(email, password);
+
+                if(email.isEmpty() || password.length == 0){
+                    JOptionPane.showMessageDialog(container, "Please fill out both fields!",
+                    "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+
+                } else if (Objects.equals(emailField.getText(), "admin") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[a]")) {
+                    //} else if (Objects.equals(, "admin") && ObjectIs.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
+                    adminPortalUI adminPortalUI = new adminPortalUI();
+                    adminPortalUI.createAndShowGui();
+                    dispose();
+                }else if(a.getAccess() == "clerk"){
+                    UIBlackBox.setCurrentAccount(a);
+                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                    clerkPortalUI.createAndShowGui();
                     dispose();
                 } else{
-                    Account a = UIBlackBox.getAccount(email, password);
+                
                     if(a == null){
                         JOptionPane.showMessageDialog(container, "Invalid Email or Password",
                         "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);

@@ -3,6 +3,7 @@ package frontend;
 
 import backend.*;
 import backend.Room;
+import java.util.*;
 import java.util.Date;
 
 public class UIBlackBox {
@@ -21,6 +22,23 @@ public class UIBlackBox {
         //make the account
         Account a = new Account (id, firstName, lastName, DOB, sex, phoneNumber, email,
         password,  address,  zipcode,  city,  state,  country);
+
+        //attempt to contact the controller.
+        return Controller.createAccount(a);
+
+    }
+
+    /*
+     * This is the create account that specifies the access level
+     */
+    public static boolean createAccount(String id, String firstName, String lastName,
+        String DOB, String sex, String phoneNumber, String email,
+        String password, String address, String zipcode, String city,
+        String state, String country, String access){
+
+        //make the account
+        Account a = new Account (id, firstName, lastName, DOB, sex, phoneNumber, email,
+        password,  address,  zipcode,  city,  state,  country, access);
 
         //attempt to contact the controller.
         return Controller.createAccount(a);
@@ -47,16 +65,18 @@ public class UIBlackBox {
         return false;
     }
 
-    public static Room getRoom(/* parameters */){
+    public static Room getRSoom(/* parameters */){
         //filler
         Room a = null;
         return a;
     }
 
-    public static Room getReservation(/* parameters */){
-        //filler
-        Room a = null;
-        return a;
+    public static Reservation getReservation(String reservationId){
+        return Controller.getReservation(reservationId);
+    }
+
+    public static Vector<Vector<String>> getAvailableRooms(Date start, Date end, String roomType){
+        return Controller.getAvailableRooms(start, end, roomType);
     }
 
     //public static Account getCurrentUser(){
@@ -67,6 +87,10 @@ public class UIBlackBox {
         Account a = null;
         a = Controller.getAccount(email, password);
         return a;
+    }
+
+    public static void sendEmail(String toEmail, String subject, String body) {
+        Controller.sendEmail(toEmail, subject, body);
     }
 
     public static boolean saveAll(){
@@ -85,6 +109,17 @@ public class UIBlackBox {
         return Controller.getCurrentAccount();
     }
 
+    public static ArrayList<Account> getAllAccounts(){
+        return Controller.getAllAccounts();
+    }
+
+    public static boolean resetPassword(Account a){
+        return Controller.resetPassword(a);
+    }
+
+    public static boolean deleteAccount(Account a){
+        return Controller.deleteAccount(a);
+    }
 
 }
     

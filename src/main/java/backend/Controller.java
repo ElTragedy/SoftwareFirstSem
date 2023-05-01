@@ -1,6 +1,6 @@
 package backend;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Controller {
 
@@ -8,6 +8,8 @@ public class Controller {
     static RoomDatabase roomDatabase = new RoomDatabase();
     static ReservationDatabase reservationDatabase = new ReservationDatabase();
     static Account currentAccount = new Account();
+
+    static EmailService emailService = new EmailService(System.getenv("EMAIL"), System.getenv("PASSWORD"));
 
     
     //this will be our main function. This will speak to everything else.
@@ -57,7 +59,7 @@ public class Controller {
     public static boolean loadAll(){
         accountDatabase.load("accounts.xml");
         roomDatabase.load("rooms.xml");
-        //reservationDatabase.loadDatabase();
+        reservationDatabase.load("reservations.xml");
         return true;
     }
 
@@ -96,10 +98,23 @@ public class Controller {
         return a;
     }
 
-    public static Room getReservation(/* parameters */){
-        //filler
-        Room a = null;
-        return a;
+    public static Reservation getReservation(String reservationId){
+        return reservationDatabase.getReservationDetails(reservationId);
+    }
+
+    public static Vector<Vector<String>> getAvailableRooms(Date start, Date end, String type){
+        //TODO: Make this a function inside of room database
+
+        RoomType enumType = (type.equals("Single King")) ? RoomType.singleKing: (type.equals("Double King")) ? RoomType.doubleQueen: RoomType.suite;
+        ArrayList<Room> rooms = roomDatabase.getRooms();
+        rooms.removeIf(n -> (!n.roomType.equals(enumType)));
+
+        Vector<Vector<String>> output = new Vector<>();
+        for(Room i : reservationDatabase.getAvailableRooms(start, end, rooms)){
+            output.add(new Vector<>(List.of(Integer.toString(i.getNumber()), i.getRoomType().toString())));
+        }
+
+        return output;
     }
 
     public static Account getAccount(String email, char[] password){
@@ -115,10 +130,8 @@ public class Controller {
     
     public static boolean saveAll(){
         accountDatabase.save();
-        reservationDatabase.storeDatabase();
+        reservationDatabase.save();
         roomDatabase.save();
-        
-        
         return true;
     }
 
@@ -130,6 +143,37 @@ public class Controller {
     public static Account getCurrentAccount(){
         return currentAccount;
     }
-    
+
+
+    public static void sendEmail(String toEmail, String subject, String body) {
+        emailService.send(toEmail, subject, body);
+    }
+
+    public static ArrayList<Account> getAllAccounts(){
+        return accountDatabase.getAccountList();
+    }
+
+    public static boolean resetPassword(Account a){
+        //getAccount(a.getEmail(),a.getPassword().toCharArray());
+        //a.setPassword("password");
+        for(Account acc : accountDatabase.getAccountList()){
+            if(a.getEmail().equals(acc.getEmail())){
+                acc.setPassword("password");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean deleteAccount(Account a){
+        for(Account acc : accountDatabase.getAccountList()){
+            if(a.getEmail().equals(acc.getEmail())){
+                accountDatabase.removeAccount(acc);
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
