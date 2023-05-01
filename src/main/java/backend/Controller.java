@@ -130,6 +130,9 @@ public class Controller {
     public static Account getCurrentAccount(){
         return currentAccount;
     }
-    
+
+    public static void sendEmail(String toEmail) {
+
+    }
 }
 
