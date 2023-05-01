@@ -27,7 +27,7 @@ public class RoomDatabase {
     }
 
     public ArrayList<Room> getRooms() {
-        return rooms;
+        return new ArrayList<>(rooms);
     }
 
     //save all the rooms to /Rooms.csv

@@ -1,35 +1,22 @@
 package frontend.UI;
 
-
-/*
- * this code is for making an account but currently does not save the 
- * account to the database, we need to connect this to the UIBlackBox. with
- * a "CreateAccount" function in the UIBlackBox.
- */
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Properties;
-import javax.swing.*;
-
+import backend.Account;
 import frontend.UIBlackBox;
-import org.jdatepicker.JDateComponentFactory;
-import org.jdatepicker.JDatePicker;
-import java.util.Random;
-
-
-import javax.swing.JFormattedTextField.AbstractFormatter;
-
+import frontend.table.AvaliableRoomTable;
 import frontend.utilities.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-public class createAccountUI extends JFrame {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Properties;
+import java.util.Random;
+
+public class editProfileUI extends JFrame{
+    private Account account;
     private JButton backButton;
     private JLabel message;
     private JLabel firstNameLabel, lastNameLabel, dobLabel, sexLabel, dobFormat;
@@ -55,14 +42,14 @@ public class createAccountUI extends JFrame {
     private JDatePanelImpl datePanel;
     private JDatePickerImpl datePicker;
 
-    public createAccountUI() {
+    public editProfileUI() {
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginUI loginUI = new loginUI();
-                loginUI.createAndShowGui();
+                clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                clerkPortalUI.createAndShowGui();
                 dispose();
             }
         });
@@ -73,19 +60,30 @@ public class createAccountUI extends JFrame {
         backButton.setIcon(imageIcon);
 
         // Set header for window
-        message = new JLabel("Register a New Account");
+        message = new JLabel("Edit Profile");
         message.setFont(new Font("Barlow", Font.BOLD, 20));
+
+        account = UIBlackBox.getCurrentAccount();
 
         // Add name labels and fields
         firstNameLabel = new JLabel("First Name");
         lastNameLabel = new JLabel("Last Name");
-        firstNameField = new JTextField();
-        lastNameField = new JTextField();
+        firstNameField = new JTextField(account.getFirstName());
+        lastNameField = new JTextField(account.getLastName());
+
 
         // Add DOB labels and fields
         dobLabel = new JLabel("DOB");
         UtilDateModel model = new UtilDateModel();
-        model.setDate(2000, 01, 12);
+
+        //pre-load info
+        String DOB = account.getDOB();
+        if (DOB != null) {
+            String[] dobArray = DOB.split("-");
+            model.setDate(Integer.parseInt(dobArray[0]), Integer.parseInt(dobArray[1]), Integer.parseInt(dobArray[2]));
+        }
+
+
         model.setSelected(true);
         Properties p = new Properties();
         p.put("text.today", "Today");
@@ -96,8 +94,9 @@ public class createAccountUI extends JFrame {
         dobFormat = new JLabel("(yyyy-mm-dd)");
 
         // Add sex labels and fields
+
         sexLabel = new JLabel("Sex");
-        sexMale = new JRadioButton("Male", true);
+        sexMale = new JRadioButton("Male");
         sexFemale = new JRadioButton("Female");
         sexUnassigned = new JRadioButton("Unassigned");
         sexGroup = new ButtonGroup();
@@ -105,21 +104,38 @@ public class createAccountUI extends JFrame {
         sexGroup.add(sexFemale);
         sexGroup.add(sexUnassigned);
 
+        //pre-load info
+        String sex = account.getSex();
+        if (sex != null) {
+            switch (sex) {
+                case "Male":
+                    sexGroup.setSelected(sexMale.getModel(), true);
+                    break;
+                case "Female":
+                    sexGroup.setSelected(sexFemale.getModel(), true);
+                    break;
+                case "Unassigned":
+                    sexGroup.setSelected(sexUnassigned.getModel(), true);
+                    break;
+            }
+        }
+
+
         // Add contact/login info labels and fields
         emailLabel = new JLabel("Email");
-        emailField = new JTextField();
+        emailField = new JTextField(account.getEmail());
         mobileNoLabel = new JLabel("Mobile No");
-        mobileNoField = new JTextField();
+        mobileNoField = new JTextField(account.getPhoneNumber());
         passwordLabel = new JLabel("Password");
-        passwordField = new JPasswordField();
+        passwordField = new JPasswordField(account.getPassword());
         rePasswordLabel = new JLabel("Re Password");
-        rePasswordField = new JPasswordField();
+        rePasswordField = new JPasswordField(account.getPassword());
 
         // Add address/location labels and fields
         addressLabel = new JLabel("Address");
-        addressField = new JTextField();
+        addressField = new JTextField(account.getAddress());
         cityLabel = new JLabel("City");
-        cityField = new JTextField();
+        cityField = new JTextField(account.getCity());
 
         // Add state drop down menu
         stateLabel = new JLabel("State");
@@ -176,23 +192,24 @@ public class createAccountUI extends JFrame {
         stateList.addItem("WI");
         stateList.addItem("WY");
 
+        stateList.setSelectedItem(account.getState());
+
         // Add zip/country labels and fields
         zipLabel = new JLabel("Zipcode");
-        zipField = new JTextField();
+        zipField = new JTextField(account.getZipcode());
         countryLabel = new JLabel("Country");
         countryList = new JComboBox<>();
         countryList.addItem("United States");
+        countryList.setSelectedItem(account.getCountry());
 
         // Add register button
-        registerButton = new JButton("Register");
+        registerButton = new JButton("Update");
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 //create a random 4 digit number for the account ID
-                Random rand = new Random();
-                int randomNum = rand.nextInt((9999 - 1000) + 1) + 1000;
-                String id = Integer.toString(randomNum);
+                String id = account.getId();
                 String firstName = firstNameField.getText();
                 String lastName = lastNameField.getText();
                 String DOB = datePicker.getJFormattedTextField().getText();
@@ -206,11 +223,15 @@ public class createAccountUI extends JFrame {
                 String state = stateList.getSelectedItem().toString();
                 String country = countryList.getSelectedItem().toString();
 
-                boolean success = UIBlackBox.createAccount(id, firstName, lastName, DOB, sex, phoneNumber, email, password, address, zipcode, city, state, country, "guest");
+
+                Account newAccount = new Account(id, firstName, lastName, DOB, sex, phoneNumber, email, password, address, zipcode, city, state, country, "clerk");
+                boolean success = UIBlackBox.createAccount(newAccount.getId(), newAccount.getFirstName(), newAccount.getLastName(), newAccount.getDOB(), newAccount.getSex(), newAccount.getPhoneNumber(), newAccount.getEmail(), newAccount.getPassword(), newAccount.getAddress(), newAccount.getZipcode(), newAccount.getCity(), newAccount.getState(), newAccount.getCountry(), newAccount.getAccess());
                 if (success){
+                    UIBlackBox.setCurrentAccount(newAccount);
+                    UIBlackBox.deleteAccount(account);
                     UIBlackBox.saveAll();
-                    accountPortalUI accountPortalGUI = new accountPortalUI();
-                    accountPortalGUI.createAndShowGui();
+                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                    clerkPortalUI.createAndShowGui();
                     dispose();
                 }
                 else{
@@ -303,8 +324,8 @@ public class createAccountUI extends JFrame {
         container.add(registerButton);
     }
     public void createAndShowGui() {
-        createAccountUI frame = new createAccountUI();
-        frame.setTitle("Create New Account");
+        editProfileUI frame = new editProfileUI();
+        frame.setTitle("Edit Profile");
         frame.setVisible(true);
         frame.setBounds(500, 15, 500, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

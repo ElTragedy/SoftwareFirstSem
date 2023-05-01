@@ -1,5 +1,6 @@
 package frontend.UI;
 
+import frontend.UIBlackBox;
 import frontend.table.AvaliableRoomTable;
 import frontend.utilities.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -92,6 +93,10 @@ public class newReservationUI extends JFrame {
 //                accountPortalUI accountPortalUI = new accountPortalUI();
 //                accountPortalUI.createAndShowGui();
 //                dispose();
+                avaliableRoomTable.updateTable(UIBlackBox.getAvailableRooms(
+                        (Date) startDatePicker.getModel().getValue(),
+                        (Date) endDatePicker.getModel().getValue(),
+                        roomTypeList.getModel().getSelectedItem().toString()));
             }
         });
 

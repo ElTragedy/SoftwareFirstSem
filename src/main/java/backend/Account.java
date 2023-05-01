@@ -51,12 +51,12 @@ public class Account {
     public Account(){
     }
 
-    public Access getAccess() {
-        return access;
+    public String getAccess() {
+        return access.name();
     }
 
-    public void setAccess(Access access) {
-        this.access = access;
+    public void setAccess(String access) {
+        this.access = Access.valueOf(access);
     }
 
     public Account(String id, String firstName, String lastName, String DOB, String sex, String phoneNumber, String email,
@@ -74,6 +74,24 @@ public class Account {
         this.city = city;
         this.state = state;
         this.country = country;
+    }
+
+    public Account(String id, String firstName, String lastName, String DOB, String sex, String phoneNumber, String email,
+                   String password, String address, String zipcode, String city, String state, String country, String access) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.DOB = DOB;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.zipcode = zipcode;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.access = Access.valueOf(access);
     }
 
     public Account(String [] data) {
