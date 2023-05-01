@@ -1,6 +1,7 @@
 package frontend.UI;
 
 import backend.Reservation;
+import frontend.UIBlackBox;
 import frontend.utilities.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;

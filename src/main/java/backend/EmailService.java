@@ -1,7 +1,5 @@
 package backend;
 
-import com.sun.mail.util.MailLogger;
-
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -14,7 +12,6 @@ import javax.mail.internet.MimeMessage;
 public class EmailService {
     private String fromEmail;
     private String password;
-    private String username;
     private Properties props;
     public EmailService(String fromEmail, String password) {
         this.fromEmail = fromEmail;
@@ -24,11 +21,11 @@ public class EmailService {
         props = System.getProperties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp-mail.outlook.com");
+        props.put("mail.smtp.host", "smtp.office365.com");
         props.put("mail.smtp.port", "587");
     }
 
-    public void send(String toEmail) {
+    public void send(String toEmail, String subject, String body) {
         Session session = Session.getInstance(props, new javax.mail.Authenticator(){
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(
@@ -41,8 +38,8 @@ public class EmailService {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(fromEmail));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-            message.setSubject("This is the email subject");
-            message.setText("This is the email body");
+            message.setSubject(subject);
+            message.setText(body);
 
             Transport.send(message);
         } catch (MessagingException mex) {
@@ -50,13 +47,11 @@ public class EmailService {
         }
     }
     public static void main(String[] args) {
-        String to = "";
-        String from = "";
-        String password = "";
+        String to = System.getenv("EMAIL");
 
-        EmailService emailService = new EmailService(from, password);
+        EmailService emailService = new EmailService(System.getenv("EMAIL"), System.getenv("PASSWORD"));
 
-        emailService.send(to);
+        emailService.send(to, "Subject", "Body");
 
     }
 }

@@ -9,6 +9,8 @@ public class Controller {
     static ReservationDatabase reservationDatabase = new ReservationDatabase();
     static Account currentAccount = new Account();
 
+    static EmailService emailService = new EmailService(System.getenv("EMAIL"), System.getenv("PASSWORD"));
+
     
     //this will be our main function. This will speak to everything else.
     //this class will class on the others in order to do stuff.
@@ -131,8 +133,8 @@ public class Controller {
         return currentAccount;
     }
 
-    public static void sendEmail(String toEmail) {
-
+    public static void sendEmail(String toEmail, String subject, String body) {
+        emailService.send(toEmail, subject, body);
     }
 }
 
