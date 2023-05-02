@@ -67,6 +67,17 @@ public class RoomDatabase {
         }
     }
 
+    public boolean roomExists(int roomNum){
+        boolean exists = false;
+        for (Room r : rooms){
+            if (r.getNumber() == roomNum){
+                exists = true;
+                break;
+            }
+        }
+        return exists;
+    }
+
     public RoomCondition getRoomCondition(int roomNum){
         return rooms.get(roomNum).getRoomCondition();
     }

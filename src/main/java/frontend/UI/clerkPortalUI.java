@@ -1,5 +1,7 @@
 package frontend.UI;
 
+import frontend.UIBlackBox;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -48,9 +50,31 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         newReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newReservationUI newReservationUI = new newReservationUI();
-                newReservationUI.createAndShowGui();
-                dispose();
+                JTextField u = new JTextField(10);
+                JPasswordField p = new JPasswordField(10);
+
+                JPanel myPanel = new JPanel();
+                myPanel.add(new JLabel("username:"));
+                myPanel.add(u);
+                myPanel.add(new JLabel("password"));
+                myPanel.add(p);
+
+                int result = JOptionPane.showConfirmDialog(null, myPanel, "Please Enter Email and Password", JOptionPane.OK_CANCEL_OPTION);
+                if (result == JOptionPane.OK_OPTION){
+                    if (u.getText() == "" || p.getText() == ""){
+                        JOptionPane.showMessageDialog(null, "Please Enter Both fields", "Error", JOptionPane.ERROR_MESSAGE);
+                    }else{
+                        String email = u.getText();
+                        char[] password = p.getText().toCharArray();
+                        if (UIBlackBox.accountExists(email, password)) {
+                            newReservationUI newReservationUI = new newReservationUI(email, password);
+                            newReservationUI.createAndShowGui();
+                            dispose();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Either email or password is Incorrect");
+                        }
+                    }
+                }
             }
         });
 
@@ -60,11 +84,13 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         modifyReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                newReservationUI newReservationUI = new newReservationUI();
+                newReservationUI.createAndShowGui();
                 dispose();
             }
         });
 
-        modifyProfile = new JButton("Modfiy Profile");
+        modifyProfile = new JButton("Modify Profile");
         modifyProfile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -89,8 +115,14 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         modifyRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new modifyRoomUI();
-                dispose();
+                String roomNum = JOptionPane.showInputDialog("Enter Room Number:");
+                int i = Integer.parseInt(roomNum);
+                if(UIBlackBox.roomExists(i)) {
+                    new modifyRoomUI(roomNum);
+                    dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Room Number Does Not Exist");
+                }
             }
         });
 

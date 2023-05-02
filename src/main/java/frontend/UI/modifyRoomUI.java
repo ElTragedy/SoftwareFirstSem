@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class modifyRoomUI extends JFrame{
+public class modifyRoomUI extends JFrame {
 
     // Main Container
     private Container container;
@@ -25,7 +25,7 @@ public class modifyRoomUI extends JFrame{
     //private JTextField roomStatusField;
     private JButton submitButton;
 
-    public modifyRoomUI() {
+    public modifyRoomUI(String roomNum) {
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -42,8 +42,6 @@ public class modifyRoomUI extends JFrame{
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         JPanel panel = new JPanel(new GridLayout(4, 4));
-
-        String roomNum = JOptionPane.showInputDialog("Enter Room Number");
 
 
         numField2 = new JComboBox<>(new String[]{"doubleQueen", "singleKing", "suite"});
@@ -80,7 +78,6 @@ public class modifyRoomUI extends JFrame{
         panel.add(roomStatusField);
 
 
-
         add(panel, BorderLayout.NORTH);
 
         submitButton = new JButton("Add Room");
@@ -110,6 +107,7 @@ public class modifyRoomUI extends JFrame{
                     clerkPortalUI clerkPortalUI = new clerkPortalUI();
                     clerkPortalUI.createAndShowGui();
                     dispose();
+                    UIBlackBox.saveAll();
                     //}
                     //catch (Exception ex) {
 
@@ -130,7 +128,6 @@ public class modifyRoomUI extends JFrame{
         container.setLayout(null);
         setBounds();
         addComponents();
-
 
     }
 
@@ -172,12 +169,12 @@ public class modifyRoomUI extends JFrame{
         frame.setVisible(true);
     }
 
-    public void setBounds(){
+    public void setBounds() {
         submitButton.setBounds(50, 110, 200, 30);
         backButton.setBounds(250, 110, 200, 30);
     }
 
-    public void addComponents(){
+    public void addComponents() {
         container.add(submitButton);
         container.add(backButton);
     }

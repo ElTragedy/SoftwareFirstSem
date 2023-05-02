@@ -100,6 +100,10 @@ public class Controller {
         roomDatabase.updateRoom(roomNum, room);
     }
 
+    public static boolean roomExists(int roomNum){
+        return roomDatabase.roomExists(roomNum);
+    }
+
     public static Reservation getReservation(String reservationId){
         return reservationDatabase.getReservationDetails(reservationId);
     }
@@ -129,6 +133,17 @@ public class Controller {
             }
         }
         return account;
+    }
+
+    public static boolean accountExists(String email, char[] password){
+        boolean exists = false;
+        for(Account acc : accountDatabase.getAccountList()) {
+            if(acc.getEmail().equals(email)&& Arrays.equals(acc.getPassword().toCharArray(), password)) {
+                exists = true;
+                break;
+            }
+        }
+        return exists;
     }
     
     public static boolean saveAll(){

@@ -72,6 +72,8 @@ public class UIBlackBox {
         Controller.updateRoom(roomNum, room);
     }
 
+    public static boolean roomExists(int roomNum){return Controller.roomExists(roomNum);}
+
     public static Reservation getReservation(String reservationId){
         return Controller.getReservation(reservationId);
     }
@@ -89,6 +91,8 @@ public class UIBlackBox {
         a = Controller.getAccount(email, password);
         return a;
     }
+
+    public static boolean accountExists(String email, char[] password){return Controller.accountExists(email, password);}
 
     public static void sendEmail(String toEmail, String subject, String body) {
         Controller.sendEmail(toEmail, subject, body);

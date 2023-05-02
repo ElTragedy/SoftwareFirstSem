@@ -37,8 +37,14 @@ public class reservationUI extends JFrame{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                accountPortalUI accountPortalUI = new accountPortalUI();
-                accountPortalUI.createAndShowGui();
+                if (UIBlackBox.getCurrentAccount().getAccess() == "clerk"){
+                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                    clerkPortalUI.createAndShowGui();
+                }
+                else {
+                    accountPortalUI accountPortalUI = new accountPortalUI();
+                    accountPortalUI.createAndShowGui();
+                }
                 dispose();
             }
         });
@@ -95,6 +101,87 @@ public class reservationUI extends JFrame{
         setBounds();
         addComponents();
     }
+
+
+
+
+
+
+    public reservationUI(String email){
+        backButton = new JButton();
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (UIBlackBox.getCurrentAccount().getAccess() == "clerk"){
+                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                    clerkPortalUI.createAndShowGui();
+                }
+                else {
+                    accountPortalUI accountPortalUI = new accountPortalUI();
+                    accountPortalUI.createAndShowGui();
+                }
+                dispose();
+            }
+        });
+
+        //title
+        header = new JLabel("Reserve a Room");
+        header.setFont(new Font("Calibri", Font.BOLD, 20));
+
+        //start date
+        startLabel = new JLabel("Enter Start Date:");
+        UtilDateModel model1 = new UtilDateModel();
+        Properties p1 = new Properties();
+        p1.put("text.today", "Today");
+        p1.put("text.month", "Month");
+        p1.put("text.year", "Year");
+        datePanel1 = new JDatePanelImpl(model1, p1);
+        datePicker1 = new JDatePickerImpl(datePanel1, new DateLabelFormatter());
+        dateFormat1 = new JLabel("(yyyy-MM-dd)");
+
+        //end date
+        endLabel = new JLabel("Enter End Date:");
+        UtilDateModel model = new UtilDateModel();
+        Properties p = new Properties();
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        datePanel = new JDatePanelImpl(model, p);
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        dateFormat = new JLabel("(yyyy-MM-dd)");
+
+
+        //bed option list
+        bedSize = new JLabel("Bed Type:");
+
+        String[] bedOptions = {"Select", "doubleQueen", "singleKing", "suite"};
+        bedTypes = new JComboBox(bedOptions);
+        bedTypes.setSelectedIndex(0);
+
+
+        //reserve button
+        reserve = new JButton("Reserve Room");
+        reserve.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //when implemented use UIBlackBox.getCurrentAccount()
+                if(true){
+                    JOptionPane.showMessageDialog(null,"You have succefully reserved a Room!");
+                }
+            }
+        });
+
+        container = getContentPane();
+        container.setLayout(null);
+        setBounds();
+        addComponents();
+    }
+
+
+
+
+
 
     public void setBounds(){
         backButton.setBounds(0,0, 30, 30);
