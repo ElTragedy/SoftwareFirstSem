@@ -1,5 +1,7 @@
 package frontend.UI;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -114,6 +116,12 @@ public class adminPortalUI extends JFrame implements ActionListener {
     }
 
     public void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
         adminPortalUI frame = new adminPortalUI();
         frame.setTitle("Admin Portal");
         frame.setVisible(true);

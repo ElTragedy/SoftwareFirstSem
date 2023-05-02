@@ -1,6 +1,7 @@
 package frontend.UI;
 
 import backend.Account;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import frontend.UIBlackBox;
 import frontend.table.AvaliableRoomTable;
 import frontend.utilities.DateLabelFormatter;
@@ -324,6 +325,13 @@ public class editProfileUI extends JFrame{
         container.add(registerButton);
     }
     public void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
+
         editProfileUI frame = new editProfileUI();
         frame.setTitle("Edit Profile");
         frame.setVisible(true);

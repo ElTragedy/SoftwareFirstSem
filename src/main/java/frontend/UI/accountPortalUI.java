@@ -6,6 +6,7 @@ package frontend.UI;
  * this to the UIBlackBox.
  */
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import frontend.UIBlackBox;
 
 import javax.swing.*;
@@ -165,6 +166,12 @@ public class accountPortalUI extends JFrame implements ActionListener {
     }
 
     public void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
         accountPortalUI frame = new accountPortalUI();
         frame.setTitle("Account Portal");
         frame.setVisible(true);

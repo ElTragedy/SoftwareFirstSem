@@ -2,6 +2,7 @@ package frontend.UI;
 
 import backend.Account;
 import backend.Room;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import frontend.UIBlackBox;
 import frontend.table.AvaliableRoomTable;
 import frontend.utilities.DateLabelFormatter;
@@ -184,6 +185,13 @@ public class newReservationUI extends JFrame {
     }
 
     public void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
+
         newReservationUI frame = new newReservationUI();
         frame.setTitle("Create New Reservation");
         frame.setVisible(true);

@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.Properties;
 import javax.swing.*;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import frontend.UIBlackBox;
 import org.jdatepicker.JDateComponentFactory;
 import org.jdatepicker.JDatePicker;
@@ -303,6 +304,12 @@ public class createAccountUI extends JFrame {
         container.add(registerButton);
     }
     public void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
         createAccountUI frame = new createAccountUI();
         frame.setTitle("Create New Account");
         frame.setVisible(true);
