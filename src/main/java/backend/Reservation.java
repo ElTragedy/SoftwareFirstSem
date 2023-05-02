@@ -3,9 +3,7 @@ package backend;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
 
-import java.beans.Transient;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,11 +14,12 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Reservation { //TODO: Make reservation ID equal to room number as hex + ReservationHash(In Hex)
 
-    String username;
+    String email;
     Room reserved;
     int roomNumber;
     boolean payed;
     Date checkIn;
+
     Date checkOut;
 
     public Reservation(){
@@ -28,16 +27,16 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
     }
 
     public Reservation(String []data) throws ParseException {
-        username = data[0];
+        email = data[0];
         roomNumber = Integer.parseInt(data[1]);
         payed = Boolean.parseBoolean(data[2]);
         checkIn = new SimpleDateFormat("MM/dd/yyyy").parse(data[3]);
         checkOut = new SimpleDateFormat("MM/dd/yyyy").parse(data[4]);
     }
 
-    public Reservation(String username, Room reserved, boolean payed, 
-        Date checkIn, Date checkOut){
-        this.username = username;
+    public Reservation(String email, Room reserved, boolean payed,
+                       Date checkIn, Date checkOut){
+        this.email = email;
         this.roomNumber = roomNumber;
         this.payed = payed;
         this.checkIn = checkIn;
@@ -49,7 +48,7 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reservation that = (Reservation) o;
-        return Objects.equals(username, that.username) && 
+        return Objects.equals(email, that.email) &&
             Objects.equals(reserved, that.reserved) && 
             Objects.equals(checkIn, that.checkIn) && 
             Objects.equals(checkOut, that.checkOut);
@@ -57,7 +56,7 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, roomNumber, checkIn, checkOut);
+        return Objects.hash(email, roomNumber, checkIn, checkOut);
     }
 
     public boolean overlap(Reservation r){
@@ -74,12 +73,12 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
          + Integer.toHexString(this.hashCode()).toUpperCase();
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getRoomNumber() {
@@ -107,5 +106,13 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
 
     public void setCheckIn(Date checkIn) {
         this.checkIn = checkIn;
+    }
+
+    public Date getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(Date checkOut) {
+        this.checkOut = checkOut;
     }
 }

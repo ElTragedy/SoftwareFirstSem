@@ -79,6 +79,10 @@ public class UIBlackBox {
         return Controller.getAvailableRooms(start, end, roomType);
     }
 
+    public static Vector<Vector<String>> getReservationsForUser(String username){
+        return Controller.getReserveByUser(username);
+    }
+
     //public static Account getCurrentUser(){
         //return Controller.getCurrentUser();
     //}

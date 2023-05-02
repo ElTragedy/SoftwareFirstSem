@@ -1,5 +1,6 @@
 package backend;
 
+import java.text.SimpleDateFormat;
 import javax.mail.MessagingException;
 import java.util.*;
 
@@ -147,7 +148,7 @@ public class Controller {
     }
 
 
-    public static void sendEmail(String toEmail, String subject, String body) throws MessagingException {
+    public static void sendEmail(String toEmail, String subject, String body) {
         emailService.send(toEmail, subject, body);
     }
 

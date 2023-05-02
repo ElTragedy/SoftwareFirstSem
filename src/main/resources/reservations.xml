@@ -5,8 +5,8 @@
             <key>321</key>
             <value>
                 <reserveList>
-                    <username>username1234</username>
-                    <roomNumber>222</roomNumber>
+                    <email>shep</email>
+                    <roomNumber>321</roomNumber>
                     <payed>false</payed>
                     <checkIn>2023-05-17T01:00:00-05:00</checkIn>
                     <checkOut>2023-05-19T01:00:00-05:00</checkOut>
@@ -14,11 +14,11 @@
             </value>
         </entry>
         <entry>
-            <key>123</key>
+            <key>222</key>
             <value>
                 <reserveList>
-                    <username>bobstone123</username>
-                    <roomNumber>0</roomNumber>
+                    <email>shep</email>
+                    <roomNumber>222</roomNumber>
                     <payed>true</payed>
                     <checkIn>2023-01-01T00:00:00-06:00</checkIn>
                     <checkOut>2023-01-05T00:00:00-06:00</checkOut>

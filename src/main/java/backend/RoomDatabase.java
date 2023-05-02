@@ -45,7 +45,12 @@ public class RoomDatabase {
     }
 
     public Room getRoom(int roomNum){
-        return rooms.get(roomNum);
+        for(Room i : rooms){
+            if(i.getNumber() == roomNum){
+                return i;
+            }
+        }
+        return null;
     }
 
     public void removeRoom(int roomNum){

@@ -39,7 +39,7 @@ public class ReservationDatabase {
         while(iterator.hasNext()){
             HashMap.Entry<Integer, ArrayList<Reservation>> entry = iterator.next();
             for(Reservation i : entry.getValue()){
-                if(i.username.equals(username)){
+                if(i.email.equals(username)){
                     out.add(i);
                 }
             }
