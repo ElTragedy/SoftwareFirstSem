@@ -32,8 +32,20 @@ public class ReservationDatabase {
         return null;
     }
 
-    public void confirmUpdate(){
-        save();
+    public ArrayList<Reservation> getByUser(String username){
+        ArrayList<Reservation> out = new ArrayList<>();
+
+        Iterator<HashMap.Entry<Integer, ArrayList<Reservation>>> iterator = database.entrySet().iterator();
+        while(iterator.hasNext()){
+            HashMap.Entry<Integer, ArrayList<Reservation>> entry = iterator.next();
+            for(Reservation i : entry.getValue()){
+                if(i.username.equals(username)){
+                    out.add(i);
+                }
+            }
+        }
+
+        return out;
     }
 
     public boolean reserveRoom(Reservation r){
@@ -97,6 +109,20 @@ public class ReservationDatabase {
         }
     }
 
+    public ArrayList<Room> getAvailableRooms(Date start, Date end, ArrayList<Room> rooms) {
+        ArrayList<Room> out = rooms;
+        for(Room i : rooms){
+            if(database.get(i.getNumber()) != null){
+                for(Reservation k : database.get(i.getNumber())){
+//                    if(end.compareTo(k.checkIn)  > 0 && start.compareTo(k.checkOut) < 0){
+//                        out.removeIf(n -> n.getNumber() == k.roomNumber);
+//                    }
+                }
+            }
+        }
+        return out;
+    }
+
     public int getSize(){
         return database.size();
     }
@@ -140,20 +166,6 @@ public class ReservationDatabase {
         tmpDatabase.forEach((n, i) -> {
             database.put(n, i.getReserveList());
         });
-    }
-
-    public ArrayList<Room> getAvailableRooms(Date start, Date end, ArrayList<Room> rooms) {
-        ArrayList<Room> out = rooms;
-        for(Room i : rooms){
-            if(database.get(i.getNumber()) != null){
-                for(Reservation k : database.get(i.getNumber())){
-//                    if(end.compareTo(k.checkIn)  > 0 && start.compareTo(k.checkOut) < 0){
-//                        out.removeIf(n -> n.getNumber() == k.roomNumber);
-//                    }
-                }
-            }
-        }
-        return out;
     }
 
     @XmlRootElement (name="reservations")

@@ -111,7 +111,8 @@ public class Controller {
 
         Vector<Vector<String>> output = new Vector<>();
         for(Room i : reservationDatabase.getAvailableRooms(start, end, rooms)){
-            output.add(new Vector<>(List.of(Integer.toString(i.getNumber()), i.getRoomType().toString())));
+            String roomType = i.getRoomType().equals(RoomType.suite) ? "Suite" : i.roomType.equals(RoomType.singleKing) ? "Single King" : "Double Queen";
+            output.add(new Vector<>(List.of(Integer.toString(i.getNumber()), roomType)));
         }
 
         return output;

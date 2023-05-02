@@ -54,11 +54,9 @@ public class UIBlackBox {
 
     //public Reservation(String username, Room reserved, boolean payed, 
         //Date checkIn, Date checkOut)
-    public static boolean createReservation(String username, Room reserved, boolean payed, 
-        Date checkIn, Date checkOut){
+    public static boolean createReservation(String username, Room reserved, boolean payed, Date checkIn, Date checkOut){
         
-        Reservation r = new Reservation(username,reserved,payed, 
-        checkIn,checkOut);
+        Reservation r = new Reservation(username,reserved,payed, checkIn,checkOut);
 
         Controller.createReservation(r);
 
