@@ -63,10 +63,13 @@ public class UIBlackBox {
         return false;
     }
 
-    public static Room getRSoom(/* parameters */){
+    public static Room getRoom(int roomNum){
         //filler
-        Room a = null;
-        return a;
+        return Controller.getRoom(roomNum);
+    }
+
+    public static void updateRoom(int roomNum, Room room){
+        Controller.updateRoom(roomNum, room);
     }
 
     public static Reservation getReservation(String reservationId){

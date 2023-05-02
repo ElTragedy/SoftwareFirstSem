@@ -6,6 +6,7 @@ package frontend.UI;
  * "addRoom" function and then we just pass in parameters from the GUI.
  */
 
+import backend.Account;
 import frontend.UIBlackBox;
 
 import javax.swing.*;
@@ -35,9 +36,9 @@ public class addRoomUI extends JFrame implements ActionListener {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                accountPortalUI accountPortalGUI = new accountPortalUI();
-                accountPortalGUI.createAndShowGui();
-                dispose();
+                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                    clerkPortalUI.createAndShowGui();
+                    dispose();
             }
         });
 

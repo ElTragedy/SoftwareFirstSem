@@ -92,10 +92,12 @@ public class Controller {
     }
 
 
-    public static Room getRoom(/* parameters */){
-        //filler
-        Room a = null;
-        return a;
+    public static Room getRoom(int roomNum){
+        return roomDatabase.getRoom(roomNum);
+    }
+
+    public static void updateRoom(int roomNum, Room room){
+        roomDatabase.updateRoom(roomNum, room);
     }
 
     public static Reservation getReservation(String reservationId){

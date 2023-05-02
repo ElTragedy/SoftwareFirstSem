@@ -78,8 +78,9 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         addRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addRoomUI addroomui = new addRoomUI();
-                addroomui.createAndShowGui();
+                new addRoomUI();
+                //addroomui.createAndShowGui();
+                //was creating two instances
                 dispose();
             }
         });
@@ -88,8 +89,8 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         modifyRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO Option 1: maybe prefill addRoom with existing info
-                //TODO Option 2: maybe create new portal and have it delete the given room number or have a criteria to pick a room
+                new modifyRoomUI();
+                dispose();
             }
         });
 
@@ -126,7 +127,7 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         cancelGuestReservation.setBounds(50, 200, 200, 30);
         modifyProfile.setBounds(275, 100, 200, 30);
         addRoom.setBounds(275, 150, 200, 30);
-        modifyRoom.setBounds(275, 150, 200, 30);
+        modifyRoom.setBounds(275, 200, 200, 30);
     }
 
     public void addComponents() {
