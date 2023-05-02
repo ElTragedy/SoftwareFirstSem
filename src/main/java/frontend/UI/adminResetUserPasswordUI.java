@@ -85,6 +85,7 @@ public class adminResetUserPasswordUI extends JFrame {
         addComponents();
     }
 
+
     // Sets all labels/fields bounds
     public void setBounds() {
         backButton.setBounds(0, 0, 30, 30);
