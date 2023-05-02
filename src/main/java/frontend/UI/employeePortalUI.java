@@ -46,7 +46,7 @@ public class employeePortalUI extends JFrame implements ActionListener {
         newReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newReservationUI newReservationUI = new newReservationUI();
+                newReservationUI newReservationUI = new newReservationUI(employeePortalUI.this);
                 newReservationUI.createAndShowGui();
                 dispose();
             }

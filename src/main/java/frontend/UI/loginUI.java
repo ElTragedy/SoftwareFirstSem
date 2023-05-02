@@ -97,17 +97,15 @@ public class loginUI extends JFrame implements ActionListener{
 
     // Sets all labels/fields bounds
     public void setBounds() {
-        Integer width = container.getWidth();
+        Integer width = getHeight();
         Integer height = container.getHeight();
 
-        message.setBounds(width/2, 20, 460, 30);
+        message.setBounds(0, 0, 460, 30);
         message.setHorizontalAlignment(SwingConstants.CENTER);
-        System.out.println(message.getX() +" "+ message.getY());
+        System.out.println(width +" "+ height);
 
-        emailField.setBounds(width/2, 100, 200, 30);
-
-        emailLabel.setBounds(SwingConstants.CENTER, 100, 100, 30);
-
+        emailLabel.setBounds(50, 100, 100, 30);
+        emailField.setBounds(150, 100, 200, 30);
 
         passwordLabel.setBounds(50, 150, 100, 30);
         passwordField.setBounds(150, 150, 200, 30);

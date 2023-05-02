@@ -50,7 +50,7 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         newReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newReservationUI newReservationUI = new newReservationUI();
+                newReservationUI newReservationUI = new newReservationUI(clerkPortalUI.this);
                 newReservationUI.createAndShowGui();
                 dispose();
             }

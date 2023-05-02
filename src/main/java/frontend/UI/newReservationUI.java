@@ -32,16 +32,18 @@ public class newReservationUI extends JFrame {
     private JScrollPane scrollPane;
     private AvaliableRoomTable avaliableRoomTable;
     private JButton confirmButton;
+
+    private JFrame parentFrame;
     private Container container;
 
-    public newReservationUI() {
+    public newReservationUI(JFrame parent) {
+        parentFrame = parent;
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                accountPortalUI accountPortalUI = new accountPortalUI();
-                accountPortalUI.createAndShowGui();
+                parentFrame.setVisible(true);
                 dispose();
             }
         });
@@ -191,8 +193,7 @@ public class newReservationUI extends JFrame {
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize theme. Using fallback." );
         }
-
-        newReservationUI frame = new newReservationUI();
+        newReservationUI frame = new newReservationUI(parentFrame);
         frame.setTitle("Create New Reservation");
         frame.setVisible(true);
         frame.setBounds(500, 15, 800, 550);

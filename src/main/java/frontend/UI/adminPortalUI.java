@@ -51,7 +51,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
         newReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newReservationUI newReservationUI = new newReservationUI();
+                newReservationUI newReservationUI = new newReservationUI(adminPortalUI.this);
                 newReservationUI.createAndShowGui();
                 dispose();
             }
@@ -122,6 +122,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize theme. Using fallback." );
         }
+
         adminPortalUI frame = new adminPortalUI();
         frame.setTitle("Admin Portal");
         frame.setVisible(true);
