@@ -37,7 +37,7 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
     public Reservation(String email, Room reserved, boolean payed,
                        Date checkIn, Date checkOut){
         this.email = email;
-        this.roomNumber = roomNumber;
+        this.roomNumber = reserved.getNumber();
         this.payed = payed;
         this.checkIn = checkIn;
         this.checkOut = checkOut;

@@ -120,11 +120,11 @@ public class newReservationUI extends JFrame {
                                   "Your reservation has been confirmed for " + formattedDate + ".";
 
                 int roomNumber = Integer.parseInt((String) avaliableRoomTable.getTable().getValueAt(avaliableRoomTable.getTable().getSelectedRow(), 0));
-//                UIBlackBox.createReservation(UIBlackBox.getCurrentAccount().getEmail(),
-//                        roomNumber,
-//                        false,
-//                        (Date) startDatePicker.getModel().getValue(),
-//                        (Date) endDatePicker.getModel().getValue());
+                UIBlackBox.createReservation(UIBlackBox.getCurrentAccount().getEmail(),
+                        roomNumber,
+                        false,
+                        (Date) startDatePicker.getModel().getValue(),
+                        (Date) endDatePicker.getModel().getValue());
 
 
                 try {
