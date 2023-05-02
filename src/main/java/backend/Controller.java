@@ -116,9 +116,10 @@ public class Controller {
         rooms.removeIf(n -> (!n.roomType.equals(enumType)));
 
         Vector<Vector<String>> output = new Vector<>();
-        for(Room i : reservationDatabase.getAvailableRooms(start, end, rooms)){
+        for(Room i : rooms){
             String roomType = i.getRoomType().equals(RoomType.suite) ? "Suite" : i.roomType.equals(RoomType.singleKing) ? "Single King" : "Double Queen";
-            output.add(new Vector<>(List.of(Integer.toString(i.getNumber()), roomType)));
+            String roomCondition = String.valueOf(i.getRoomCondition());
+            output.add(new Vector<>(List.of(Integer.toString(i.getNumber()), roomType, roomCondition)));
         }
 
         return output;

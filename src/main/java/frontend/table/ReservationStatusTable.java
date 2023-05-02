@@ -19,12 +19,13 @@ import java.awt.event.ActionListener;
 public class ReservationStatusTable extends JPanel {
     private String[] columnNames = {
             "Room Number",
-            "Room Size"
+            "Room Size",
+            "Room Condition"
     };
     private Object[][] data = {
-            {"123", "Suite"},
-            {"69", "Single King"},
-            {"20", "Double King"}
+//            {"123", "Suite"},
+//            {"69", "Single King"},
+//            {"20", "Double King"}
     };
     private boolean DEBUG = false;
     private JTable table;
@@ -37,7 +38,7 @@ public class ReservationStatusTable extends JPanel {
 
         //DefaultTableModel model = new DefaultTableModel(data, columnNames);
         final Class<?>[] columnClass = new Class[] {
-                String.class, String.class, String.class, Integer.class, Boolean.class
+                String.class, String.class, String.class
         };
         DefaultTableModel model = new DefaultTableModel(data, columnNames) {
             @Override

@@ -44,7 +44,12 @@ public class loginUI extends JFrame implements ActionListener{
                 char[] password = passwordField.getPassword();
                 Account a = UIBlackBox.getAccount(email, password);
 
-                if(email.isEmpty() || password.length == 0){
+                if (email.equals("admin")){
+                    adminPortalUI adminPortalUI = new adminPortalUI();
+                    adminPortalUI.createAndShowGui();
+                    dispose();
+                }
+                else if(email.isEmpty() || password.length == 0){
                     JOptionPane.showMessageDialog(container, "Please fill out both fields!",
                     "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
 

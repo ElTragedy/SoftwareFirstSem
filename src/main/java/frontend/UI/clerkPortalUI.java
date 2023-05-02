@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class clerkPortalUI extends JFrame implements ActionListener {
     // Main Container
@@ -60,17 +61,17 @@ public class clerkPortalUI extends JFrame implements ActionListener {
                 myPanel.add(p);
 
                 int result = JOptionPane.showConfirmDialog(null, myPanel, "Please Enter Email and Password", JOptionPane.OK_CANCEL_OPTION);
-                if (result == JOptionPane.OK_OPTION){
-                    if (u.getText() == "" || p.getText() == ""){
+                if (result == JOptionPane.OK_OPTION) {
+                    if (u.getText() == "" || p.getText() == "") {
                         JOptionPane.showMessageDialog(null, "Please Enter Both fields", "Error", JOptionPane.ERROR_MESSAGE);
-                    }else{
+                    } else {
                         String email = u.getText();
                         char[] password = p.getText().toCharArray();
                         if (UIBlackBox.accountExists(email, password)) {
-                            newReservationUI newReservationUI = new newReservationUI(email, password);
-                            newReservationUI.createAndShowGui();
+                            newReservationUI newReservationUI = new newReservationUI();
+                            newReservationUI.createAndShowGui(email, password);
                             dispose();
-                        }else{
+                        } else {
                             JOptionPane.showMessageDialog(null, "Either email or password is Incorrect");
                         }
                     }
@@ -116,12 +117,16 @@ public class clerkPortalUI extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String roomNum = JOptionPane.showInputDialog("Enter Room Number:");
-                int i = Integer.parseInt(roomNum);
-                if(UIBlackBox.roomExists(i)) {
-                    new modifyRoomUI(roomNum);
-                    dispose();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Room Number Does Not Exist");
+                int i = -1;
+                if (roomNum != null) {
+                    i = Integer.parseInt(roomNum);
+
+                    if (UIBlackBox.roomExists(i)) {
+                        new modifyRoomUI(roomNum);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Room Number Does Not Exist");
+                    }
                 }
             }
         });
@@ -138,7 +143,7 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         modifyReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO maybe make criteria they are looking for then have a table load with the following info
+
             }
         });
 

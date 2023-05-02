@@ -39,8 +39,13 @@ public class newReservationUI extends JFrame {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                accountPortalUI accountPortalUI = new accountPortalUI();
-                accountPortalUI.createAndShowGui();
+                if (Objects.equals(UIBlackBox.getCurrentAccount().getAccess(), "clerk")) {
+                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                    clerkPortalUI.createAndShowGui();
+                } else {
+                    accountPortalUI accountPortalUI = new accountPortalUI();
+                    accountPortalUI.createAndShowGui();
+                }
                 dispose();
             }
         });
@@ -117,7 +122,7 @@ public class newReservationUI extends JFrame {
                 Account account = UIBlackBox.getCurrentAccount();
                 String subject = "Room Reserved";
                 String message = "Hello " + account.getFirstName() + " " + account.getLastName() + ",\n\n" +
-                                  "Your reservation has been confirmed for " + formattedDate + ".";
+                        "Your reservation has been confirmed for " + formattedDate + ".";
 
 
                 UIBlackBox.sendEmail(UIBlackBox.getCurrentAccount().getEmail(), subject, message);
@@ -133,19 +138,16 @@ public class newReservationUI extends JFrame {
     }
 
 
-
-
     public newReservationUI(String email, char[] password) {
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (UIBlackBox.getCurrentAccount().getAccess() == "clerk"){
+                if (Objects.equals(UIBlackBox.getCurrentAccount().getAccess(), "clerk")) {
                     clerkPortalUI clerkPortalUI = new clerkPortalUI();
                     clerkPortalUI.createAndShowGui();
-                }
-                else {
+                } else {
                     accountPortalUI accountPortalUI = new accountPortalUI();
                     accountPortalUI.createAndShowGui();
                 }
@@ -248,10 +250,6 @@ public class newReservationUI extends JFrame {
     }
 
 
-
-
-
-
     public void setBounds() {
         backButton.setBounds(0, 0, 30, 30);
 
@@ -293,6 +291,15 @@ public class newReservationUI extends JFrame {
 
     public void createAndShowGui() {
         newReservationUI frame = new newReservationUI();
+        frame.setTitle("Create New Reservation");
+        frame.setVisible(true);
+        frame.setBounds(500, 15, 800, 550);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+    }
+
+    public void createAndShowGui(String email, char[] password) {
+        newReservationUI frame = new newReservationUI(email, password);
         frame.setTitle("Create New Reservation");
         frame.setVisible(true);
         frame.setBounds(500, 15, 800, 550);
