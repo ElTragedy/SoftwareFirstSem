@@ -32,7 +32,7 @@ public class EmailService {
                         fromEmail, password);
             }
         });
-        session.setDebug(true);
+        session.setDebug(false);
 
         try {
             MimeMessage message = new MimeMessage(session);
