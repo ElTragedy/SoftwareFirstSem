@@ -133,6 +133,10 @@ public class AvaliableRoomTable extends JPanel {
         }
     }
 
+    public JTable getTable(){
+        return table;
+    }
+
     private void newFilter() {
         RowFilter<DefaultTableModel, Object> rf = null;
         //If current expression doesn't parse, don't update.

@@ -42,40 +42,37 @@ public class loginUI extends JFrame implements ActionListener{
                 System.out.println(Arrays.toString(passwordField.getPassword()));
                 String email = emailField.getText();
                 char[] password = passwordField.getPassword();
-                Account a = UIBlackBox.getAccount(email, password);
 
-                if (email.equals("admin")){
-                    adminPortalUI adminPortalUI = new adminPortalUI();
-                    adminPortalUI.createAndShowGui();
-                    dispose();
-                }
-                else if(email.isEmpty() || password.length == 0){
+                if(email.isEmpty() || password.length == 0) {
                     JOptionPane.showMessageDialog(container, "Please fill out both fields!",
-                    "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
-
-                } else if (a.getAccess() == "admin") {
-                    adminPortalUI adminPortalUI = new adminPortalUI();
-                    adminPortalUI.createAndShowGui();
-                    dispose();
-                }else if(a.getAccess() == "clerk"){
-                    UIBlackBox.setCurrentAccount(a);
-                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
-                    clerkPortalUI.createAndShowGui();
-                    dispose();
-                } else{
-                
-                    if(a == null){
+                            "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    Account a = UIBlackBox.getAccount(email, password);
+                    if(a == null) {
                         JOptionPane.showMessageDialog(container, "Invalid Email or Password",
-                        "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
-                    }
-                    else{
-                        UIBlackBox.setCurrentAccount(a);
-                        accountPortalUI accountPortalGUI = new accountPortalUI();
-                        accountPortalGUI.createAndShowGui();
-                        dispose();
-                        
+                                "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if(a.getAccess().equals("admin")) {
+                            UIBlackBox.setCurrentAccount(a);
+                            adminPortalUI adminPortalUI = new adminPortalUI();
+                            adminPortalUI.createAndShowGui();
+                            dispose();
+                        } else if(a.getAccess().equals("clerk")) {
+                            UIBlackBox.setCurrentAccount(a);
+                            clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                            clerkPortalUI.createAndShowGui();
+                            dispose();
+                        } else {
+                            UIBlackBox.setCurrentAccount(a);
+                            accountPortalUI accountPortalGUI = new accountPortalUI();
+                            accountPortalGUI.createAndShowGui();
+                            dispose();
+                        }
                     }
                 }
+
+
+
             }
         });
 

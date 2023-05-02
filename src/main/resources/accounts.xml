@@ -7,8 +7,8 @@
             <DOB>2000-02-12</DOB>
             <sex>Male</sex>
             <phoneNumber>bob</phoneNumber>
-            <email>shepardjberry@gmail.com</email>
-            <password>bob</password>
+            <email>chris.chenoweth03@gmail.com</email>
+            <password>shep</password>
             <address>bob</address>
             <zipcode>727</zipcode>
             <city>bob</city>
@@ -21,22 +21,36 @@
             <DOB>0006-07-24</DOB>
             <sex>Male</sex>
             <phoneNumber>8069223212</phoneNumber>
-            <email>dog</email>
-            <password>john</password>
+            <email>john</email>
+            <password>newPassword</password>
             <address>123 Dog ln</address>
             <zipcode>12345</zipcode>
             <city>dogCity</city>
             <state>TX</state>
             <country>United States</country>
         </account>
-        <account access="guest" id="8008">
+        <account access="admin" id="8008">
             <firstName>Christopher</firstName>
             <lastName>Chenoweth</lastName>
             <DOB>2000-02-12</DOB>
             <sex>Male</sex>
             <phoneNumber>1</phoneNumber>
-            <email>shepardjberry@gmail.com</email>
-            <password>shep</password>
+            <email>chris</email>
+            <password>chris</password>
+            <address>1</address>
+            <zipcode>1</zipcode>
+            <city>1</city>
+            <state>AL</state>
+            <country>United States</country>
+        </account>
+        <account access="admin" id="9009">
+            <firstName>Admin</firstName>
+            <lastName>Admin</lastName>
+            <DOB>2000-02-12</DOB>
+            <sex>Male</sex>
+            <phoneNumber>1</phoneNumber>
+            <email>admin</email>
+            <password>admin</password>
             <address>1</address>
             <zipcode>1</zipcode>
             <city>1</city>

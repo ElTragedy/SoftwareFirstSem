@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Vector;
 
 public class accountPortalUI extends JFrame implements ActionListener {
     // Main Container
@@ -53,7 +54,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
         };
 
         // Configure Table Basics
-        TableModel model = new DefaultTableModel(data, columnHeader) {
+        DefaultTableModel model = new DefaultTableModel(null, columnHeader) {
             public boolean isCellEditable(int rowIndex, int mColIndex) {
                 return false;
             }
@@ -63,6 +64,11 @@ public class accountPortalUI extends JFrame implements ActionListener {
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setFillsViewportHeight(true);
         panel.add(new JScrollPane(table));
+
+        model.setRowCount(0);
+        for(Vector<String> i : UIBlackBox.getReservationsForUser(UIBlackBox.getCurrentAccount().getEmail())){
+            model.addRow(i);
+        }
 
         // Greeting label that pulls the user's name
         greetingLabel = new JLabel("Hello, " + UIBlackBox.getCurrentAccount().getFirstName());

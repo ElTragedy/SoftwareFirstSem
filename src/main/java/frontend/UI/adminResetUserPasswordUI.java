@@ -14,6 +14,8 @@ public class adminResetUserPasswordUI extends JFrame {
     private JLabel message;
     private JLabel userNameLabel;
     private JTextField userNameField;
+    private JLabel newPasswordLabel;
+    private JTextField newPasswordField;
     private JButton resetPasswordButton;
     private Container container;
 
@@ -42,6 +44,10 @@ public class adminResetUserPasswordUI extends JFrame {
         userNameLabel = new JLabel("User name");
         userNameField = new JTextField();
 
+        // Add password to reset to
+        newPasswordLabel = new JLabel("New Password");
+        newPasswordField = new JTextField();
+
         // Add reset password button
         resetPasswordButton = new JButton("Reset Password");
         resetPasswordButton.addActionListener(new ActionListener() {
@@ -55,7 +61,7 @@ public class adminResetUserPasswordUI extends JFrame {
                 }
                 for(Account account : accounts) {
                     if(account.getEmail().equals(userName)) {
-                        if(UIBlackBox.resetPassword(account)) {
+                        if(UIBlackBox.resetPassword(account, newPasswordField.getText())) {
                             JOptionPane.showMessageDialog(null, "Password reset successful.", "Success", JOptionPane.INFORMATION_MESSAGE);
                             UIBlackBox.saveAll();
                         } else {
@@ -85,6 +91,8 @@ public class adminResetUserPasswordUI extends JFrame {
         message.setBounds(50, 10, 600, 30);
         userNameLabel.setBounds(50, 60, 100, 30);
         userNameField.setBounds(170, 60, 200, 30);
+        newPasswordLabel.setBounds(50, 100, 100, 30);
+        newPasswordField.setBounds(170, 100, 200, 30);
         resetPasswordButton.setBounds(170, 160, 200, 30);
     }
 
@@ -94,6 +102,8 @@ public class adminResetUserPasswordUI extends JFrame {
         container.add(message);
         container.add(userNameLabel);
         container.add(userNameField);
+        container.add(newPasswordLabel);
+        container.add(newPasswordField);
         container.add(resetPasswordButton);
     }
 

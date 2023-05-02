@@ -45,10 +45,10 @@ public class RoomDatabase {
     }
 
     public Room getRoom(int roomNum){
-        for (Room r : rooms){
-          if (r.getNumber() == roomNum){
-              return r;
-          }
+        for(Room i : rooms){
+            if(i.getNumber() == roomNum){
+                return i;
+            }
         }
         return null;
     }

@@ -25,7 +25,7 @@ public class EmailService {
         props.put("mail.smtp.port", "587");
     }
 
-    public void send(String toEmail, String subject, String body) {
+    public void send(String toEmail, String subject, String body) throws MessagingException {
         Session session = Session.getInstance(props, new javax.mail.Authenticator(){
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(
@@ -34,24 +34,22 @@ public class EmailService {
         });
         session.setDebug(false);
 
-        try {
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(fromEmail));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-            message.setSubject(subject);
-            message.setText(body);
 
-            Transport.send(message);
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
-        }
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(fromEmail));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+        message.setSubject(subject);
+        message.setText(body);
+
+        Transport.send(message);
+
     }
     public static void main(String[] args) {
         String to = System.getenv("EMAIL");
 
         EmailService emailService = new EmailService(System.getenv("EMAIL"), System.getenv("PASSWORD"));
 
-        emailService.send(to, "Subject", "Body");
+        //emailService.send(to, "Subject", "Body");
 
     }
 }

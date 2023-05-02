@@ -32,7 +32,7 @@ public class adminPortalUI extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int confirmed = JOptionPane.showConfirmDialog(null,
-                        "Are you sure you want to exit the program?", "Exit Program Message Box",
+                        "Are you sure you want to sign out?", "Sign Out Message Box",
                         JOptionPane.YES_NO_OPTION);
 
                 // If user selects yes, go to login page
