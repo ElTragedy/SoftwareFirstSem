@@ -3,6 +3,8 @@ package frontend;
 
 import backend.*;
 import backend.Room;
+
+import javax.mail.MessagingException;
 import java.util.*;
 import java.util.Date;
 
@@ -87,7 +89,7 @@ public class UIBlackBox {
         return a;
     }
 
-    public static void sendEmail(String toEmail, String subject, String body) {
+    public static void sendEmail(String toEmail, String subject, String body) throws MessagingException {
         Controller.sendEmail(toEmail, subject, body);
     }
 

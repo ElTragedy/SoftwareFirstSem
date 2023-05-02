@@ -8,6 +8,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -118,7 +119,12 @@ public class newReservationUI extends JFrame {
                                   "Your reservation has been confirmed for " + formattedDate + ".";
 
 
-                UIBlackBox.sendEmail(UIBlackBox.getCurrentAccount().getEmail(), subject, message);
+                try {
+                    UIBlackBox.sendEmail(UIBlackBox.getCurrentAccount().getEmail(), subject, message);
+                } catch (MessagingException ex) {
+                    JOptionPane.showMessageDialog(container, "Could not successfully deliver confirmation email.",
+                            "Email Service Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 

@@ -1,5 +1,6 @@
 package backend;
 
+import javax.mail.MessagingException;
 import java.util.*;
 
 public class Controller {
@@ -146,7 +147,7 @@ public class Controller {
     }
 
 
-    public static void sendEmail(String toEmail, String subject, String body) {
+    public static void sendEmail(String toEmail, String subject, String body) throws MessagingException {
         emailService.send(toEmail, subject, body);
     }
 
