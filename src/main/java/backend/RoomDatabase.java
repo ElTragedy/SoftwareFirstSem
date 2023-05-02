@@ -45,7 +45,12 @@ public class RoomDatabase {
     }
 
     public Room getRoom(int roomNum){
-        return rooms.get(roomNum);
+        for (Room r : rooms){
+          if (r.getNumber() == roomNum){
+              return r;
+          }
+        }
+        return null;
     }
 
     public void removeRoom(int roomNum){
@@ -53,7 +58,13 @@ public class RoomDatabase {
     }
     
     public void updateRoom(int roomNum, Room newRoom){
-        rooms.set(roomNum, newRoom);
+        int i = 0;
+        for (Room r : rooms){
+            if (r.getNumber() == roomNum) {
+                rooms.set(i, newRoom);
+            }
+            i++;
+        }
     }
 
     public RoomCondition getRoomCondition(int roomNum){

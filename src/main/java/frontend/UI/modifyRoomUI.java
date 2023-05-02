@@ -48,10 +48,15 @@ public class modifyRoomUI extends JFrame{
 
         numField2 = new JComboBox<>(new String[]{"doubleQueen", "singleKing", "suite"});
         numField2.setSelectedItem(UIBlackBox.getRoom(Integer.parseInt(roomNum)).getRoomType());
+
         roomConditionField = new JComboBox<>(new String[]{"smoking", "nonSmoking"});
-        roomConditionField.setSelectedItem(UIBlackBox.getRoom(Integer.parseInt(roomNum)).getRoomCondition());
+        String roomCondition = String.valueOf(UIBlackBox.getRoom(Integer.parseInt(roomNum)).getRoomCondition());
+        roomConditionField.setSelectedItem(roomCondition);
+
+
         roomStatusField = new JComboBox<>(new String[]{"available", "occupied", "reserved"});
-        roomStatusField.setSelectedItem(UIBlackBox.getRoom(Integer.parseInt(roomNum)).getRoomStatus());
+        String roomStatus = String.valueOf(UIBlackBox.getRoom(Integer.parseInt(roomNum)).getRoomStatus());
+        roomStatusField.setSelectedItem(roomStatus);
 
         JLabel label1 = new JLabel("  Enter room number:  ");
         panel.add(label1);
