@@ -23,6 +23,7 @@ public class newReservationUI extends JFrame {
     private JDatePickerImpl startDatePicker, endDatePicker;
     private JLabel roomTypeLabel;
     private JComboBox<String> roomTypeList;
+    private JButton reserverRoom;
 
     private JScrollPane scrollPane;
     private AvaliableRoomTable avaliableRoomTable;
@@ -47,7 +48,7 @@ public class newReservationUI extends JFrame {
         backButton.setIcon(imageIcon);
 
         // Set header for window
-        message = new JLabel("Schedule You Stay");
+        message = new JLabel("Schedule Your Stay");
         message.setFont(new Font("Barlow", Font.BOLD, 20));
 
         // Start Date Panel
@@ -100,6 +101,16 @@ public class newReservationUI extends JFrame {
             }
         });
 
+        // reserve room
+        reserverRoom = new JButton("Reserve Room");
+        reserverRoom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("dog");
+            }
+        });
+
+
         // Add and set container
         container = getContentPane();
         container.setLayout(null);
@@ -124,6 +135,7 @@ public class newReservationUI extends JFrame {
         avaliableRoomTable.setBounds(350, 60, 400, 400);
 
         confirmButton.setBounds(130, 210, 200, 30);
+        reserverRoom.setBounds(130, 260, 200, 30);
     }
 
     public void addComponents() {
@@ -142,6 +154,7 @@ public class newReservationUI extends JFrame {
         container.add(avaliableRoomTable);
 
         container.add(confirmButton);
+        container.add(reserverRoom);
     }
 
     public void createAndShowGui() {
