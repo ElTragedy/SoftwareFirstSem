@@ -58,7 +58,24 @@ public class RoomDatabase {
     }
     
     public void updateRoom(int roomNum, Room newRoom){
-        rooms.set(roomNum, newRoom);
+        int i = 0;
+        for (Room r : rooms){
+            if (r.getNumber() == roomNum) {
+                rooms.set(i, newRoom);
+            }
+            i++;
+        }
+    }
+
+    public boolean roomExists(int roomNum){
+        boolean exists = false;
+        for (Room r : rooms){
+            if (r.getNumber() == roomNum){
+                exists = true;
+                break;
+            }
+        }
+        return exists;
     }
 
     public RoomCondition getRoomCondition(int roomNum){

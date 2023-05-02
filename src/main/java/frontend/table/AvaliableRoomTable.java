@@ -1,5 +1,8 @@
 package frontend.table;
 
+import backend.Controller;
+import backend.Room;
+import frontend.UIBlackBox;
 import net.coderazzi.filters.gui.AutoChoices;
 import net.coderazzi.filters.gui.TableFilterHeader;
 
@@ -18,13 +21,10 @@ import java.util.Vector;
 public class AvaliableRoomTable extends JPanel {
     private String[] columnNames = {
             "Room Number",
-            "Room Size"
+            "Room Size",
+            "Room Condition"
     };
-    private Object[][] data = {
-            {"123", "Suite"},
-            {"69", "Single King"},
-            {"20", "Double King"}
-    };
+    private Object[][] data = {};
     private boolean DEBUG = false;
     private JTable table;
     private JTextField filterText;
@@ -163,6 +163,13 @@ public class AvaliableRoomTable extends JPanel {
         frame.setVisible(true);
     }
 
+    public static Room getSelectedRoom(){
+        Room r = null;
+
+
+        return r;
+    }
+
     private final class RemoveLineActionLister implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -273,17 +280,17 @@ public class AvaliableRoomTable extends JPanel {
             dataLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             listPane.add(dataLabel);
 
-            JButton addButton = new JButton("Add row");
-            addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            addButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ((DefaultTableModel) table.getModel()).addRow(new Object[]{"Coolio", "Noman", "Karate", 1, true});
-                    dispose();
-                    JOptionPane.showMessageDialog(table, "Added new record");
-                }
-            });
-            listPane.add(addButton);
+//            JButton addButton = new JButton("Add row");
+//            addButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+//            addButton.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    ((DefaultTableModel) table.getModel()).addRow(new Object[]{"Coolio", "Noman", "Karate", 1, true});
+//                    dispose();
+//                    JOptionPane.showMessageDialog(table, "Added new record");
+//                }
+//            });
+//            listPane.add(addButton);
             pack();
 
             setContentPane(listPane);

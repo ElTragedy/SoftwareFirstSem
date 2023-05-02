@@ -63,11 +63,16 @@ public class UIBlackBox {
         return false;
     }
 
-    public static Room getRSoom(/* parameters */){
+    public static Room getRoom(int roomNum){
         //filler
-        Room a = null;
-        return a;
+        return Controller.getRoom(roomNum);
     }
+
+    public static void updateRoom(int roomNum, Room room){
+        Controller.updateRoom(roomNum, room);
+    }
+
+    public static boolean roomExists(int roomNum){return Controller.roomExists(roomNum);}
 
     public static Reservation getReservation(String reservationId){
         return Controller.getReservation(reservationId);
@@ -91,6 +96,9 @@ public class UIBlackBox {
         return a;
     }
 
+    public static boolean accountExists(String email, char[] password){return Controller.accountExists(email, password);}
+
+    
     public static void sendEmail(String toEmail, String subject, String body) throws MessagingException {
         Controller.sendEmail(toEmail, subject, body);
     }

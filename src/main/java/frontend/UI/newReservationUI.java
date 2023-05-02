@@ -1,6 +1,7 @@
 package frontend.UI;
 
 import backend.Account;
+import backend.Reservation;
 import backend.Room;
 import frontend.UIBlackBox;
 import frontend.table.AvaliableRoomTable;
@@ -39,8 +40,13 @@ public class newReservationUI extends JFrame {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                accountPortalUI accountPortalUI = new accountPortalUI();
-                accountPortalUI.createAndShowGui();
+                if (Objects.equals(UIBlackBox.getCurrentAccount().getAccess(), "clerk")) {
+                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                    clerkPortalUI.createAndShowGui();
+                } else {
+                    accountPortalUI accountPortalUI = new accountPortalUI();
+                    accountPortalUI.createAndShowGui();
+                }
                 dispose();
             }
         });
@@ -117,7 +123,7 @@ public class newReservationUI extends JFrame {
                 Account account = UIBlackBox.getCurrentAccount();
                 String subject = "Room Reserved";
                 String message = "Hello " + account.getFirstName() + " " + account.getLastName() + ",\n\n" +
-                                  "Your reservation has been confirmed for " + formattedDate + ".";
+                        "Your reservation has been confirmed for " + formattedDate + ".";
 
                 int roomNumber = Integer.parseInt((String) avaliableRoomTable.getTable().getValueAt(avaliableRoomTable.getTable().getSelectedRow(), 0));
                 UIBlackBox.createReservation(UIBlackBox.getCurrentAccount().getEmail(),
@@ -143,6 +149,119 @@ public class newReservationUI extends JFrame {
         setBounds();
         addComponents();
     }
+
+
+    public newReservationUI(String email, char[] password) {
+        // Implement Back Button
+        backButton = new JButton();
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (Objects.equals(UIBlackBox.getCurrentAccount().getAccess(), "clerk")) {
+                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                    clerkPortalUI.createAndShowGui();
+                } else {
+                    accountPortalUI accountPortalUI = new accountPortalUI();
+                    accountPortalUI.createAndShowGui();
+                }
+                dispose();
+            }
+        });
+        // Add Image To Back Button
+        ImageIcon imageIcon = new ImageIcon("src/main/resources/Frontend_Resources/backButton.png");
+        Image image = imageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(image);
+        backButton.setIcon(imageIcon);
+
+        // Set header for window
+        message = new JLabel("Schedule Your Stay");
+        message.setFont(new Font("Barlow", Font.BOLD, 20));
+
+        // Start Date Panel
+        startDateLabel = new JLabel("Start Date");
+        UtilDateModel startDateModel = new UtilDateModel();
+        startDateModel.setDate(2023, 04, 18);
+        startDateModel.setSelected(true);
+        Properties startProperties = new Properties();
+        startProperties.put("text.today", "Today");
+        startProperties.put("text.month", "Month");
+        startProperties.put("text.year", "Year");
+        startDatePanel = new JDatePanelImpl(startDateModel, startProperties);
+        startDatePicker = new JDatePickerImpl(startDatePanel, new DateLabelFormatter());
+
+        // End Date Panel
+        endDateLabel = new JLabel("End Date");
+        UtilDateModel endDateModel = new UtilDateModel();
+        endDateModel.setDate(2023, 04, 18);
+        endDateModel.setSelected(true);
+        Properties endProperties = new Properties();
+        endProperties.put("text.today", "Today");
+        endProperties.put("text.month", "Month");
+        endProperties.put("text.year", "Year");
+        endDatePanel = new JDatePanelImpl(endDateModel, startProperties);
+        endDatePicker = new JDatePickerImpl(endDatePanel, new DateLabelFormatter());
+
+        // Room Type Drop Down
+        roomTypeLabel = new JLabel("Room Size");
+        roomTypeList = new JComboBox<String>();
+        roomTypeList.addItem("Suite");
+        roomTypeList.addItem("Single King");
+        roomTypeList.addItem("Double Queen");
+
+        // Add Table
+        avaliableRoomTable = new AvaliableRoomTable();
+
+        // Add register button
+        confirmButton = new JButton("Check Availability");
+        confirmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: Load data into table
+//                accountPortalUI accountPortalUI = new accountPortalUI();
+//                accountPortalUI.createAndShowGui();
+//                dispose();
+                avaliableRoomTable.updateTable(UIBlackBox.getAvailableRooms(
+                        (Date) startDatePicker.getModel().getValue(),
+                        (Date) endDatePicker.getModel().getValue(),
+                        roomTypeList.getModel().getSelectedItem().toString()));
+            }
+        });
+
+        // reserve room
+        reserverRoom = new JButton("Reserve Room");
+        reserverRoom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+
+                Date startDate = (Date) startDatePicker.getModel().getValue();
+                String formattedDate = dateFormatter.format(startDate);
+
+                Account account = UIBlackBox.getAccount(email, password);
+                String subject = "Room Reserved";
+                String message = "Hello " + account.getFirstName() + " " + account.getLastName() + ",\n\n" +
+                        "Your reservation has been confirmed for " + formattedDate + ".";
+
+
+                //need to make a room that has roomType, number, and condition
+                //status preset to available until assigned with a reservation
+                Room room = new Room();
+
+                //reservation needs a room, boolean, Date checkIn, Date checkOut
+
+                //Reservation r = new Reservation(email, )
+                UIBlackBox.sendEmail(UIBlackBox.getCurrentAccount().getEmail(), subject, message);
+            }
+        });
+
+
+        // Add and set container
+        container = getContentPane();
+        container.setLayout(null);
+        setBounds();
+        addComponents();
+    }
+
 
     public void setBounds() {
         backButton.setBounds(0, 0, 30, 30);
@@ -185,6 +304,15 @@ public class newReservationUI extends JFrame {
 
     public void createAndShowGui() {
         newReservationUI frame = new newReservationUI();
+        frame.setTitle("Create New Reservation");
+        frame.setVisible(true);
+        frame.setBounds(500, 15, 800, 550);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+    }
+
+    public void createAndShowGui(String email, char[] password) {
+        newReservationUI frame = new newReservationUI(email, password);
         frame.setTitle("Create New Reservation");
         frame.setVisible(true);
         frame.setBounds(500, 15, 800, 550);

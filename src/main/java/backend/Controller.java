@@ -93,10 +93,16 @@ public class Controller {
     }
 
 
-    public static Room getRoom(/* parameters */){
-        //filler
-        Room a = null;
-        return a;
+    public static Room getRoom(int roomNum){
+        return roomDatabase.getRoom(roomNum);
+    }
+
+    public static void updateRoom(int roomNum, Room room){
+        roomDatabase.updateRoom(roomNum, room);
+    }
+
+    public static boolean roomExists(int roomNum){
+        return roomDatabase.roomExists(roomNum);
     }
 
     public static Reservation getReservation(String reservationId){
@@ -111,9 +117,10 @@ public class Controller {
         rooms.removeIf(n -> (!n.roomType.equals(enumType)));
 
         Vector<Vector<String>> output = new Vector<>();
-        for(Room i : reservationDatabase.getAvailableRooms(start, end, rooms)){
+        for(Room i : rooms){
             String roomType = i.getRoomType().equals(RoomType.suite) ? "Suite" : i.roomType.equals(RoomType.singleKing) ? "Single King" : "Double Queen";
-            output.add(new Vector<>(List.of(Integer.toString(i.getNumber()), roomType)));
+            String roomCondition = String.valueOf(i.getRoomCondition());
+            output.add(new Vector<>(List.of(Integer.toString(i.getNumber()), roomType, roomCondition)));
         }
 
         return output;
@@ -145,6 +152,17 @@ public class Controller {
             }
         }
         return account;
+    }
+
+    public static boolean accountExists(String email, char[] password){
+        boolean exists = false;
+        for(Account acc : accountDatabase.getAccountList()) {
+            if(acc.getEmail().equals(email)&& Arrays.equals(acc.getPassword().toCharArray(), password)) {
+                exists = true;
+                break;
+            }
+        }
+        return exists;
     }
     
     public static boolean saveAll(){

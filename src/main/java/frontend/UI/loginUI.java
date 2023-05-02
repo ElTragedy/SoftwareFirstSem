@@ -40,7 +40,6 @@ public class loginUI extends JFrame implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(Arrays.toString(passwordField.getPassword()));
-
                 String email = emailField.getText();
                 char[] password = passwordField.getPassword();
 

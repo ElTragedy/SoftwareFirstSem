@@ -4,26 +4,32 @@
         <room>
             <roomType>singleKing</roomType>
             <number>222</number>
+            <roomCondition>smoking</roomCondition>
         </room>
         <room>
             <roomType>singleKing</roomType>
             <number>123</number>
+            <roomCondition>nonSmoking</roomCondition>
         </room>
         <room>
             <roomType>singleKing</roomType>
             <number>321</number>
+            <roomCondition>smoking</roomCondition>
         </room>
         <room>
             <roomType>suite</roomType>
             <number>111</number>
+            <roomCondition>smoking</roomCondition>
         </room>
         <room>
             <roomType>suite</roomType>
             <number>212</number>
+            <roomCondition>nonSmoking</roomCondition>
         </room>
         <room>
             <roomType>doubleQueen</roomType>
             <number>211</number>
+            <roomCondition>nonSmoking</roomCondition>
         </room>
     </rooms>
 </roomDatabase>
