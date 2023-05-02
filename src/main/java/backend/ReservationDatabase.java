@@ -32,14 +32,14 @@ public class ReservationDatabase {
         return null;
     }
 
-    public ArrayList<Reservation> getByUser(String username){
+    public ArrayList<Reservation> getReservationsByEmail(String email){
         ArrayList<Reservation> out = new ArrayList<>();
 
         Iterator<HashMap.Entry<Integer, ArrayList<Reservation>>> iterator = database.entrySet().iterator();
         while(iterator.hasNext()){
             HashMap.Entry<Integer, ArrayList<Reservation>> entry = iterator.next();
             for(Reservation i : entry.getValue()){
-                if(i.email.equals(username)){
+                if(i.email.equals(email)){
                     out.add(i);
                 }
             }
@@ -70,6 +70,8 @@ public class ReservationDatabase {
                 database.put(r.getRoomNumber(), reserveList);
             }
         }
+
+        save();
 
         return !reserved;
     }

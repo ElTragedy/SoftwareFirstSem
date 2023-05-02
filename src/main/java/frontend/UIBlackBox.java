@@ -56,11 +56,9 @@ public class UIBlackBox {
 
     //public Reservation(String username, Room reserved, boolean payed, 
         //Date checkIn, Date checkOut)
-    public static boolean createReservation(String username, Room reserved, boolean payed, Date checkIn, Date checkOut){
-        
-        Reservation r = new Reservation(username,reserved,payed, checkIn,checkOut);
+    public static boolean createReservation(String username, int roomNumber, boolean payed, Date checkIn, Date checkOut){
 
-        Controller.createReservation(r);
+        Controller.createReservation(username, roomNumber, payed, checkIn, checkOut);
 
         return false;
     }
@@ -79,8 +77,8 @@ public class UIBlackBox {
         return Controller.getAvailableRooms(start, end, roomType);
     }
 
-    public static Vector<Vector<String>> getReservationsForUser(String username){
-        return Controller.getReserveByUser(username);
+    public static Vector<Vector<String>> getReservationsForUser(String email){
+        return Controller.getReservationsByEmail(email);
     }
 
     //public static Account getCurrentUser(){

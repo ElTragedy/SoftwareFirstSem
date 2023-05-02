@@ -2,6 +2,25 @@
 <roomReservations>
     <reserveMap>
         <entry>
+            <key>0</key>
+            <value>
+                <reserveList>
+                    <email>chris.chenoweth03@gmail.com</email>
+                    <roomNumber>123</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-18T12:19:45.555-05:00</checkIn>
+                    <checkOut>2023-05-18T12:19:45.560-05:00</checkOut>
+                </reserveList>
+                <reserveList>
+                    <email>chris.chenoweth03@gmail.com</email>
+                    <roomNumber>111</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-18T12:22:09.428-05:00</checkIn>
+                    <checkOut>2023-05-18T12:22:09.433-05:00</checkOut>
+                </reserveList>
+            </value>
+        </entry>
+        <entry>
             <key>321</key>
             <value>
                 <reserveList>

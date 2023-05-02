@@ -88,9 +88,8 @@ public class Controller {
      * to the database. This is a static class that will be called by the 
      * black box UI.
      */
-    public static boolean createReservation(Reservation r){
-        int size = reservationDatabase.getSize();
-        return reservationDatabase.reserveRoom(r); 
+    public static boolean createReservation(String username, int roomNumber, boolean payed, Date checkIn, Date checkOut){
+        return reservationDatabase.reserveRoom(new Reservation(username, roomDatabase.getRoom(roomNumber), payed, checkIn, checkOut));
     }
 
 
@@ -118,6 +117,23 @@ public class Controller {
         }
 
         return output;
+    }
+
+    public static Vector<Vector<String>> getReservationsByEmail(String email){
+        ArrayList<Reservation> reservations = reservationDatabase.getReservationsByEmail(email);
+
+        Vector<Vector<String>> out = new Vector<>();
+        for(Reservation i : reservations){
+            Room room = roomDatabase.getRoom(i.getRoomNumber());
+
+            String roomType = room.getRoomType().equals(RoomType.suite) ? "Suite" : room.roomType.equals(RoomType.singleKing) ? "Single King" : "Double Queen";
+
+            SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+
+            out.add(new Vector<>(List.of(Integer.toString(room.number), roomType, dateFormatter.format(i.getCheckIn()), dateFormatter.format(i.getCheckOut()))));
+        }
+
+        return out;
     }
 
     public static Account getAccount(String email, char[] password){
@@ -148,7 +164,7 @@ public class Controller {
     }
 
 
-    public static void sendEmail(String toEmail, String subject, String body) {
+    public static void sendEmail(String toEmail, String subject, String body) throws MessagingException {
         emailService.send(toEmail, subject, body);
     }
 

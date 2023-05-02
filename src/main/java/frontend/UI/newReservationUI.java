@@ -1,6 +1,7 @@
 package frontend.UI;
 
 import backend.Account;
+import backend.Room;
 import frontend.UIBlackBox;
 import frontend.table.AvaliableRoomTable;
 import frontend.utilities.DateLabelFormatter;
@@ -117,6 +118,13 @@ public class newReservationUI extends JFrame {
                 String subject = "Room Reserved";
                 String message = "Hello " + account.getFirstName() + " " + account.getLastName() + ",\n\n" +
                                   "Your reservation has been confirmed for " + formattedDate + ".";
+
+                int roomNumber = Integer.parseInt((String) avaliableRoomTable.getTable().getValueAt(avaliableRoomTable.getTable().getSelectedRow(), 0));
+//                UIBlackBox.createReservation(UIBlackBox.getCurrentAccount().getEmail(),
+//                        roomNumber,
+//                        false,
+//                        (Date) startDatePicker.getModel().getValue(),
+//                        (Date) endDatePicker.getModel().getValue());
 
 
                 try {
