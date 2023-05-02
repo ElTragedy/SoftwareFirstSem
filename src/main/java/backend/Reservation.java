@@ -49,7 +49,7 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
         if (o == null || getClass() != o.getClass()) return false;
         Reservation that = (Reservation) o;
         return Objects.equals(email, that.email) &&
-            Objects.equals(reserved, that.reserved) && 
+            Objects.equals(roomNumber, that.roomNumber) &&
             Objects.equals(checkIn, that.checkIn) && 
             Objects.equals(checkOut, that.checkOut);
     }
