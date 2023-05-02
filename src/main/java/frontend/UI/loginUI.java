@@ -40,48 +40,40 @@ public class loginUI extends JFrame implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(Arrays.toString(passwordField.getPassword()));
-                if (Objects.equals(emailField.getText(), "") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
-                    // MAKE FUNCTION TO ITERATE THROUGH ALL FIELDS
-                    JOptionPane.showMessageDialog(container, "Please fill out both fields!",
-                            "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
-                } else if (Objects.equals(emailField.getText(), "admin") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
-                    adminPortalUI adminPortalUI = new adminPortalUI();
-                    adminPortalUI.createAndShowGui();
-                    dispose();
-                }
+
                 String email = emailField.getText();
                 char[] password = passwordField.getPassword();
 
-                Account a = UIBlackBox.getAccount(email, password);
-
-                if(email.isEmpty() || password.length == 0){
+                if(email.isEmpty() || password.length == 0) {
                     JOptionPane.showMessageDialog(container, "Please fill out both fields!",
-                    "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
-
-                } else if (Objects.equals(emailField.getText(), "admin") && Objects.equals(Arrays.toString(passwordField.getPassword()), "[a]")) {
-                    //} else if (Objects.equals(, "admin") && ObjectIs.equals(Arrays.toString(passwordField.getPassword()), "[]")) {
-                    adminPortalUI adminPortalUI = new adminPortalUI();
-                    adminPortalUI.createAndShowGui();
-                    dispose();
-                }else if(a.getAccess() == "clerk"){
-                    UIBlackBox.setCurrentAccount(a);
-                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
-                    clerkPortalUI.createAndShowGui();
-                    dispose();
-                } else{
-                
-                    if(a == null){
+                            "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    Account a = UIBlackBox.getAccount(email, password);
+                    if(a == null) {
                         JOptionPane.showMessageDialog(container, "Invalid Email or Password",
-                        "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
-                    }
-                    else{
-                        UIBlackBox.setCurrentAccount(a);
-                        accountPortalUI accountPortalGUI = new accountPortalUI();
-                        accountPortalGUI.createAndShowGui();
-                        dispose();
-                        
+                                "Invalid Email or Password", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if(a.getAccess().equals("admin")) {
+                            UIBlackBox.setCurrentAccount(a);
+                            adminPortalUI adminPortalUI = new adminPortalUI();
+                            adminPortalUI.createAndShowGui();
+                            dispose();
+                        } else if(a.getAccess().equals("clerk")) {
+                            UIBlackBox.setCurrentAccount(a);
+                            clerkPortalUI clerkPortalUI = new clerkPortalUI();
+                            clerkPortalUI.createAndShowGui();
+                            dispose();
+                        } else {
+                            UIBlackBox.setCurrentAccount(a);
+                            accountPortalUI accountPortalGUI = new accountPortalUI();
+                            accountPortalGUI.createAndShowGui();
+                            dispose();
+                        }
                     }
                 }
+
+
+
             }
         });
 
