@@ -154,12 +154,12 @@ public class Controller {
         return accountDatabase.getAccountList();
     }
 
-    public static boolean resetPassword(Account a){
+    public static boolean resetPassword(Account a, String newPassword){
         //getAccount(a.getEmail(),a.getPassword().toCharArray());
         //a.setPassword("password");
         for(Account acc : accountDatabase.getAccountList()){
             if(a.getEmail().equals(acc.getEmail())){
-                acc.setPassword("password");
+                acc.setPassword(newPassword);
                 return true;
             }
         }

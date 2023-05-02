@@ -22,7 +22,7 @@
             <sex>Male</sex>
             <phoneNumber>8069223212</phoneNumber>
             <email>dog</email>
-            <password>john</password>
+            <password>newPassword</password>
             <address>123 Dog ln</address>
             <zipcode>12345</zipcode>
             <city>dogCity</city>

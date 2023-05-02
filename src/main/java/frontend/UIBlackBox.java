@@ -111,8 +111,8 @@ public class UIBlackBox {
         return Controller.getAllAccounts();
     }
 
-    public static boolean resetPassword(Account a){
-        return Controller.resetPassword(a);
+    public static boolean resetPassword(Account a, String newPassword){
+        return Controller.resetPassword(a, newPassword);
     }
 
     public static boolean deleteAccount(Account a){
