@@ -105,7 +105,7 @@ public class Controller {
     public static Vector<Vector<String>> getAvailableRooms(Date start, Date end, String type){
         //TODO: Make this a function inside of room database
 
-        RoomType enumType = (type.equals("Single King")) ? RoomType.singleKing: (type.equals("Double King")) ? RoomType.doubleQueen: RoomType.suite;
+        RoomType enumType = (type.equals("Single King")) ? RoomType.singleKing: (type.equals("Double Queen")) ? RoomType.doubleQueen: RoomType.suite;
         ArrayList<Room> rooms = roomDatabase.getRooms();
         rooms.removeIf(n -> (!n.roomType.equals(enumType)));
 
