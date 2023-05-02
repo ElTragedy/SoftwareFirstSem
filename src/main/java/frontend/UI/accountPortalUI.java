@@ -48,8 +48,8 @@ public class accountPortalUI extends JFrame implements ActionListener {
         String[] columnHeader = {"Room Number", "Room Size", "Start Date", "End Date"};
         String[][] data = {
                 {"123", "Suite", "2023-05-01", "2023-05-07"},
-                {"69", "Single King", "2023-04-28", "2023-05-07"},
-                {"20", "Double King", "2023-05-01", "2023-05-07"}
+                {"312", "Single King", "2023-04-28", "2023-05-07"},
+                {"166", "Double King", "2023-05-01", "2023-05-07"}
         };
 
         // Configure Table Basics

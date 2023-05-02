@@ -1,5 +1,6 @@
 package frontend.UI;
 
+import backend.Account;
 import frontend.UIBlackBox;
 import frontend.table.AvaliableRoomTable;
 import frontend.utilities.DateLabelFormatter;
@@ -80,7 +81,7 @@ public class newReservationUI extends JFrame {
         roomTypeList = new JComboBox<String>();
         roomTypeList.addItem("Suite");
         roomTypeList.addItem("Single King");
-        roomTypeList.addItem("Double King");
+        roomTypeList.addItem("Double Queen");
 
         // Add Table
         avaliableRoomTable = new AvaliableRoomTable();
@@ -106,7 +107,18 @@ public class newReservationUI extends JFrame {
         reserverRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
+                Date startDate = (Date) startDatePicker.getModel().getValue();
+                String formattedDate = dateFormatter.format(startDate);
+
+                Account account = UIBlackBox.getCurrentAccount();
+                String subject = "Room Reserved";
+                String message = "Hello " + account.getFirstName() + " " + account.getLastName() + ",\n\n" +
+                                  "Your reservation has been confirmed for " + formattedDate + ".";
+
+
+                UIBlackBox.sendEmail(UIBlackBox.getCurrentAccount().getEmail(), subject, message);
             }
         });
 
