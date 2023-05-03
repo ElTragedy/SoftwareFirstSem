@@ -43,6 +43,20 @@
             <state>TX</state>
             <country>United States</country>
         </account>
+        <account access="clerk" id="6798">
+            <firstName>Luke</firstName>
+            <lastName>Smith</lastName>
+            <DOB>2000-02-12</DOB>
+            <sex>Male</sex>
+            <phoneNumber>5124091690</phoneNumber>
+            <email>j</email>
+            <password>j</password>
+            <address>1102 Speight Ave</address>
+            <zipcode>76706</zipcode>
+            <city>Waco</city>
+            <state>TX</state>
+            <country>United States</country>
+        </account>
         <account access="guest" id="4742">
             <firstName></firstName>
             <lastName></lastName>

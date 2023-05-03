@@ -14,23 +14,28 @@ public class clerkPortalUI extends JFrame implements ActionListener {
     // Main Container
     private Container container;
 
-    // Labels to identify the fields
-    private JLabel clerkMessage;
+    // Labels for identifying areas on screen
+    private JLabel clerkLabel;
 
-    // Button for confirmation
+    // Buttons for sign out/account
     private JButton signOutButton;
+    private JButton accountButton;
+
+    // Clerk use-case field labels
+    private JLabel guestServicesLabel, roomServicesLabel;
+
+    // Clerk use-case buttons
     private JButton newReservationButton;
     private JButton modifyReservationButton;
-    private JButton modifyProfile;
-    private JButton addRoom;
+    private JButton addRoomButton;
     private JButton modifyRoom;
     private JButton cancelGuestReservation;
     private JButton availableRooms;
 
     public clerkPortalUI() {
         // Set All Components
-        clerkMessage = new JLabel("Clerk Portal"); // TODO: Add Hello, "user's name"
-        clerkMessage.setFont(new Font("Barlow", Font.BOLD, 30));
+        clerkLabel = new JLabel("Clerk Portal");
+        clerkLabel.setFont(new Font("Barlow", Font.BOLD, 30));
 
         signOutButton = new JButton("Sign Out");
         signOutButton.addActionListener(new ActionListener() {
@@ -47,6 +52,31 @@ public class clerkPortalUI extends JFrame implements ActionListener {
                 }
             }
         });
+
+        // Add image to account button
+        ImageIcon imageIcon = new ImageIcon("src/main/resources/Frontend_Resources/accountImage.png");
+        Image image = imageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_AREA_AVERAGING);
+        imageIcon = new ImageIcon(image);
+        // Modify profile button
+        accountButton = new JButton(imageIcon);
+        accountButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editProfileUI editProfileUI = new editProfileUI();
+                editProfileUI.createAndShowGui();
+                dispose();
+            }
+        });
+
+        // Guest services
+        guestServicesLabel = new JLabel("Guest Services");
+        guestServicesLabel.setFont( new Font("Barlow", Font.BOLD, 15) );
+
+
+        // Room services
+        roomServicesLabel = new JLabel("Room Services");
+        roomServicesLabel.setFont( new Font("Barlow", Font.BOLD, 15) );
+
 
         // Button for creating new reservation
         newReservationButton = new JButton("New Reservation");
@@ -93,18 +123,11 @@ public class clerkPortalUI extends JFrame implements ActionListener {
             }
         });
 
-        modifyProfile = new JButton("Modify Profile");
-        modifyProfile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                editProfileUI editProfileUI = new editProfileUI();
-                editProfileUI.createAndShowGui();
-                dispose();
-            }
-        });
 
-        addRoom = new JButton("Add Room");
-        addRoom.addActionListener(new ActionListener() {
+
+
+        addRoomButton = new JButton("Add Room");
+        addRoomButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new addRoomUI();
@@ -158,27 +181,42 @@ public class clerkPortalUI extends JFrame implements ActionListener {
 
     // Sets all labels/fields bounds
     public void setBounds() {
-        clerkMessage.setBounds(50, 10, 250, 30);
+        clerkLabel.setBounds(50, 10, 250, 30);
         signOutButton.setBounds(300, 10, 100, 30);
-        availableRooms.setBounds(50, 50, 200, 30);
-        newReservationButton.setBounds(50, 100, 200, 30);
-        modifyReservationButton.setBounds(50, 150, 200, 30);
+        accountButton.setBounds(400, 10, 30, 30);
+
+        // Guest services
+        guestServicesLabel.setBounds(50, 80, 150, 30);
+        newReservationButton.setBounds(50, 110, 150, 30);
+        modifyReservationButton.setBounds(50, 150, 150, 30);
+
+        // Room services
+        roomServicesLabel.setBounds(250, 80, 150, 30);
+        availableRooms.setBounds(250, 110, 150, 30);
+
+
         cancelGuestReservation.setBounds(50, 200, 200, 30);
-        modifyProfile.setBounds(275, 100, 200, 30);
-        addRoom.setBounds(275, 150, 200, 30);
+        addRoomButton.setBounds(275, 150, 200, 30);
         modifyRoom.setBounds(275, 200, 200, 30);
     }
 
     public void addComponents() {
-        container.add(clerkMessage);
+        container.add(clerkLabel);
         container.add(signOutButton);
+        container.add(accountButton);
+
+        // Guest services
+        container.add(guestServicesLabel);
         container.add(newReservationButton);
         container.add(modifyReservationButton);
-        container.add(cancelGuestReservation);
-        container.add(modifyProfile);
-        container.add(addRoom);
-        container.add(modifyRoom);
+
+        // Room services
+        container.add(roomServicesLabel);
         container.add(availableRooms);
+        //container.add(cancelGuestReservation);
+
+        container.add(addRoomButton);
+        container.add(modifyRoom);
     }
 
     public static void createAndShowGui() {
