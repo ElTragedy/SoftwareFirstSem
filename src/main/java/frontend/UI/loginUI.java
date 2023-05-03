@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.Objects;
 import javax.swing.*;
 import backend.*;
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import frontend.UIBlackBox;
 
 
@@ -70,9 +73,6 @@ public class loginUI extends JFrame implements ActionListener{
                         }
                     }
                 }
-
-
-
             }
         });
 
@@ -96,14 +96,15 @@ public class loginUI extends JFrame implements ActionListener{
 
     // Sets all labels/fields bounds
     public void setBounds() {
-        message.setBounds(20, 20, 460, 30);
-        message.setHorizontalAlignment(JLabel.CENTER);
+        Integer width = getHeight();
+        Integer height = container.getHeight();
+
+        message.setBounds(0, 0, 460, 30);
+        message.setHorizontalAlignment(SwingConstants.CENTER);
+        System.out.println(width +" "+ height);
 
         emailLabel.setBounds(50, 100, 100, 30);
-        //message.setHorizontalAlignment(JLabel.CENTER);
-
         emailField.setBounds(150, 100, 200, 30);
-        //emailField.setHorizontalAlignment(JLabel.CENTER);
 
         passwordLabel.setBounds(50, 150, 100, 30);
         passwordField.setBounds(150, 150, 200, 30);
@@ -130,12 +131,24 @@ public class loginUI extends JFrame implements ActionListener{
     }
 
     public static void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
+
         loginUI frame = new loginUI();
         frame.setTitle("Login");
         frame.setVisible(true);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        System.out.println(screenSize.width + " " + screenSize.height);
+        Integer newWidth = screenSize.width/2;
+        Integer newHeight = screenSize.height/2;
         //frame.pack();
+
         frame.setBounds(500, 100, 500, 500);
+        frame.setLocationRelativeTo(null);
         //frame.setSize(screenSize.width, screenSize.height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
@@ -147,12 +160,6 @@ public class loginUI extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-//        loginUI frame = new loginUI();
-//        frame.setTitle("Landing Page");
-//        frame.setVisible(true);
-//        frame.setBounds(500, 100, 500, 500);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setResizable(true);
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShowGui();

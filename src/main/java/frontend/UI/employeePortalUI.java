@@ -1,5 +1,7 @@
 package frontend.UI;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -44,7 +46,7 @@ public class employeePortalUI extends JFrame implements ActionListener {
         newReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newReservationUI newReservationUI = new newReservationUI();
+                newReservationUI newReservationUI = new newReservationUI(employeePortalUI.this);
                 newReservationUI.createAndShowGui();
                 dispose();
             }
@@ -83,6 +85,13 @@ public class employeePortalUI extends JFrame implements ActionListener {
     }
 
     public void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
+
         employeePortalUI frame = new employeePortalUI();
         frame.setTitle("Account Portal");
         frame.setVisible(true);

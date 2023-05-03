@@ -29,11 +29,14 @@ public class ReservationStatusTable extends JPanel {
     };
     private boolean DEBUG = false;
     private JTable table;
+    private JFrame parentFrame;
 
     private TableRowSorter<DefaultTableModel> sorter;
 
-    public ReservationStatusTable() {
+    public ReservationStatusTable(JFrame parent) {
         super();
+
+        parentFrame = parent;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         //DefaultTableModel model = new DefaultTableModel(data, columnNames);
@@ -66,7 +69,7 @@ public class ReservationStatusTable extends JPanel {
         createNewReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newReservationUI newReservationUI = new newReservationUI();
+                newReservationUI newReservationUI = new newReservationUI(parentFrame);
                 newReservationUI.createAndShowGui();
             }
         });
@@ -84,7 +87,7 @@ public class ReservationStatusTable extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
-        ReservationStatusTable newContentPane = new ReservationStatusTable();
+        ReservationStatusTable newContentPane = new ReservationStatusTable(frame);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
 

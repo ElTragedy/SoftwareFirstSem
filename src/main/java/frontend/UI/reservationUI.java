@@ -1,6 +1,7 @@
 package frontend.UI;
 
 import backend.Reservation;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import frontend.UIBlackBox;
 import frontend.utilities.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -210,6 +211,13 @@ public class reservationUI extends JFrame{
     }
 
     public void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
+
         reservationUI frame = new reservationUI();
         frame.setTitle("Make a Reservation");
         frame.setVisible(true);

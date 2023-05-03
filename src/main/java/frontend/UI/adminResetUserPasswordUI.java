@@ -7,6 +7,7 @@ import javax.swing.*;
 import backend.Account;
 import java.util.ArrayList;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import frontend.UIBlackBox;
 
 public class adminResetUserPasswordUI extends JFrame {
@@ -109,6 +110,13 @@ public class adminResetUserPasswordUI extends JFrame {
     }
 
     public void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
+
         adminResetUserPasswordUI frame = new adminResetUserPasswordUI();
         frame.setTitle("Admin - Reset User Password");
         frame.setVisible(true);

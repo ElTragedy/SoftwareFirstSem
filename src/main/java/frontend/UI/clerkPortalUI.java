@@ -2,6 +2,8 @@ package frontend.UI;
 
 import frontend.UIBlackBox;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -180,6 +182,13 @@ public class clerkPortalUI extends JFrame implements ActionListener {
     }
 
     public static void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
+
         clerkPortalUI frame = new clerkPortalUI();
         frame.setTitle("Clerk Portal");
         frame.setVisible(true);

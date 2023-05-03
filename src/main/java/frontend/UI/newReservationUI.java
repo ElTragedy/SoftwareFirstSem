@@ -3,6 +3,7 @@ package frontend.UI;
 import backend.Account;
 import backend.Reservation;
 import backend.Room;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import frontend.UIBlackBox;
 import frontend.table.AvaliableRoomTable;
 import frontend.utilities.DateLabelFormatter;
@@ -32,9 +33,12 @@ public class newReservationUI extends JFrame {
     private JScrollPane scrollPane;
     private AvaliableRoomTable avaliableRoomTable;
     private JButton confirmButton;
+
+    private JFrame parentFrame;
     private Container container;
 
-    public newReservationUI() {
+    public newReservationUI(JFrame parent) {
+        parentFrame = parent;
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
@@ -47,6 +51,7 @@ public class newReservationUI extends JFrame {
                     accountPortalUI accountPortalUI = new accountPortalUI();
                     accountPortalUI.createAndShowGui();
                 }
+                parentFrame.setVisible(true);
                 dispose();
             }
         });
@@ -303,7 +308,13 @@ public class newReservationUI extends JFrame {
     }
 
     public void createAndShowGui() {
-        newReservationUI frame = new newReservationUI();
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
+        newReservationUI frame = new newReservationUI(parentFrame);
         frame.setTitle("Create New Reservation");
         frame.setVisible(true);
         frame.setBounds(500, 15, 800, 550);

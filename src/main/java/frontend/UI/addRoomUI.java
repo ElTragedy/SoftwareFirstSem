@@ -6,6 +6,7 @@ package frontend.UI;
  * "addRoom" function and then we just pass in parameters from the GUI.
  */
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import frontend.UIBlackBox;
 
 import javax.swing.*;
@@ -125,13 +126,6 @@ public class addRoomUI extends JFrame implements ActionListener {
         }
     }
 
-    public void createAndShowGui() {
-        addRoomUI frame = new addRoomUI();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 200);
-        frame.setVisible(true);
-    }
-
     public void setBounds(){
         submitButton.setBounds(50, 110, 200, 30);
         backButton.setBounds(250, 110, 200, 30);
@@ -142,9 +136,18 @@ public class addRoomUI extends JFrame implements ActionListener {
         container.add(backButton);
     }
 
-    public static void main(String[] args) {
+    public void createAndShowGui() {
+        // Set Look and Feel of UI to FlatDarcula
+        try {
+            UIManager.setLookAndFeel( new FlatDarculaLaf());
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
 
-        //addRoomGUI ui = new addRoomGUI();
+        addRoomUI frame = new addRoomUI();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 200);
+        frame.setVisible(true);
     }
 
     public static class availableRooms extends JDialog {

@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <accounts>
     <users>
-        <account access="guest" id="1169">
-            <firstName>bob</firstName>
-            <lastName>bob</lastName>
+        <account access="guest" id="1270">
+            <firstName></firstName>
+            <lastName></lastName>
             <DOB>2000-02-12</DOB>
             <sex>Male</sex>
-            <phoneNumber>bob</phoneNumber>
-            <email>chris.chenoweth03@gmail.com</email>
-            <password>shep</password>
-            <address>bob</address>
-            <zipcode>727</zipcode>
-            <city>bob</city>
+            <phoneNumber></phoneNumber>
+            <email></email>
+            <password></password>
+            <address></address>
+            <zipcode></zipcode>
+            <city></city>
             <state>AL</state>
             <country>United States</country>
         </account>
-        <account access="clerk" id="7140">
-            <firstName>John</firstName>
-            <lastName>Doe</lastName>
-            <DOB>0006-07-24</DOB>
+        <account access="guest" id="2668">
+            <firstName></firstName>
+            <lastName></lastName>
+            <DOB>2000-02-12</DOB>
             <sex>Male</sex>
-            <phoneNumber>8069223212</phoneNumber>
-            <email>john</email>
-            <password>newPassword</password>
-            <address>123 Dog ln</address>
-            <zipcode>12345</zipcode>
-            <city>dogCity</city>
+            <phoneNumber></phoneNumber>
+            <email></email>
+            <password></password>
+            <address></address>
+            <zipcode></zipcode>
+            <city></city>
+            <state>AL</state>
+            <country>United States</country>
+        </account>
+        <account access="admin" id="6798">
+            <firstName>Luke</firstName>
+            <lastName>Smith</lastName>
+            <DOB>2000-02-12</DOB>
+            <sex>Male</sex>
+            <phoneNumber>5124091690</phoneNumber>
+            <email>jlukesmith0221@gmail.com</email>
+            <password>delphine</password>
+            <address>1102 Speight Ave</address>
+            <zipcode>76706</zipcode>
+            <city>Waco</city>
             <state>TX</state>
             <country>United States</country>
         </account>
-        <account access="admin" id="8008">
-            <firstName>Christopher</firstName>
-            <lastName>Chenoweth</lastName>
+        <account access="guest" id="4742">
+            <firstName></firstName>
+            <lastName></lastName>
             <DOB>2000-02-12</DOB>
             <sex>Male</sex>
-            <phoneNumber>1</phoneNumber>
-            <email>chris</email>
-            <password>chris</password>
-            <address>1</address>
-            <zipcode>1</zipcode>
-            <city>1</city>
-            <state>AL</state>
-            <country>United States</country>
-        </account>
-        <account access="admin" id="9009">
-            <firstName>Admin</firstName>
-            <lastName>Admin</lastName>
-            <DOB>2000-02-12</DOB>
-            <sex>Male</sex>
-            <phoneNumber>1</phoneNumber>
-            <email>admin</email>
-            <password>admin</password>
-            <address>1</address>
-            <zipcode>1</zipcode>
-            <city>1</city>
+            <phoneNumber></phoneNumber>
+            <email></email>
+            <password></password>
+            <address></address>
+            <zipcode></zipcode>
+            <city></city>
             <state>AL</state>
             <country>United States</country>
         </account>
