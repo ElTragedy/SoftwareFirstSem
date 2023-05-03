@@ -15,20 +15,6 @@
             <state>AL</state>
             <country>United States</country>
         </account>
-        <account access="guest" id="2668">
-            <firstName></firstName>
-            <lastName></lastName>
-            <DOB>2000-02-12</DOB>
-            <sex>Male</sex>
-            <phoneNumber></phoneNumber>
-            <email></email>
-            <password></password>
-            <address></address>
-            <zipcode></zipcode>
-            <city></city>
-            <state>AL</state>
-            <country>United States</country>
-        </account>
         <account access="admin" id="6798">
             <firstName>Luke</firstName>
             <lastName>Smith</lastName>
@@ -36,6 +22,20 @@
             <sex>Male</sex>
             <phoneNumber>5124091690</phoneNumber>
             <email>jlukesmith0221@gmail.com</email>
+            <password>delphine</password>
+            <address>1102 Speight Ave</address>
+            <zipcode>76706</zipcode>
+            <city>Waco</city>
+            <state>TX</state>
+            <country>United States</country>
+        </account>
+        <account access="clerk" id="6798">
+            <firstName>Luke</firstName>
+            <lastName>Smith</lastName>
+            <DOB>2000-02-12</DOB>
+            <sex>Male</sex>
+            <phoneNumber>5124091690</phoneNumber>
+            <email>jlukesmith@gmail.com</email>
             <password>delphine</password>
             <address>1102 Speight Ave</address>
             <zipcode>76706</zipcode>
@@ -68,6 +68,34 @@
             <address>bob</address>
             <zipcode>727</zipcode>
             <city>bob</city>
+            <state>AL</state>
+            <country>United States</country>
+        </account>
+        <account access="guest" id="6106">
+            <firstName></firstName>
+            <lastName></lastName>
+            <DOB>2000-02-12</DOB>
+            <sex>Male</sex>
+            <phoneNumber></phoneNumber>
+            <email></email>
+            <password></password>
+            <address></address>
+            <zipcode></zipcode>
+            <city></city>
+            <state>AL</state>
+            <country>United States</country>
+        </account>
+        <account access="guest" id="2987">
+            <firstName></firstName>
+            <lastName></lastName>
+            <DOB>2000-02-12</DOB>
+            <sex>Male</sex>
+            <phoneNumber></phoneNumber>
+            <email></email>
+            <password></password>
+            <address></address>
+            <zipcode></zipcode>
+            <city></city>
             <state>AL</state>
             <country>United States</country>
         </account>

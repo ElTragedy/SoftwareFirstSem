@@ -44,13 +44,13 @@ public class newReservationUI extends JFrame {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (Objects.equals(UIBlackBox.getCurrentAccount().getAccess(), "clerk")) {
-                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
-                    clerkPortalUI.createAndShowGui();
-                } else {
-                    accountPortalUI accountPortalUI = new accountPortalUI();
-                    accountPortalUI.createAndShowGui();
-                }
+//                if (Objects.equals(UIBlackBox.getCurrentAccount().getAccess(), "clerk")) {
+//                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
+//                    clerkPortalUI.createAndShowGui();
+//                } else {
+//                    accountPortalUI accountPortalUI = new accountPortalUI();
+//                    accountPortalUI.createAndShowGui();
+//                }
                 parentFrame.setVisible(true);
                 dispose();
             }
@@ -255,7 +255,11 @@ public class newReservationUI extends JFrame {
                 //reservation needs a room, boolean, Date checkIn, Date checkOut
 
                 //Reservation r = new Reservation(email, )
-                UIBlackBox.sendEmail(UIBlackBox.getCurrentAccount().getEmail(), subject, message);
+                try {
+                    UIBlackBox.sendEmail(UIBlackBox.getCurrentAccount().getEmail(), subject, message);
+                } catch (MessagingException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

@@ -70,8 +70,8 @@ public class clerkPortalUI extends JFrame implements ActionListener {
                         String email = u.getText();
                         char[] password = p.getText().toCharArray();
                         if (UIBlackBox.accountExists(email, password)) {
-                            newReservationUI newReservationUI = new newReservationUI();
-                            newReservationUI.createAndShowGui(email, password);
+                            //newReservationUI newReservationUI = new newReservationUI();
+                            //newReservationUI.createAndShowGui(email, password);
                             dispose();
                         } else {
                             JOptionPane.showMessageDialog(null, "Either email or password is Incorrect");
@@ -87,8 +87,8 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         modifyReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newReservationUI newReservationUI = new newReservationUI();
-                newReservationUI.createAndShowGui();
+//                newReservationUI newReservationUI = new newReservationUI();
+//                newReservationUI.createAndShowGui();
                 dispose();
             }
         });

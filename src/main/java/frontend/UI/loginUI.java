@@ -101,7 +101,6 @@ public class loginUI extends JFrame implements ActionListener{
 
         message.setBounds(0, 0, 460, 30);
         message.setHorizontalAlignment(SwingConstants.CENTER);
-        System.out.println(width +" "+ height);
 
         emailLabel.setBounds(50, 100, 100, 30);
         emailField.setBounds(150, 100, 200, 30);
