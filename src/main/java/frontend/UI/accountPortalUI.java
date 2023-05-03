@@ -63,6 +63,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
         table = new JTable(model);
         table.setPreferredScrollableViewportSize(new Dimension(500, 150));
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        table.getTableHeader().setReorderingAllowed(false);
         table.setFillsViewportHeight(true);
         panel.add(new JScrollPane(table));
 

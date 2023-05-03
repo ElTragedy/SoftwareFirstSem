@@ -5,10 +5,12 @@ import frontend.UIBlackBox;
 import com.formdev.flatlaf.FlatDarculaLaf;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
+import java.util.Vector;
 
 public class clerkPortalUI extends JFrame implements ActionListener {
     // Main Container
@@ -22,7 +24,7 @@ public class clerkPortalUI extends JFrame implements ActionListener {
     private JButton accountButton;
 
     // Clerk use-case field labels
-    private JLabel guestServicesLabel, roomServicesLabel;
+    private JLabel guestServicesLabel, allRoomsLabel;
 
     // Clerk use-case buttons
     private JButton newReservationButton;
@@ -30,9 +32,62 @@ public class clerkPortalUI extends JFrame implements ActionListener {
     private JButton addRoomButton;
     private JButton modifyRoom;
     private JButton cancelGuestReservation;
-    private JButton availableRooms;
+
+    // Table
+    private JTable roomsTable;
+    private JPanel tablePanel;
+
 
     public clerkPortalUI() {
+        // Initialize table
+        tablePanel = new JPanel();
+
+        // Declare Column Headers
+        String[] columnHeader = {"Room Number", "Room Size", "Room Type","Start Date", "End Date"};
+        String[][] data = {
+                {"123", "Suite", "2023-05-01", "2023-05-07"},
+                {"312", "Single King", "2023-04-28", "2023-05-07"},
+                {"166", "Double King", "2023-05-01", "2023-05-07"},
+                {"123", "Suite", "2023-05-01", "2023-05-07"},
+                {"312", "Single King", "2023-04-28", "2023-05-07"},
+                {"166", "Double King", "2023-05-01", "2023-05-07"},
+                {"123", "Suite", "2023-05-01", "2023-05-07"},
+                {"312", "Single King", "2023-04-28", "2023-05-07"},
+                {"166", "Double King", "2023-05-01", "2023-05-07"},
+                {"123", "Suite", "2023-05-01", "2023-05-07"},
+                {"312", "Single King", "2023-04-28", "2023-05-07"},
+                {"166", "Double King", "2023-05-01", "2023-05-07"},
+                {"123", "Suite", "2023-05-01", "2023-05-07"},
+                {"312", "Single King", "2023-04-28", "2023-05-07"},
+                {"166", "Double King", "2023-05-01", "2023-05-07"},
+                {"123", "Suite", "2023-05-01", "2023-05-07"},
+                {"312", "Single King", "2023-04-28", "2023-05-07"},
+                {"166", "Double King", "2023-05-01", "2023-05-07"}
+        };
+
+        // Configure Table Basics
+        DefaultTableModel model = new DefaultTableModel(data, columnHeader) {
+            public boolean isCellEditable(int rowIndex, int mColIndex) {
+                return false;
+            }
+        };
+        roomsTable = new JTable(model);
+        roomsTable.setPreferredScrollableViewportSize(new Dimension(590, 290));
+        roomsTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        roomsTable.getTableHeader().setReorderingAllowed(false);
+        roomsTable.setFillsViewportHeight(true);
+        tablePanel.add(new JScrollPane(roomsTable));
+
+        // TODO: ADD FUNCTION THAT GETS ALL ROOMS
+
+        /*
+        model.setRowCount(0);
+        for(Vector<String> i : UIBlackBox){
+            model.addRow(i);
+        }
+         */
+
+
         // Set All Components
         clerkLabel = new JLabel("Clerk Portal");
         clerkLabel.setFont(new Font("Barlow", Font.BOLD, 30));
@@ -74,8 +129,8 @@ public class clerkPortalUI extends JFrame implements ActionListener {
 
 
         // Room services
-        roomServicesLabel = new JLabel("Room Services");
-        roomServicesLabel.setFont( new Font("Barlow", Font.BOLD, 15) );
+        allRoomsLabel = new JLabel("All Rooms");
+        allRoomsLabel.setFont( new Font("Barlow", Font.BOLD, 30) );
 
 
         // Button for creating new reservation
@@ -100,8 +155,8 @@ public class clerkPortalUI extends JFrame implements ActionListener {
                         String email = u.getText();
                         char[] password = p.getText().toCharArray();
                         if (UIBlackBox.accountExists(email, password)) {
-                            //newReservationUI newReservationUI = new newReservationUI();
-                            //newReservationUI.createAndShowGui(email, password);
+//                            newReservationUI newReservationUI = new newReservationUI();
+//                            newReservationUI.createAndShowGui(email, password);
                             dispose();
                         } else {
                             JOptionPane.showMessageDialog(null, "Either email or password is Incorrect");
@@ -164,14 +219,6 @@ public class clerkPortalUI extends JFrame implements ActionListener {
             }
         });
 
-        availableRooms = new JButton("Available Rooms");
-        modifyReservationButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
         // Add and set container
         container = getContentPane();
         container.setLayout(null);
@@ -181,9 +228,13 @@ public class clerkPortalUI extends JFrame implements ActionListener {
 
     // Sets all labels/fields bounds
     public void setBounds() {
+        //
         clerkLabel.setBounds(50, 10, 250, 30);
         signOutButton.setBounds(300, 10, 100, 30);
         accountButton.setBounds(400, 10, 30, 30);
+
+        // Table
+        tablePanel.setBounds(50, 110, 600, 300);
 
         // Guest services
         guestServicesLabel.setBounds(50, 80, 150, 30);
@@ -191,13 +242,12 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         modifyReservationButton.setBounds(50, 150, 150, 30);
 
         // Room services
-        roomServicesLabel.setBounds(250, 80, 150, 30);
-        availableRooms.setBounds(250, 110, 150, 30);
-
+        allRoomsLabel.setBounds(50, 80, 150, 30);
 
         cancelGuestReservation.setBounds(50, 200, 200, 30);
         addRoomButton.setBounds(275, 150, 200, 30);
         modifyRoom.setBounds(275, 200, 200, 30);
+
     }
 
     public void addComponents() {
@@ -205,15 +255,19 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         container.add(signOutButton);
         container.add(accountButton);
 
+        // Rooms table
+        container.add(tablePanel);
+
+
         // Guest services
         container.add(guestServicesLabel);
         container.add(newReservationButton);
         container.add(modifyReservationButton);
 
         // Room services
-        container.add(roomServicesLabel);
-        container.add(availableRooms);
-        //container.add(cancelGuestReservation);
+        container.add(allRoomsLabel);
+
+        container.add(cancelGuestReservation);
 
         container.add(addRoomButton);
         container.add(modifyRoom);
@@ -230,7 +284,7 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         clerkPortalUI frame = new clerkPortalUI();
         frame.setTitle("Clerk Portal");
         frame.setVisible(true);
-        frame.setBounds(500, 100, 500, 300);
+        frame.setBounds(500, 100, 800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
     }
