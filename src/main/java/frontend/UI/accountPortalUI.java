@@ -47,7 +47,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
         //panel.setBorder(BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder()));
 
         // Declare Column Headers
-        String[] columnHeader = {"Room Number", "Room Size", "Start Date", "End Date"};
+        String[] columnHeader = {"Room Number", "Room Size", "Room Type","Start Date", "End Date"};
         String[][] data = {
                 {"123", "Suite", "2023-05-01", "2023-05-07"},
                 {"312", "Single King", "2023-04-28", "2023-05-07"},

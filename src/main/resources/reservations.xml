@@ -56,6 +56,13 @@
                     <checkIn>2023-05-18T21:35:51.178-05:00</checkIn>
                     <checkOut>2023-05-18T21:35:51.181-05:00</checkOut>
                 </reserveList>
+                <reserveList>
+                    <email>clerk</email>
+                    <roomNumber>212</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-18T22:14:10.552-05:00</checkIn>
+                    <checkOut>2023-05-18T22:14:10.557-05:00</checkOut>
+                </reserveList>
             </value>
         </entry>
         <entry>
