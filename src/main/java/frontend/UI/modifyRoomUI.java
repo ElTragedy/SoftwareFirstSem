@@ -25,6 +25,10 @@ public class modifyRoomUI extends JFrame {
     //private JTextField roomStatusField;
     private JButton submitButton;
 
+    /**
+     * Create all components for modifyRoomUI
+     * @param roomNum
+     */
     public modifyRoomUI(String roomNum) {
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
@@ -162,6 +166,9 @@ public class modifyRoomUI extends JFrame {
 //        }
 //    }
 
+    /**
+     * Initialize all components and display them
+     */
     public void createAndShowGui() {
         addRoomUI frame = new addRoomUI();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -169,11 +176,17 @@ public class modifyRoomUI extends JFrame {
         frame.setVisible(true);
     }
 
+    /**
+     * Set bounds for all components
+     */
     public void setBounds() {
         submitButton.setBounds(50, 110, 200, 30);
         backButton.setBounds(250, 110, 200, 30);
     }
 
+    /**
+     * Add all components to the container
+     */
     public void addComponents() {
         container.add(submitButton);
         container.add(backButton);

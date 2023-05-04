@@ -61,6 +61,9 @@ public class createClerkUI extends JFrame {
     private JDatePanelImpl datePanel;
     private JDatePickerImpl datePicker;
 
+    /**
+     * Create all components for clerk UI
+     */
     public createClerkUI() {
         // Implement Back Button
         backButton = new JButton();
@@ -275,7 +278,9 @@ public class createClerkUI extends JFrame {
         addComponents();
     }
 
-    // Sets all labels/fields bounds
+    /**
+     * Set bounds for all components
+     */
     public void setBounds() {
         backButton.setBounds(0, 0, 30, 30);
         //createDefaultAccount Button should be on the top right of screen
@@ -313,7 +318,9 @@ public class createClerkUI extends JFrame {
         registerButton.setBounds(130, 710, 200, 30);
     }
 
-    // Adds labels and fields to container
+    /**
+     * Add all components to main container
+     */
     public void addComponents() {
         container.add(createDefaultAccountButton);
         container.add(backButton);
@@ -349,6 +356,10 @@ public class createClerkUI extends JFrame {
         container.add(countryList);
         container.add(registerButton);
     }
+
+    /**
+     * Initialize all UI components and display them
+     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {

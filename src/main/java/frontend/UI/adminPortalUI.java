@@ -24,6 +24,11 @@ public class adminPortalUI extends JFrame implements ActionListener {
     // button for reset user account passwords
     private JButton adminResetUserPassword;
 
+    /**
+     * Creates a graphical user interface for the admin portal with various buttons to manage the system.
+     * @param none
+     * @return none
+     */
     public adminPortalUI() {
         // Set All Components
         adminMessage = new JLabel("Admin Portal"); // TODO: Add Hello, "user's name"
@@ -95,7 +100,11 @@ public class adminPortalUI extends JFrame implements ActionListener {
         addComponents();
     }
 
-    // Sets all labels/fields bounds
+    /**
+     * Sets the bounds for all labels and fields in the admin portal UI.
+     * @param none
+     * @return none
+     */
     public void setBounds() {
         adminMessage.setBounds(50, 10, 250, 30);
         signOutButton.setBounds(300, 10, 100, 30);
@@ -106,6 +115,11 @@ public class adminPortalUI extends JFrame implements ActionListener {
         adminResetUserPassword.setBounds(150, 210, 200, 30);
     }
 
+    /**
+     * Adds all components to the container for display in the admin portal UI.
+     * @param none
+     * @return none
+     */
     public void addComponents() {
         container.add(adminMessage);
         container.add(signOutButton);
@@ -115,6 +129,11 @@ public class adminPortalUI extends JFrame implements ActionListener {
         container.add(adminResetUserPassword);
     }
 
+    /**
+     * Creates and displays the admin portal UI with the FlatDarcula look and feel.
+     * @param none
+     * @return none
+     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {

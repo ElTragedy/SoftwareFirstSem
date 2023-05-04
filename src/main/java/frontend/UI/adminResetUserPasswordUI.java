@@ -20,6 +20,12 @@ public class adminResetUserPasswordUI extends JFrame {
     private JButton resetPasswordButton;
     private Container container;
 
+    /**
+     * Creates the Admin Reset User Password User Interface.
+     * This method sets the header, user ID labels and fields, password to reset to field,
+     * reset password button and back button. It also sets the bounds and adds the
+     * components to the container.
+     */
     public adminResetUserPasswordUI() {
         // Implement Back Button
         backButton = new JButton();
@@ -87,7 +93,10 @@ public class adminResetUserPasswordUI extends JFrame {
     }
 
 
-    // Sets all labels/fields bounds
+    /**
+     * Sets the bounds of all labels and fields in the user interface.
+     * This method is called in the constructor.
+     */
     public void setBounds() {
         backButton.setBounds(0, 0, 30, 30);
         message.setBounds(50, 10, 600, 30);
@@ -98,7 +107,10 @@ public class adminResetUserPasswordUI extends JFrame {
         resetPasswordButton.setBounds(170, 160, 200, 30);
     }
 
-    // Adds labels and fields to container
+    /**
+     * Adds all labels and fields to the container.
+     * This method is called in the constructor.
+     */
     public void addComponents() {
         container.add(backButton);
         container.add(message);
@@ -109,6 +121,9 @@ public class adminResetUserPasswordUI extends JFrame {
         container.add(resetPasswordButton);
     }
 
+    /**
+     * Spawns in the UI and all components
+     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {

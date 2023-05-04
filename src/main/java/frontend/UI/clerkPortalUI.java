@@ -42,7 +42,9 @@ public class clerkPortalUI extends JFrame implements ActionListener {
     private JButton cancelGuestReservation;
 
 
-
+    /**
+     * Creates the UI for the clerk portal
+     */
     public clerkPortalUI() {
         // Initialize table
         tablePanel = new JPanel();
@@ -279,7 +281,9 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         addComponents();
     }
 
-    // Sets all labels/fields bounds
+    /**
+     * Sets bounds for all components
+     */
     public void setBounds() {
         clerkLabel.setBounds(50, 10, 250, 30);
         signOutButton.setBounds(610, 10, 100, 30);
@@ -301,6 +305,9 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         cancelGuestReservation.setBounds(350, 480, 150, 30);
     }
 
+    /**
+     * Add all components to the container
+     */
     public void addComponents() {
         container.add(clerkLabel);
         container.add(signOutButton);
@@ -322,6 +329,9 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         container.add(cancelGuestReservation);
     }
 
+    /**
+     * Build UI and display it
+     */
     public static void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {

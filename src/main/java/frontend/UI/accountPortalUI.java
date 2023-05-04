@@ -40,6 +40,12 @@ public class accountPortalUI extends JFrame implements ActionListener {
     private JTable table;
 
 
+    /**
+     * Constructs a new instance of the accountPortalUI class.
+     * This method initializes and sets up the graphical user interface of the user account portal.
+     * It displays a greeting label with the user's name, a table of their current reservations,
+     * buttons to create a new reservation or cancel an existing one, and a sign out button.
+     */
     public accountPortalUI() {
         UIBlackBox.saveAll();
 
@@ -148,7 +154,9 @@ public class accountPortalUI extends JFrame implements ActionListener {
         addComponents();
     }
 
-    // Sets all labels/fields bounds
+    /**
+     * Sets the bounds of all labels and fields in the graphical user interface.
+     */
     public void setBounds() {
         greetingLabel.setBounds(25, 10, 250, 30);
         reservationStatusLabel.setBounds(25, 80, 200, 30);
@@ -158,6 +166,9 @@ public class accountPortalUI extends JFrame implements ActionListener {
         panel.setBounds(25, 100, 500, 150);
     }
 
+    /**
+     * Adds all components to the container of the graphical user interface.
+     */
     public void addComponents() {
         container.add(greetingLabel);
         container.add(reservationStatusLabel);
@@ -167,6 +178,10 @@ public class accountPortalUI extends JFrame implements ActionListener {
         container.add(panel);
     }
 
+    /**
+     * Creates and shows an instance of the accountPortalUI graphical user interface.
+     * This method sets the look and feel of the UI to FlatDarcula.
+     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {

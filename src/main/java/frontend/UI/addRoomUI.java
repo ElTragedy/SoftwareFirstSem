@@ -32,6 +32,19 @@ public class addRoomUI extends JFrame implements ActionListener {
     //private JTextField roomStatusField;
     private JButton submitButton;
 
+    /**
+     * This function creates the Add Room UI.
+     * It creates a UI containing text fields for the user to input a room number,
+     * room type, room condition and room status.
+     *
+     * It also creates a submit button that saves the input data to create a new room.
+     *
+     * If the button is pressed, actionPerformed() method is called.
+     *
+     * Lastly, it creates and shows the GUI.
+     *
+     * @return void
+     */
     public addRoomUI() {
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
@@ -96,6 +109,16 @@ public class addRoomUI extends JFrame implements ActionListener {
         
     }
 
+    /**
+     * This function is called when the submit button in Add Room UI is pressed.
+     * It takes the input data for a new room and creates a new room object with it.
+     * Then, it saves the room data and displays a message confirming the room creation.
+     *
+     * If an exception occurs, it displays an input error message.
+     *
+     * @param e - the event triggered when the submit button is pressed.
+     * @return void
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submitButton) {
 
@@ -126,16 +149,31 @@ public class addRoomUI extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * This function sets the bounds for the submit and back buttons in the Add Room UI.
+     *
+     * @return void
+     */
     public void setBounds(){
         submitButton.setBounds(50, 110, 200, 30);
         backButton.setBounds(250, 110, 200, 30);
     }
 
+    /**
+     * This function adds the submit and back buttons to the container.
+     *
+     * @return void
+     */
     public void addComponents(){
         container.add(submitButton);
         container.add(backButton);
     }
 
+    /**
+     * This function creates and shows the Add Room UI.
+     *
+     * @return void
+     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {
@@ -150,6 +188,15 @@ public class addRoomUI extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * This is a static nested class that creates a dialog to display the available rooms in a JTable.
+     * It takes the JTable as input and displays the selected row's data in a label.
+     *
+     * If the "Add row" button is pressed, it adds a new row to the JTable and displays a message.
+     *
+     * @param owner - the JTable for which the available rooms dialog is created.
+     * @return void
+     */
     public static class availableRooms extends JDialog {
         private JTable table;
 
