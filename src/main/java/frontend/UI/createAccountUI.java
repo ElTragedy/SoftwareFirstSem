@@ -72,7 +72,7 @@ public class createAccountUI extends JFrame {
         });
 
         ImageIcon imageIcon = new ImageIcon("src/main/resources/Frontend_Resources/backButton.png");
-        Image image = imageIcon.getImage().getScaledInstance(30, 30,  Image.SCALE_SMOOTH);
+        Image image = imageIcon.getImage().getScaledInstance(30, 30,  Image.SCALE_AREA_AVERAGING);
         imageIcon = new ImageIcon(image);
         backButton.setIcon(imageIcon);
 

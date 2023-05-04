@@ -204,6 +204,7 @@ public class NewReservationPopup extends JDialog{
         NewReservationPopup frame = new NewReservationPopup(table, guest);
         frame.setTitle("Create New Reservation");
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
         frame.setBounds(500, 15, 800, 550);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);

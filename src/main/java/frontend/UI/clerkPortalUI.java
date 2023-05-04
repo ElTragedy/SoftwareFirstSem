@@ -143,9 +143,8 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         addRoomButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new addRoomUI();
-                //addroomui.createAndShowGui();
-                //was creating two instances
+                addRoomUI addRoomUI = new addRoomUI();
+                addRoomUI.createAndShowGui();
                 dispose();
             }
         });
@@ -161,7 +160,8 @@ public class clerkPortalUI extends JFrame implements ActionListener {
                     i = Integer.parseInt(roomNum);
 
                     if (UIBlackBox.roomExists(i)) {
-                        new modifyRoomUI(roomNum);
+                        modifyRoomUI modifyRoomUI= new modifyRoomUI();
+                        modifyRoomUI.createAndShowGui();
                         dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Room Number Does Not Exist");
@@ -169,6 +169,8 @@ public class clerkPortalUI extends JFrame implements ActionListener {
                 }
             }
         });
+
+
 
 
         // Guest Services
@@ -219,40 +221,6 @@ public class clerkPortalUI extends JFrame implements ActionListener {
                     });
                 }
             }});
-//        newReservationButton.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JTextField u = new JTextField(10);
-//                JPasswordField p = new JPasswordField(10);
-//
-//                JPanel myPanel = new JPanel();
-//                myPanel.add(new JLabel("username:"));
-//                myPanel.add(u);
-//                myPanel.add(new JLabel("password"));
-//                myPanel.add(p);
-//                if (searchUserField.getText() == "") {
-//                    int result = JOptionPane.showConfirmDialog(null, myPanel, "Please Enter Email", JOptionPane.OK_CANCEL_OPTION);
-//                }
-//
-//                Account guest = UIBlackBox.getAccount(searchUserField.getText());
-//                if (guest != null) {
-//                    if (u.getText() == "") {
-//                        JOptionPane.showMessageDialog(null, "Please Enter Both fields", "Error", JOptionPane.ERROR_MESSAGE);
-//                    } else {
-//                        String email = u.getText();
-//                        char[] password = p.getText().toCharArray();
-//                        if (UIBlackBox.accountExists(email, password)) {
-////                            newReservationUI newReservationUI = new newReservationUI();
-////                            newReservationUI.createAndShowGui(email, password);
-//                            dispose();
-//                        } else {
-//                            JOptionPane.showMessageDialog(null, "Either email or password is Incorrect");
-//                        }
-//                    }
-//                }
-//            }
-//        });
 
         // Button for modifying reservation
         //TODO: modify reservation hasn't been implemented yet
@@ -270,7 +238,6 @@ public class clerkPortalUI extends JFrame implements ActionListener {
         cancelGuestReservation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO maybe make a text box with user email then destroy the reservation(s) tied to it
             }
         });
 
@@ -342,9 +309,10 @@ public class clerkPortalUI extends JFrame implements ActionListener {
 
         clerkPortalUI frame = new clerkPortalUI();
         frame.setTitle("Clerk Portal");
-        frame.setVisible(true);
         frame.setBounds(500, 100, 800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
         frame.setResizable(true);
     }
 

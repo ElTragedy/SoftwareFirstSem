@@ -12,9 +12,10 @@
             <roomCondition>nonSmoking</roomCondition>
         </room>
         <room>
-            <roomType>singleKing</roomType>
+            <roomType>suite</roomType>
             <number>321</number>
             <roomCondition>smoking</roomCondition>
+            <roomStatus>available</roomStatus>
         </room>
         <room>
             <roomType>suite</roomType>
@@ -30,6 +31,12 @@
             <roomType>doubleQueen</roomType>
             <number>211</number>
             <roomCondition>nonSmoking</roomCondition>
+        </room>
+        <room>
+            <roomType>doubleQueen</roomType>
+            <number>69</number>
+            <roomCondition>smoking</roomCondition>
+            <roomStatus>occupied</roomStatus>
         </room>
     </rooms>
 </roomDatabase>

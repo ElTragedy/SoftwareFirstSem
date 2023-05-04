@@ -29,7 +29,7 @@ public class newReservationUI extends JFrame {
     private JDatePickerImpl startDatePicker, endDatePicker;
     private JLabel roomTypeLabel;
     private JComboBox<String> roomTypeList;
-    private JButton reserverRoom;
+    private JButton reserveRoom;
 
     private JScrollPane scrollPane;
     private AvaliableRoomTable avaliableRoomTable;
@@ -38,13 +38,12 @@ public class newReservationUI extends JFrame {
     private JFrame parentFrame;
     private Container container;
 
-    /**
-     * Create all components for the newReservationUI
-     * @param parent
-     */
+    private Account account;
+
     public newReservationUI(JFrame parent) {
 
         parentFrame = parent;
+
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
@@ -118,8 +117,8 @@ public class newReservationUI extends JFrame {
         });
 
         // reserve room
-        reserverRoom = new JButton("Reserve Room");
-        reserverRoom.addActionListener(new ActionListener() {
+        reserveRoom = new JButton("Reserve Room");
+        reserveRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -159,11 +158,6 @@ public class newReservationUI extends JFrame {
     }
 
 
-    /**
-     * Create all components for newReserverationUI
-     * @param email
-     * @param password
-     */
     public newReservationUI(String email, char[] password) {
         // Implement Back Button
         backButton = new JButton();
@@ -236,9 +230,9 @@ public class newReservationUI extends JFrame {
             }
         });
 
-        // reserve room
-        reserverRoom = new JButton("Reserve Room");
-        reserverRoom.addActionListener(new ActionListener() {
+        // Reserve room
+        reserveRoom = new JButton("Reserve Room");
+        reserveRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -276,9 +270,6 @@ public class newReservationUI extends JFrame {
     }
 
 
-    /**
-     * Set bounds for all components
-     */
     public void setBounds() {
         backButton.setBounds(0, 0, 30, 30);
 
@@ -296,12 +287,9 @@ public class newReservationUI extends JFrame {
         avaliableRoomTable.setBounds(350, 60, 400, 400);
 
         confirmButton.setBounds(130, 210, 200, 30);
-        reserverRoom.setBounds(130, 260, 200, 30);
+        reserveRoom.setBounds(130, 260, 200, 30);
     }
 
-    /**
-     * Add all components to the container
-     */
     public void addComponents() {
         container.add(backButton);
         container.add(message);
@@ -318,12 +306,9 @@ public class newReservationUI extends JFrame {
         container.add(avaliableRoomTable);
 
         container.add(confirmButton);
-        container.add(reserverRoom);
+        container.add(reserveRoom);
     }
 
-    /**
-     * Initialize all components and display them
-     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {
