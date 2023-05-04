@@ -85,23 +85,54 @@ public class Controller {
         return reservationDatabase.reserveRoom(new Reservation(username, roomDatabase.getRoom(roomNumber), payed, checkIn, checkOut));
     }
 
-
+    /**
+     * Retrieves the Room object corresponding to the given room number from the RoomDatabase.
+     *
+     * @param roomNum the room number of the room to retrieve
+     * @return the Room object corresponding to the given room number, or null if it doesn't exist
+     */
     public static Room getRoom(int roomNum){
         return roomDatabase.getRoom(roomNum);
     }
 
+    /**
+     * Updates the Room object corresponding to the given room number in the RoomDatabase.
+     *
+     * @param roomNum the room number of the room to update
+     * @param room the updated Room object
+     */
     public static void updateRoom(int roomNum, Room room){
         roomDatabase.updateRoom(roomNum, room);
     }
 
+    /**
+     * Checks whether a room with the given room number exists in the RoomDatabase.
+     *
+     * @param roomNum the room number to check for existence
+     * @return true if a room with the given room number exists, false otherwise
+     */
     public static boolean roomExists(int roomNum){
         return roomDatabase.roomExists(roomNum);
     }
 
+    /**
+     * Retrieves the Reservation object corresponding to the given reservation ID from the ReservationDatabase.
+     *
+     * @param reservationId the ID of the reservation to retrieve
+     * @return the Reservation object corresponding to the given reservation ID, or null if it doesn't exist
+     */
     public static Reservation getReservation(String reservationId){
         return reservationDatabase.getReservationDetails(reservationId);
     }
 
+    /**
+     * Retrieves a list of available rooms for the given date range and room type.
+     *
+     * @param start the start date of the date range
+     * @param end the end date of the date range
+     * @param type the room type to filter by (either "Single King", "Double Queen", or "Suite")
+     * @return a Vector of Vectors representing the available rooms, where each inner Vector contains the room number, room type, and room condition as Strings
+     */
     public static Vector<Vector<String>> getAvailableRooms(Date start, Date end, String type){
         //TODO: Make this a function inside of room database
 
@@ -119,6 +150,12 @@ public class Controller {
         return output;
     }
 
+    /**
+     * Returns a list of reservations associated with a given email.
+     * @param email The email of the account for which reservations should be returned.
+     * @return A Vector of Vectors, where each Vector represents a reservation and contains the room number,
+     *         room type, check-in date, and check-out date.
+     */
     public static Vector<Vector<String>> getReservationsByEmail(String email){
         ArrayList<Reservation> reservations = reservationDatabase.getReservationsByEmail(email);
 
@@ -136,6 +173,11 @@ public class Controller {
         return out;
     }
 
+    /**
+     * Returns the account associated with a given email.
+     * @param email The email of the account to return.
+     * @return The Account object associated with the given email, or null if no such account exists.
+     */
     public static Account getAccount(String email){
         Account account = null;
         for(Account acc : accountDatabase.getAccountList()) {
@@ -147,6 +189,12 @@ public class Controller {
         return account;
     }
 
+    /**
+     * Returns the account associated with a given email and password.
+     * @param email The email of the account to return.
+     * @param password The password of the account to return.
+     * @return The Account object associated with the given email and password, or null if no such account exists.
+     */
     public static Account getAccount(String email, char[] password){
         Account account = null;
         for(Account acc : accountDatabase.getAccountList()) {
@@ -158,6 +206,11 @@ public class Controller {
         return account;
     }
 
+    /**
+     * Checks if an account with the given email exists.
+     * @param email The email to check for.
+     * @return true if an account with the given email exists, false otherwise.
+     */
     public static boolean accountExists(String email){
         boolean exists = false;
         for(Account acc : accountDatabase.getAccountList()) {
@@ -169,6 +222,12 @@ public class Controller {
         return exists;
     }
 
+    /**
+     * Checks if an account with the given email and password exists.
+     * @param email The email to check for.
+     * @param password The password to check for.
+     * @return true if an account with the given email and password exists, false otherwise.
+     */
     public static boolean accountExists(String email, char[] password){
         boolean exists = false;
         for(Account acc : accountDatabase.getAccountList()) {
@@ -179,7 +238,11 @@ public class Controller {
         }
         return exists;
     }
-    
+
+    /**
+     * Saves all accounts, reservations, and rooms to the database.
+     * @return Always returns true.
+     */
     public static boolean saveAll(){
         accountDatabase.save();
         reservationDatabase.save();
@@ -187,24 +250,55 @@ public class Controller {
         return true;
     }
 
+    /**
+     * Sets the current account.
+     * @param a The account to set as the current account.
+     * @return The current account.
+     */
     public static Account setCurrentAccount(Account a){
         currentAccount = a;
         return currentAccount;
     }
 
+    /**
+     * Retrieves the current account that is logged in.
+     *
+     * @return the current account that is logged in
+     */
     public static Account getCurrentAccount(){
         return currentAccount;
     }
 
-
+    /**
+     * Sends an email to the specified email address with the given subject and body.
+     *
+     * @param toEmail the email address to send the email to
+     * @param subject the subject of the email
+     * @param body the body of the email
+     *
+     * @throws MessagingException if there is an error while sending the email
+     */
     public static void sendEmail(String toEmail, String subject, String body) throws MessagingException {
         emailService.send(toEmail, subject, body);
     }
 
+    /**
+     * Retrieves a list of all accounts in the system.
+     *
+     * @return a list of all accounts in the system
+     */
     public static ArrayList<Account> getAllAccounts(){
         return accountDatabase.getAccountList();
     }
 
+    /**
+     * Resets the password for the specified account to the given new password.
+     *
+     * @param a the account to reset the password for
+     * @param newPassword the new password to set for the account
+     *
+     * @return true if the password was reset successfully, false otherwise
+     */
     public static boolean resetPassword(Account a, String newPassword){
         //getAccount(a.getEmail(),a.getPassword().toCharArray());
         //a.setPassword("password");
@@ -218,6 +312,13 @@ public class Controller {
         return false;
     }
 
+    /**
+     * Deletes the specified account from the system.
+     *
+     * @param a the account to delete
+     *
+     * @return true if the account was deleted successfully, false otherwise
+     */
     public static boolean deleteAccount(Account a){
         for(Account acc : accountDatabase.getAccountList()){
             if(a.getEmail().equals(acc.getEmail())){

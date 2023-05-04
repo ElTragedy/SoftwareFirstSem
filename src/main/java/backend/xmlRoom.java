@@ -11,6 +11,12 @@ public class xmlRoom {
 
     //parse xml file class done
 
+  /**
+   * Loads a RoomDatabase object from an XML file given by its path.
+   *
+   * @param s the path to the XML file to be loaded
+   * @return a RoomDatabase object loaded from the XML file
+   */
   public static RoomDatabase load(String s) {
     JAXBContext jaxbContext;
     RoomDatabase a = new RoomDatabase();
@@ -29,6 +35,12 @@ public class xmlRoom {
     return a;
   }
 
+  /**
+   * Saves a RoomDatabase object to an XML file with the specified filename.
+   *
+   * @param filename the name of the file to save the XML to
+   * @param bookstore the RoomDatabase object to be saved to XML
+   */
   public static void doSave(String filename, RoomDatabase bookstore) {
     try {
       JAXBContext jaxbContext = JAXBContext.newInstance(RoomDatabase.class);
@@ -45,6 +57,5 @@ public class xmlRoom {
       e.printStackTrace();
     }
   }
-  
 }
 
