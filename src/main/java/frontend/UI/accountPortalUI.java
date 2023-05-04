@@ -91,8 +91,8 @@ public class accountPortalUI extends JFrame implements ActionListener {
 
                 // If user selects yes, go to login page
                 if (confirmed == JOptionPane.YES_OPTION) {
-                    loginUI loginUI = new loginUI();
-                    loginUI.createAndShowGui();
+//                    loginUI loginUI = new loginUI();
+//                    loginUI.createAndShowGui();
                     dispose();
                 }
             }
