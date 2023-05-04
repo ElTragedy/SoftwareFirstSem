@@ -143,6 +143,17 @@ public class Controller {
         return out;
     }
 
+    public static Account getAccount(String email){
+        Account account = null;
+        for(Account acc : accountDatabase.getAccountList()) {
+            if(acc.getEmail().equals(email)) {
+                account = acc;
+                break;
+            }
+        }
+        return account;
+    }
+
     public static Account getAccount(String email, char[] password){
         Account account = null;
         for(Account acc : accountDatabase.getAccountList()) {
@@ -152,6 +163,17 @@ public class Controller {
             }
         }
         return account;
+    }
+
+    public static boolean accountExists(String email){
+        boolean exists = false;
+        for(Account acc : accountDatabase.getAccountList()) {
+            if(acc.getEmail().equals(email)) {
+                exists = true;
+                break;
+            }
+        }
+        return exists;
     }
 
     public static boolean accountExists(String email, char[] password){

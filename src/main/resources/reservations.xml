@@ -42,6 +42,25 @@
                     <checkIn>2023-05-18T12:37:34.291-05:00</checkIn>
                     <checkOut>2023-05-18T12:37:34.296-05:00</checkOut>
                 </reserveList>
+                <reserveList>
+                    <email>clerk</email>
+                    <roomNumber>212</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-26T19:56:45.768-05:00</checkIn>
+                    <checkOut>2023-05-31T19:56:45.772-05:00</checkOut>
+                </reserveList>
+            </value>
+        </entry>
+        <entry>
+            <key>123</key>
+            <value>
+                <reserveList>
+                    <email>jlukesmith0221@gmail.com</email>
+                    <roomNumber>123</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-18T19:44:21.152-05:00</checkIn>
+                    <checkOut>2023-05-18T19:44:21.158-05:00</checkOut>
+                </reserveList>
             </value>
         </entry>
         <entry>
@@ -53,6 +72,32 @@
                     <payed>true</payed>
                     <checkIn>2023-01-01T00:00:00-06:00</checkIn>
                     <checkOut>2023-01-05T00:00:00-06:00</checkOut>
+                </reserveList>
+                <reserveList>
+                    <email>jlukesmith0221@gmail.com</email>
+                    <roomNumber>222</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-18T19:44:21.152-05:00</checkIn>
+                    <checkOut>2023-05-18T19:44:21.158-05:00</checkOut>
+                </reserveList>
+            </value>
+        </entry>
+        <entry>
+            <key>111</key>
+            <value>
+                <reserveList>
+                    <email>guest</email>
+                    <roomNumber>111</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-18T19:38:46.970-05:00</checkIn>
+                    <checkOut>2023-05-18T19:38:46.975-05:00</checkOut>
+                </reserveList>
+                <reserveList>
+                    <email>clerk</email>
+                    <roomNumber>111</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-26T19:56:45.768-05:00</checkIn>
+                    <checkOut>2023-05-31T19:56:45.772-05:00</checkOut>
                 </reserveList>
             </value>
         </entry>

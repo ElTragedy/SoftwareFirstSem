@@ -1,11 +1,12 @@
-package frontend.UI;
+package frontend.table;
 
 import backend.Account;
-import backend.Reservation;
 import backend.Room;
 import com.formdev.flatlaf.FlatDarculaLaf;
+import frontend.UI.accountPortalUI;
+import frontend.UI.clerkPortalUI;
+import frontend.UI.newReservationUI;
 import frontend.UIBlackBox;
-import frontend.table.AvaliableRoomTable;
 import frontend.utilities.DateLabelFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -13,14 +14,17 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Objects;
+import java.util.Properties;
 
-public class newReservationUI extends JFrame {
+public class NewReservationPopup extends JDialog{
+    public JTable table;
     private JButton backButton;
     private JLabel message;
     private JLabel startDateLabel, endDateLabel;
@@ -36,9 +40,11 @@ public class newReservationUI extends JFrame {
 
     private JFrame parentFrame;
     private Container container;
-
-    public newReservationUI(JFrame parent) {
-        parentFrame = parent;
+    private Account guest;
+    public NewReservationPopup(JTable owner, Account guest) {
+        super(javax.swing.SwingUtilities.windowForComponent(owner));
+        table = owner;
+        this.guest = guest;
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
@@ -51,7 +57,6 @@ public class newReservationUI extends JFrame {
 //                    accountPortalUI accountPortalUI = new accountPortalUI();
 //                    accountPortalUI.createAndShowGui();
 //                }
-                parentFrame.setVisible(true);
                 dispose();
             }
         });
@@ -125,7 +130,7 @@ public class newReservationUI extends JFrame {
                 Date startDate = (Date) startDatePicker.getModel().getValue();
                 String formattedDate = dateFormatter.format(startDate);
 
-                Account account = UIBlackBox.getCurrentAccount();
+                Account account = guest;
                 String subject = "Room Reserved";
                 String message = "Hello " + account.getFirstName() + " " + account.getLastName() + ",\n\n" +
                         "Your reservation has been confirmed for " + formattedDate + ".";
@@ -143,122 +148,6 @@ public class newReservationUI extends JFrame {
                 } catch (MessagingException ex) {
                     JOptionPane.showMessageDialog(container, "Could not successfully deliver confirmation email.",
                             "Email Service Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
-
-
-        // Add and set container
-        container = getContentPane();
-        container.setLayout(null);
-        setBounds();
-        addComponents();
-    }
-
-
-    public newReservationUI(String email, char[] password) {
-        // Implement Back Button
-        backButton = new JButton();
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (Objects.equals(UIBlackBox.getCurrentAccount().getAccess(), "clerk")) {
-                    clerkPortalUI clerkPortalUI = new clerkPortalUI();
-                    clerkPortalUI.createAndShowGui();
-                } else {
-                    accountPortalUI accountPortalUI = new accountPortalUI();
-                    accountPortalUI.createAndShowGui();
-                }
-                dispose();
-            }
-        });
-        // Add Image To Back Button
-        ImageIcon imageIcon = new ImageIcon("src/main/resources/Frontend_Resources/backButton.png");
-        Image image = imageIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-        imageIcon = new ImageIcon(image);
-        backButton.setIcon(imageIcon);
-
-        // Set header for window
-        message = new JLabel("Schedule Your Stay");
-        message.setFont(new Font("Barlow", Font.BOLD, 20));
-
-        // Start Date Panel
-        startDateLabel = new JLabel("Start Date");
-        UtilDateModel startDateModel = new UtilDateModel();
-        startDateModel.setDate(2023, 04, 18);
-        startDateModel.setSelected(true);
-        Properties startProperties = new Properties();
-        startProperties.put("text.today", "Today");
-        startProperties.put("text.month", "Month");
-        startProperties.put("text.year", "Year");
-        startDatePanel = new JDatePanelImpl(startDateModel, startProperties);
-        startDatePicker = new JDatePickerImpl(startDatePanel, new DateLabelFormatter());
-
-        // End Date Panel
-        endDateLabel = new JLabel("End Date");
-        UtilDateModel endDateModel = new UtilDateModel();
-        endDateModel.setDate(2023, 04, 18);
-        endDateModel.setSelected(true);
-        Properties endProperties = new Properties();
-        endProperties.put("text.today", "Today");
-        endProperties.put("text.month", "Month");
-        endProperties.put("text.year", "Year");
-        endDatePanel = new JDatePanelImpl(endDateModel, startProperties);
-        endDatePicker = new JDatePickerImpl(endDatePanel, new DateLabelFormatter());
-
-        // Room Type Drop Down
-        roomTypeLabel = new JLabel("Room Size");
-        roomTypeList = new JComboBox<String>();
-        roomTypeList.addItem("Suite");
-        roomTypeList.addItem("Single King");
-        roomTypeList.addItem("Double Queen");
-
-        // Add Table
-        avaliableRoomTable = new AvaliableRoomTable();
-
-        // Add register button
-        confirmButton = new JButton("Check Availability");
-        confirmButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO: Load data into table
-//                accountPortalUI accountPortalUI = new accountPortalUI();
-//                accountPortalUI.createAndShowGui();
-//                dispose();
-                avaliableRoomTable.updateTable(UIBlackBox.getAvailableRooms(
-                        (Date) startDatePicker.getModel().getValue(),
-                        (Date) endDatePicker.getModel().getValue(),
-                        roomTypeList.getModel().getSelectedItem().toString()));
-            }
-        });
-
-        // reserve room
-        reserverRoom = new JButton("Reserve Room");
-        reserverRoom.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-
-                Date startDate = (Date) startDatePicker.getModel().getValue();
-                String formattedDate = dateFormatter.format(startDate);
-
-                Account account = UIBlackBox.getAccount(email, password);
-                String subject = "Room Reserved";
-                String message = "Hello " + account.getFirstName() + " " + account.getLastName() + ",\n\n" +
-                        "Your reservation has been confirmed for " + formattedDate + ".";
-
-
-                //need to make a room that has roomType, number, and condition
-                //status preset to available until assigned with a reservation
-                Room room = new Room();
-
-                //reservation needs a room, boolean, Date checkIn, Date checkOut
-
-                //Reservation r = new Reservation(email, )
-                try {
-                    UIBlackBox.sendEmail(UIBlackBox.getCurrentAccount().getEmail(), subject, message);
-                } catch (MessagingException ex) {
-                    throw new RuntimeException(ex);
                 }
             }
         });
@@ -318,11 +207,16 @@ public class newReservationUI extends JFrame {
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize theme. Using fallback." );
         }
-        newReservationUI frame = new newReservationUI(parentFrame);
+        NewReservationPopup frame = new NewReservationPopup(table, guest);
         frame.setTitle("Create New Reservation");
         frame.setVisible(true);
         frame.setBounds(500, 15, 800, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
     }
 }

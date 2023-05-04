@@ -90,12 +90,19 @@ public class UIBlackBox {
         //return Controller.getCurrentUser();
     //}
 
+    public static Account getAccount(String email){
+        Account a = null;
+        a = Controller.getAccount(email);
+        return a;
+    }
+
     public static Account getAccount(String email, char[] password){
         Account a = null;
         a = Controller.getAccount(email, password);
         return a;
     }
 
+    public static boolean accountExists(String email){return Controller.accountExists(email);}
     public static boolean accountExists(String email, char[] password){return Controller.accountExists(email, password);}
 
     
