@@ -64,6 +64,18 @@ public class UIBlackBox {
         return false;
     }
 
+    public static Vector<Vector<String>> getReservationsByEmail(String email){
+        return Controller.getReservationsByEmail(email);
+    }
+
+    public static Vector<Vector<String>> getAvailableRooms(Date start, Date end, String roomType){
+        return Controller.getAvailableRooms(start, end, roomType);
+    }
+
+    public static boolean deleteReservation(String email, String roomNumber, String startDate, String endDate){
+        return Controller.deleteReservation(email, roomNumber, startDate, endDate);
+    }
+
     public static Room getRoom(int roomNum){
         //filler
         return Controller.getRoom(roomNum);
@@ -79,13 +91,7 @@ public class UIBlackBox {
         return Controller.getReservation(reservationId);
     }
 
-    public static Vector<Vector<String>> getAvailableRooms(Date start, Date end, String roomType){
-        return Controller.getAvailableRooms(start, end, roomType);
-    }
 
-    public static Vector<Vector<String>> getReservationsForUser(String email){
-        return Controller.getReservationsByEmail(email);
-    }
 
     //public static Account getCurrentUser(){
         //return Controller.getCurrentUser();

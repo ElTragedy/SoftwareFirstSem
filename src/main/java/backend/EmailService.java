@@ -13,6 +13,13 @@ public class EmailService {
     private String fromEmail;
     private String password;
     private Properties props;
+
+    /**
+     * Constructor for EmailService class.
+     *
+     * @param fromEmail The email address from which the emails will be sent.
+     * @param password The password associated with the fromEmail address.
+     */
     public EmailService(String fromEmail, String password) {
         this.fromEmail = fromEmail;
         this.password = password;
@@ -25,6 +32,15 @@ public class EmailService {
         props.put("mail.smtp.port", "587");
     }
 
+    /**
+     * Sends an email to the specified email address with the given subject and body.
+     *
+     * @param toEmail the email address to send the email to
+     * @param subject the subject of the email
+     * @param body the body of the email
+     *
+     * @throws MessagingException if there is an error while sending the email
+     */
     public void send(String toEmail, String subject, String body) throws MessagingException {
         Session session = Session.getInstance(props, new javax.mail.Authenticator(){
             protected PasswordAuthentication getPasswordAuthentication() {

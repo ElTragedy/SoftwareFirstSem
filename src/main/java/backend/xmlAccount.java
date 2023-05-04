@@ -10,6 +10,12 @@ import java.io.InputStream;
 public class xmlAccount {
     //parse xml file class done
 
+  /**
+   * Loads an AccountDatabase from an XML file.
+   *
+   * @param s the filename of the XML file
+   * @return an AccountDatabase object loaded from the specified XML file
+   */
   public static AccountDatabase load(String s) {
     JAXBContext jaxbContext;
     AccountDatabase a = new AccountDatabase();
@@ -28,6 +34,12 @@ public class xmlAccount {
     return a;
   }
 
+  /**
+   * Saves an AccountDatabase to an XML file.
+   *
+   * @param filename the name of the XML file to save to
+   * @param bookstore the AccountDatabase object to save
+   */
   public static void doSave(String filename, AccountDatabase bookstore) {
     try {
       JAXBContext jaxbContext = JAXBContext.newInstance(AccountDatabase.class);

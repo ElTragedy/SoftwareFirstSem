@@ -141,5 +141,19 @@
             <state>TX</state>
             <country>United States</country>
         </account>
+        <account access="guest" id="1240">
+            <firstName>Chris</firstName>
+            <lastName>chenoweth</lastName>
+            <DOB>2000-02-12</DOB>
+            <sex>Male</sex>
+            <phoneNumber></phoneNumber>
+            <email>chris.chenoweth03@gmail.com</email>
+            <password>1234</password>
+            <address></address>
+            <zipcode></zipcode>
+            <city></city>
+            <state>AL</state>
+            <country>United States</country>
+        </account>
     </users>
 </accounts>

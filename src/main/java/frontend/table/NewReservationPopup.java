@@ -109,10 +109,6 @@ public class NewReservationPopup extends JDialog{
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Load data into table
-//                accountPortalUI accountPortalUI = new accountPortalUI();
-//                accountPortalUI.createAndShowGui();
-//                dispose();
                 avaliableRoomTable.updateTable(UIBlackBox.getAvailableRooms(
                         (Date) startDatePicker.getModel().getValue(),
                         (Date) endDatePicker.getModel().getValue(),
