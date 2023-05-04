@@ -14,7 +14,7 @@ public class Controller {
     static ReservationDatabase reservationDatabase = new ReservationDatabase();
     static Account currentAccount = new Account();
 
-    static EmailService emailService = new EmailService(System.getenv("EMAIL"), System.getenv("PASSWORD"));
+    static EmailService emailService = new EmailService("softarechefs@outlook.com", "$oftwareChefs!");
 
     
     //this will be our main function. This will speak to everything else.
@@ -111,8 +111,12 @@ public class Controller {
      * @param roomNum the room number to check for existence
      * @return true if a room with the given room number exists, false otherwise
      */
-    public static boolean roomExists(int roomNum){
+    public static boolean roomExists(int roomNum) {
         return roomDatabase.roomExists(roomNum);
+    }
+
+    public static boolean deleteReservation(String email, String roomNumber, String startDate, String endDate){
+        return reservationDatabase.cancelReservation(email, roomNumber, startDate, endDate);
     }
 
     /**
@@ -134,12 +138,11 @@ public class Controller {
      * @return a Vector of Vectors representing the available rooms, where each inner Vector contains the room number, room type, and room condition as Strings
      */
     public static Vector<Vector<String>> getAvailableRooms(Date start, Date end, String type){
-        //TODO: Make this a function inside of room database
-
         RoomType enumType = (type.equals("Single King")) ? RoomType.singleKing: (type.equals("Double Queen")) ? RoomType.doubleQueen: RoomType.suite;
         ArrayList<Room> rooms = roomDatabase.getRooms();
         rooms.removeIf(n -> (!n.roomType.equals(enumType)));
 
+        rooms = reservationDatabase.getAvailableRooms(start, end, rooms);
         Vector<Vector<String>> output = new Vector<>();
         for(Room i : rooms){
             String roomType = i.getRoomType().equals(RoomType.suite) ? "Suite" : i.roomType.equals(RoomType.singleKing) ? "Single King" : "Double Queen";

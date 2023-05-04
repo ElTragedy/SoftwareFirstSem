@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @XmlRootElement(name = "reservation")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Reservation { //TODO: Make reservation ID equal to room number as hex + ReservationHash(In Hex)
+public class Reservation {
 
     String email;
     Room reserved;
@@ -82,7 +82,8 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
      */
     @Override
     public int hashCode() {
-        return Objects.hash(email, roomNumber, checkIn, checkOut);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return Objects.hash(email, roomNumber, format.format(checkIn), format.format(checkOut));
     }
 
     /**
@@ -92,7 +93,8 @@ public class Reservation { //TODO: Make reservation ID equal to room number as h
      * @return true if the Reservations overlap, false otherwise
      */
     public boolean overlap(Reservation r){
-        if(r.checkIn.compareTo(checkOut)  >= 0 || r.checkOut.compareTo(checkIn) <= 0){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        if(format.format(r.checkIn).compareTo(format.format(checkOut))  >= 0 || format.format(r.checkOut).compareTo(format.format(checkIn)) <= 0){
             return false;
         }
         return true;

@@ -2,7 +2,7 @@ package frontend.UI;
 
 /*
  * This code uses a lot of functions like "Create User" and "create reservation"
- * which will need to communicate with the UIBlackBox. This is a TODO: connect
+ * which will need to communicate with the UIBlackBox. This is a
  * this to the UIBlackBox.
  */
 
@@ -10,16 +10,11 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import frontend.UIBlackBox;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Vector;
 
 public class accountPortalUI extends JFrame implements ActionListener {
@@ -40,12 +35,6 @@ public class accountPortalUI extends JFrame implements ActionListener {
     private JTable table;
 
 
-    /**
-     * Constructs a new instance of the accountPortalUI class.
-     * This method initializes and sets up the graphical user interface of the user account portal.
-     * It displays a greeting label with the user's name, a table of their current reservations,
-     * buttons to create a new reservation or cancel an existing one, and a sign out button.
-     */
     public accountPortalUI() {
         UIBlackBox.saveAll();
 
@@ -53,12 +42,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
         //panel.setBorder(BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder()));
 
         // Declare Column Headers
-        String[] columnHeader = {"Room Number", "Room Size", "Room Type","Start Date", "End Date"};
-        String[][] data = {
-                {"123", "Suite", "2023-05-01", "2023-05-07"},
-                {"312", "Single King", "2023-04-28", "2023-05-07"},
-                {"166", "Double King", "2023-05-01", "2023-05-07"}
-        };
+        String[] columnHeader = {"Room Number", "Room Size", "Start Date", "End Date"};
 
         // Configure Table Basics
         DefaultTableModel model = new DefaultTableModel(null, columnHeader) {
@@ -74,7 +58,7 @@ public class accountPortalUI extends JFrame implements ActionListener {
         panel.add(new JScrollPane(table));
 
         model.setRowCount(0);
-        for(Vector<String> i : UIBlackBox.getReservationsForUser(UIBlackBox.getCurrentAccount().getEmail())){
+        for(Vector<String> i : UIBlackBox.getReservationsByEmail(UIBlackBox.getCurrentAccount().getEmail())){
             model.addRow(i);
         }
 
@@ -120,7 +104,6 @@ public class accountPortalUI extends JFrame implements ActionListener {
         cancelReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO: MAKE CANCEL RESERVATION ACTUALLY CANCEL RESERVATION
                 int viewRow = table.getSelectedRow();
                 if (viewRow < 0) {
                     JOptionPane.showMessageDialog(null, "No Row Selected!");
@@ -140,6 +123,11 @@ public class accountPortalUI extends JFrame implements ActionListener {
                                         model.getValueAt(modelRow, 2) + " to " + model.getValueAt(modelRow, 3) + "?",
                                 "Warning", JOptionPane.YES_NO_OPTION);
                         if (answer == 0) {
+                            UIBlackBox.deleteReservation(
+                                    UIBlackBox.getCurrentAccount().getEmail(),
+                                    model.getValueAt(modelRow, 0).toString(),
+                                    model.getValueAt(modelRow, 2).toString(),
+                                    model.getValueAt(modelRow, 3).toString());
                             model.removeRow(modelRow);
                         }
                     }
@@ -154,9 +142,15 @@ public class accountPortalUI extends JFrame implements ActionListener {
         addComponents();
     }
 
-    /**
-     * Sets the bounds of all labels and fields in the graphical user interface.
-     */
+    public void updateTable(){
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        for(Vector<String> i : UIBlackBox.getReservationsByEmail(UIBlackBox.getCurrentAccount().getEmail())){
+            model.addRow(i);
+        }
+    }
+
+    // Sets all labels/fields bounds
     public void setBounds() {
         greetingLabel.setBounds(25, 10, 250, 30);
         reservationStatusLabel.setBounds(25, 80, 200, 30);
@@ -166,9 +160,6 @@ public class accountPortalUI extends JFrame implements ActionListener {
         panel.setBounds(25, 100, 500, 150);
     }
 
-    /**
-     * Adds all components to the container of the graphical user interface.
-     */
     public void addComponents() {
         container.add(greetingLabel);
         container.add(reservationStatusLabel);
@@ -178,10 +169,6 @@ public class accountPortalUI extends JFrame implements ActionListener {
         container.add(panel);
     }
 
-    /**
-     * Creates and shows an instance of the accountPortalUI graphical user interface.
-     * This method sets the look and feel of the UI to FlatDarcula.
-     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {

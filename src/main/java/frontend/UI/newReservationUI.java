@@ -13,6 +13,7 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,6 +43,7 @@ public class newReservationUI extends JFrame {
      * @param parent
      */
     public newReservationUI(JFrame parent) {
+
         parentFrame = parent;
         // Implement Back Button
         backButton = new JButton();
@@ -108,10 +110,6 @@ public class newReservationUI extends JFrame {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Load data into table
-//                accountPortalUI accountPortalUI = new accountPortalUI();
-//                accountPortalUI.createAndShowGui();
-//                dispose();
                 avaliableRoomTable.updateTable(UIBlackBox.getAvailableRooms(
                         (Date) startDatePicker.getModel().getValue(),
                         (Date) endDatePicker.getModel().getValue(),
@@ -148,6 +146,7 @@ public class newReservationUI extends JFrame {
                     JOptionPane.showMessageDialog(container, "Could not successfully deliver confirmation email.",
                             "Email Service Error", JOptionPane.ERROR_MESSAGE);
                 }
+                ((accountPortalUI) parent).updateTable();
             }
         });
 
@@ -230,10 +229,6 @@ public class newReservationUI extends JFrame {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Load data into table
-//                accountPortalUI accountPortalUI = new accountPortalUI();
-//                accountPortalUI.createAndShowGui();
-//                dispose();
                 avaliableRoomTable.updateTable(UIBlackBox.getAvailableRooms(
                         (Date) startDatePicker.getModel().getValue(),
                         (Date) endDatePicker.getModel().getValue(),
