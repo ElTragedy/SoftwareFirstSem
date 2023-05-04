@@ -2,6 +2,9 @@ package backend;
 
 import java.text.SimpleDateFormat;
 import javax.mail.MessagingException;
+
+import frontend.UIBlackBox;
+
 import java.util.*;
 
 public class Controller {
@@ -24,19 +27,9 @@ public class Controller {
         //this calls the xml function from Account database to load the csv
         accountDatabase.load("accounts.xml");
         roomDatabase.load("rooms.xml");
-        if(accountDatabase.getSize() == 0){
-            System.out.println("no accounts");
-        }
-        else{
-            System.out.println("accounts exist");
-        }
+        reservationDatabase.load("reservations.xml");
 
-        if(roomDatabase.getSize() == 0){
-            System.out.println("no rooms");
-        }
-        else{
-            System.out.println("rooms exist");
-        }
+        UIBlackBox.startProgram();
     
     }
 

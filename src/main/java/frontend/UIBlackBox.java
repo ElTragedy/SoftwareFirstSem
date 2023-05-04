@@ -3,6 +3,7 @@ package frontend;
 
 import backend.*;
 import backend.Room;
+import frontend.UI.loginUI;
 
 import javax.mail.MessagingException;
 import java.util.*;
@@ -136,6 +137,11 @@ public class UIBlackBox {
 
     public static boolean deleteAccount(Account a){
         return Controller.deleteAccount(a);
+    }
+
+    public static void startProgram(){
+        loginUI loginUI = new loginUI();
+        loginUI.createAndShowGui();
     }
 
 }
