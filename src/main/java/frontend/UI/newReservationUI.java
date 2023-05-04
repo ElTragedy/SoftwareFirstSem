@@ -242,14 +242,6 @@ public class newReservationUI extends JFrame {
                 String message = "Hello " + account.getFirstName() + " " + account.getLastName() + ",\n\n" +
                         "Your reservation has been confirmed for " + formattedDate + ".";
 
-
-                //need to make a room that has roomType, number, and condition
-                //status preset to available until assigned with a reservation
-                Room room = new Room();
-
-                //reservation needs a room, boolean, Date checkIn, Date checkOut
-
-                //Reservation r = new Reservation(email, )
                 try {
                     UIBlackBox.sendEmail(UIBlackBox.getCurrentAccount().getEmail(), subject, message);
                 } catch (MessagingException ex) {
