@@ -43,6 +43,9 @@ public class editProfileUI extends JFrame{
     private JDatePanelImpl datePanel;
     private JDatePickerImpl datePicker;
 
+    /**
+     * Create all components for edit profile UI
+     */
     public editProfileUI() {
         // Implement Back Button
         backButton = new JButton();
@@ -253,7 +256,9 @@ public class editProfileUI extends JFrame{
         addComponents();
     }
 
-    // Sets all labels/fields bounds
+    /**
+     * Set bounds for all components
+     */
     public void setBounds() {
         backButton.setBounds(0, 0, 30, 30);
         message.setBounds(50, 10, 600, 30);
@@ -289,7 +294,9 @@ public class editProfileUI extends JFrame{
         registerButton.setBounds(130, 710, 200, 30);
     }
 
-    // Adds labels and fields to container
+    /**
+     * Add all components to the container
+     */
     public void addComponents() {
         container.add(backButton);
         container.add(message);
@@ -324,6 +331,10 @@ public class editProfileUI extends JFrame{
         container.add(countryList);
         container.add(registerButton);
     }
+
+    /**
+     * Initialize all components and display them
+     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {

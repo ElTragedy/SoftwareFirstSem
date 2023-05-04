@@ -23,6 +23,9 @@ public class loginUI extends JFrame implements ActionListener{
     private JButton loginButton;
     private JButton createAccountButton;
 
+    /**
+     * Create all components for loginUI
+     */
     public loginUI() {
         UIBlackBox.loadAll();
 
@@ -93,7 +96,9 @@ public class loginUI extends JFrame implements ActionListener{
         addComponents();
     }
 
-    // Sets all labels/fields bounds
+    /**
+     * Set bounds for all components
+     */
     public void setBounds() {
         Integer width = getHeight();
         Integer height = container.getHeight();
@@ -114,7 +119,9 @@ public class loginUI extends JFrame implements ActionListener{
         createAccountButton.setHorizontalAlignment(JLabel.CENTER);
     }
 
-    // Adds labels and fields to container
+    /**
+     * Add all components to the container
+     */
     public void addComponents() {
         container.add(message);
 
@@ -128,6 +135,9 @@ public class loginUI extends JFrame implements ActionListener{
         container.add(createAccountButton);
     }
 
+    /**
+     * Initialize all components and display them
+     */
     public static void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {

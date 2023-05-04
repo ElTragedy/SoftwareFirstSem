@@ -56,6 +56,9 @@ public class createAccountUI extends JFrame {
     private JDatePanelImpl datePanel;
     private JDatePickerImpl datePicker;
 
+    /**
+     * Creates all components for the account UI
+     */
     public createAccountUI() {
         // Implement Back Button
         backButton = new JButton();
@@ -232,7 +235,9 @@ public class createAccountUI extends JFrame {
         addComponents();
     }
 
-    // Sets all labels/fields bounds
+    /**
+     * Sets bounds for all components
+     */
     public void setBounds() {
         backButton.setBounds(0, 0, 30, 30);
         message.setBounds(50, 10, 600, 30);
@@ -268,7 +273,9 @@ public class createAccountUI extends JFrame {
         registerButton.setBounds(130, 710, 200, 30);
     }
 
-    // Adds labels and fields to container
+    /**
+     * Add all components to the container
+     */
     public void addComponents() {
         container.add(backButton);
         container.add(message);
@@ -303,6 +310,10 @@ public class createAccountUI extends JFrame {
         container.add(countryList);
         container.add(registerButton);
     }
+
+    /**
+     * Intialize all UI components and display
+     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {

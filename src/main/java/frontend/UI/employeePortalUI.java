@@ -19,6 +19,9 @@ public class employeePortalUI extends JFrame implements ActionListener {
     private JButton newReservationButton;
     private JButton modifyReservationButton;
 
+    /**
+     * Create all components for the employee portal UI
+     */
     public employeePortalUI() {
         // Set All Components
         employeeMessage = new JLabel("Employee Portal"); // TODO: Add Hello, "user's name"
@@ -68,7 +71,9 @@ public class employeePortalUI extends JFrame implements ActionListener {
         addComponents();
     }
 
-    // Sets all labels/fields bounds
+    /**
+     * Set bounds for all components
+     */
     public void setBounds() {
         employeeMessage.setBounds(50, 10, 250, 30);
         signOutButton.setBounds(300, 10, 100, 30);
@@ -77,6 +82,9 @@ public class employeePortalUI extends JFrame implements ActionListener {
         modifyReservationButton.setBounds(250, 110, 200, 30);
     }
 
+    /**
+     * Add all components to the container
+     */
     public void addComponents() {
         container.add(employeeMessage);
         container.add(signOutButton);
@@ -84,6 +92,9 @@ public class employeePortalUI extends JFrame implements ActionListener {
         container.add(modifyReservationButton);
     }
 
+    /**
+     * Initialize all components and display them
+     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {

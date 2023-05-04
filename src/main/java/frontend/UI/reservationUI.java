@@ -32,6 +32,9 @@ public class reservationUI extends JFrame{
         reservationUI.createAndShowGui();
     }
 
+    /**
+     * Create all components for the reservationUI
+     */
     public reservationUI(){
         backButton = new JButton();
 
@@ -103,11 +106,10 @@ public class reservationUI extends JFrame{
         addComponents();
     }
 
-
-
-
-
-
+    /**
+     * Create all components for the reservationUI with email
+     * @param email
+     */
     public reservationUI(String email){
         backButton = new JButton();
 
@@ -179,11 +181,9 @@ public class reservationUI extends JFrame{
         addComponents();
     }
 
-
-
-
-
-
+    /**
+     * Set bounds for all components
+     */
     public void setBounds(){
         backButton.setBounds(0,0, 30, 30);
         header.setBounds(200, 50, 200, 50);
@@ -196,6 +196,9 @@ public class reservationUI extends JFrame{
         reserve.setBounds(200, 300, 100, 40);
     }
 
+    /**
+     * Add all components to the container
+     */
     public void addComponents(){
         container.add(backButton);
         container.add(header);
@@ -210,6 +213,9 @@ public class reservationUI extends JFrame{
         container.add(dateFormat1);
     }
 
+    /**
+     * Initialize all components and display them
+     */
     public void createAndShowGui() {
         // Set Look and Feel of UI to FlatDarcula
         try {
