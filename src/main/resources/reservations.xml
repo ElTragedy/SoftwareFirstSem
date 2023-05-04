@@ -2,25 +2,6 @@
 <roomReservations>
     <reserveMap>
         <entry>
-            <key>0</key>
-            <value>
-                <reserveList>
-                    <email>chris.chenoweth03@gmail.com</email>
-                    <roomNumber>123</roomNumber>
-                    <payed>false</payed>
-                    <checkIn>2023-05-18T12:19:45.555-05:00</checkIn>
-                    <checkOut>2023-05-18T12:19:45.560-05:00</checkOut>
-                </reserveList>
-                <reserveList>
-                    <email>chris.chenoweth03@gmail.com</email>
-                    <roomNumber>111</roomNumber>
-                    <payed>false</payed>
-                    <checkIn>2023-05-18T12:22:09.428-05:00</checkIn>
-                    <checkOut>2023-05-18T12:22:09.433-05:00</checkOut>
-                </reserveList>
-            </value>
-        </entry>
-        <entry>
             <key>321</key>
             <value>
                 <reserveList>
@@ -36,13 +17,6 @@
             <key>212</key>
             <value>
                 <reserveList>
-                    <email>chris.chenoweth03@gmail.com</email>
-                    <roomNumber>212</roomNumber>
-                    <payed>false</payed>
-                    <checkIn>2023-05-18T12:37:34.291-05:00</checkIn>
-                    <checkOut>2023-05-18T12:37:34.296-05:00</checkOut>
-                </reserveList>
-                <reserveList>
                     <email>clerk</email>
                     <roomNumber>212</roomNumber>
                     <payed>false</payed>
@@ -57,6 +31,13 @@
                     <checkOut>2023-05-18T21:35:51.181-05:00</checkOut>
                 </reserveList>
                 <reserveList>
+                    <email>chris.chenoweth03@gmail.com</email>
+                    <roomNumber>212</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-18T23:17:55.173-05:00</checkIn>
+                    <checkOut>2023-05-18T23:17:55.180-05:00</checkOut>
+                </reserveList>
+                <reserveList>
                     <email>clerk</email>
                     <roomNumber>212</roomNumber>
                     <payed>false</payed>
@@ -68,6 +49,13 @@
         <entry>
             <key>123</key>
             <value>
+                <reserveList>
+                    <email>chris.chenoweth03@gmail.com</email>
+                    <roomNumber>123</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-18T12:19:45.555-05:00</checkIn>
+                    <checkOut>2023-05-18T12:19:45.560-05:00</checkOut>
+                </reserveList>
                 <reserveList>
                     <email>jlukesmith0221@gmail.com</email>
                     <roomNumber>123</roomNumber>
@@ -100,18 +88,18 @@
             <key>111</key>
             <value>
                 <reserveList>
-                    <email>guest</email>
-                    <roomNumber>111</roomNumber>
-                    <payed>false</payed>
-                    <checkIn>2023-05-18T19:38:46.970-05:00</checkIn>
-                    <checkOut>2023-05-18T19:38:46.975-05:00</checkOut>
-                </reserveList>
-                <reserveList>
                     <email>clerk</email>
                     <roomNumber>111</roomNumber>
                     <payed>false</payed>
                     <checkIn>2023-05-26T19:56:45.768-05:00</checkIn>
                     <checkOut>2023-05-31T19:56:45.772-05:00</checkOut>
+                </reserveList>
+                <reserveList>
+                    <email>chris.chenoweth03@gmail.com</email>
+                    <roomNumber>111</roomNumber>
+                    <payed>false</payed>
+                    <checkIn>2023-05-18T12:22:09.428-05:00</checkIn>
+                    <checkOut>2023-05-18T12:22:09.433-05:00</checkOut>
                 </reserveList>
             </value>
         </entry>

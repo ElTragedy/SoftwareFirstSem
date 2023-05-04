@@ -9,6 +9,7 @@ import jakarta.xml.bind.annotation.*;
 import java.io.*;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -93,6 +94,10 @@ public class ReservationDatabase {
             }
         }
 
+        if(database.get(0) != null){
+            System.out.println("BAD");
+        }
+
         save();
 
         return !reserved;
@@ -101,11 +106,28 @@ public class ReservationDatabase {
     /**
      * Cancels the reservation with the given ID.
      *
-     * @param reservationID the ID of the reservation to cancel
+     * @param email the ID of the reservation to cancel
      * @return true if the reservation was cancelled, false otherwise
      */
-    public boolean cancelReservation(String reservationID){
-        return database.get(roomNumFromID(reservationID)).removeIf((n) -> n.getReservationID().equals(reservationID));
+    public boolean cancelReservation(String email, String roomNumber, String startDate, String endDate){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        ArrayList<Reservation> reservations = database.get(Integer.parseInt(roomNumber));
+
+        boolean tmp = reservations.removeIf(n ->
+                n.email.equals(email) &&
+                        format.format(n.getCheckIn()).equals(startDate) &&
+                        format.format(n.getCheckOut()).equals(endDate) &&
+                        Integer.toString(n.getRoomNumber()).equals(roomNumber));
+
+        if(tmp){
+            System.out.println("GOOD");
+        }
+
+        database.put(Integer.parseInt(roomNumber), reservations);
+
+        save();
+
+        return tmp;
     }
 
     /**
@@ -162,13 +184,15 @@ public class ReservationDatabase {
      * @return an ArrayList of available Room objects for the given date range
      */
     public ArrayList<Room> getAvailableRooms(Date start, Date end, ArrayList<Room> rooms) {
-        ArrayList<Room> out = rooms;
+        ArrayList<Room> out = new ArrayList<>(rooms);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
         for(Room i : rooms){
             if(database.get(i.getNumber()) != null){
                 for(Reservation k : database.get(i.getNumber())){
-//                    if(end.compareTo(k.checkIn)  > 0 && start.compareTo(k.checkOut) < 0){
-//                        out.removeIf(n -> n.getNumber() == k.roomNumber);
-//                    }
+                    if(format.format(end).compareTo(format.format(k.checkIn)) > 0 && format.format(start).compareTo(format.format(k.checkOut)) < 0){
+                        out.removeIf(n -> n.getNumber() == k.roomNumber);
+                    }
                 }
             }
         }
@@ -184,29 +208,6 @@ public class ReservationDatabase {
         return database.size();
     }
 
-    /**
-     * Attempts to update the reservation with the given ID to the modified Reservation object.
-     *
-     * @param reservationID the ID of the reservation to update
-     * @param modified the modified Reservation object
-     * @return the ID of the modified reservation if successful, null otherwise
-     */
-    public String attemptUpdate(String reservationID, Reservation modified){
-        Reservation hold = getReservationDetails(reservationID);
-        cancelReservation(reservationID);
-
-        if(reserveRoom(modified)){
-            return modified.getReservationID();
-        }
-        return null;
-    }
-
-    /**
-     * Converts a reservation ID to a room number.
-     *
-     * @param ID the reservation ID to convert
-     * @return the room number associated with the reservation ID
-     */
     private int roomNumFromID(String ID){
         return Integer.parseInt(ID.substring(0, 3), 16);
     }
