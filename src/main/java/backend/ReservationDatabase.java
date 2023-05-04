@@ -106,7 +106,7 @@ public class ReservationDatabase {
     /**
      * Cancels the reservation with the given ID.
      *
-     * @param email the ID of the reservation to cancel
+     * @param email, roomNumber, startDate, and endDate of the reservation you want to cancel
      * @return true if the reservation was cancelled, false otherwise
      */
     public boolean cancelReservation(String email, String roomNumber, String startDate, String endDate){
@@ -118,10 +118,6 @@ public class ReservationDatabase {
                         format.format(n.getCheckIn()).equals(startDate) &&
                         format.format(n.getCheckOut()).equals(endDate) &&
                         Integer.toString(n.getRoomNumber()).equals(roomNumber));
-
-        if(tmp){
-            System.out.println("GOOD");
-        }
 
         database.put(Integer.parseInt(roomNumber), reservations);
 
