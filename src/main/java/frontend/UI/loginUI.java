@@ -42,7 +42,6 @@ public class loginUI extends JFrame implements ActionListener{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(Arrays.toString(passwordField.getPassword()));
                 String email = emailField.getText();
                 char[] password = passwordField.getPassword();
 
@@ -141,7 +140,6 @@ public class loginUI extends JFrame implements ActionListener{
         frame.setTitle("Login");
         frame.setVisible(true);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        System.out.println(screenSize.width + " " + screenSize.height);
         Integer newWidth = screenSize.width/2;
         Integer newHeight = screenSize.height/2;
         //frame.pack();

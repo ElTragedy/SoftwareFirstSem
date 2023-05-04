@@ -189,69 +189,6 @@ public class AvaliableRoomTable extends JPanel {
         }
     }
 
-//    private JMenuBar initMenu(DefaultTableModel model) {
-//        JMenuBar menuBar;
-//        JMenu menu;
-//        JMenuItem header, menuRemove, menuCSV;
-//
-//        menuBar = new JMenuBar();
-//        menu = new JMenu("Menu");
-//        menuBar.add(menu);
-//
-//        header = new JMenuItem("COMMANDS:");
-//        header.setEnabled(false);
-//        menu.add(header);
-//
-//        menuRemove = new JMenuItem("Remove");
-//        menuRemove.addActionListener(new RemoveLineActionLister());
-//        menu.addMenuListener(new MenuListener() {
-//            @Override
-//            public void menuSelected(MenuEvent e) {
-//                int viewRow = table.getSelectedRow();
-//                if (viewRow < 0) {
-//                    menuRemove.setEnabled(false);
-//                } else {
-//                    menuRemove.setEnabled(true);
-//                }
-//            }
-//
-//            @Override
-//            public void menuDeselected(MenuEvent e) {}
-//            @Override
-//            public void menuCanceled(MenuEvent e) {}
-//        });
-//        menu.add(menuRemove);
-//        menu.addSeparator();
-//
-//        menuCSV = new JMenuItem("Load CSV");
-//        menu.add(menuCSV);
-//        menuCSV.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                DefaultTableModel model = (DefaultTableModel) table.getModel();
-//                model.setRowCount(0);
-//                try (BufferedReader br = new BufferedReader(new FileReader(new File(this.getClass().getResource(
-//                        "/data.csv").getFile())))) {
-//                    String line;
-//                    while ((line = br.readLine()) != null) {
-//                        // System.out.println(line);
-//                        String[] row = line.split(",");
-//                        Vector<Object> correction = new Vector<>();
-//                        for (int i = 0; i < 3; i++) {
-//                            correction.add(row[i]);
-//                        }
-//                        correction.add(Integer.parseInt(row[3]));
-//                        correction.add(Boolean.parseBoolean(row[4]));
-//                        model.addRow(correction);
-//                    }
-//                } catch (IOException exception) {
-//                    throw new RuntimeException(exception);
-//                }
-//            }
-//        });
-//        return menuBar;
-//    }
-
     public static class MyDialog extends JDialog {
         private JTable table;
         public MyDialog(JTable owner) {

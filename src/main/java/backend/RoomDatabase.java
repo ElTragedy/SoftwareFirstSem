@@ -171,15 +171,6 @@ public class RoomDatabase {
         rooms.add(newRoom);
     }
 
-    /**
-     * Prints all the rooms in the database to the console.
-     */
-    public void printAll(){
-        for (Room room : rooms) {
-            System.out.println(room);
-        }
-    }
-
     public static void main(String[] args) {
         RoomDatabase rd = new RoomDatabase();
 

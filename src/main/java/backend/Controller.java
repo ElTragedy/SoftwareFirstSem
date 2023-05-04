@@ -22,7 +22,6 @@ public class Controller {
 
     public static void main(String[] args) {
 
-        System.out.println("hello world");
         //declaration of the AccountDatabase class
         //this calls the xml function from Account database to load the csv
         accountDatabase.load("accounts.xml");
@@ -41,7 +40,6 @@ public class Controller {
     public static boolean createAccount(Account a){
         int size = accountDatabase.getSize();
         accountDatabase.insertAccount(a);
-        System.out.println("account created");
         Controller.setCurrentAccount(a);
         if (size == accountDatabase.getSize()){
             return false;

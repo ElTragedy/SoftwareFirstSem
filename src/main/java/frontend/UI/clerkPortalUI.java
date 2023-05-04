@@ -191,7 +191,6 @@ public class clerkPortalUI extends JFrame implements ActionListener {
                 } else {
                     if (UIBlackBox.getAccount(searchUserField.getText()) != null) {
                         guest[0] =UIBlackBox.getAccount(searchUserField.getText());
-                        System.out.println(guest[0].getEmail());
                         model.setRowCount(0);
                         for(Vector<String> i : UIBlackBox.getReservationsByEmail(UIBlackBox.getCurrentAccount().getEmail())){
                             model.addRow(i);

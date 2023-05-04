@@ -26,7 +26,6 @@ public class AccountDatabase {
      */
     public void save(){
         xmlAccount.doSave("accounts.xml", this);
-        System.out.println("Saved to accounts.xml");
     }
 
     /**
@@ -91,15 +90,6 @@ public class AccountDatabase {
      */
     public ArrayList<Account> getAccountList() {
         return accountList;
-    }
-
-    /**
-     * Prints all the accounts in the account list to the console
-     */
-    public void printAll(){
-        for (Account account : accountList) {
-            System.out.println(account);
-        }
     }
 
     /**

@@ -94,10 +94,6 @@ public class ReservationDatabase {
             }
         }
 
-        if(database.get(0) != null){
-            System.out.println("BAD");
-        }
-
         save();
 
         return !reserved;
