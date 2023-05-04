@@ -130,6 +130,7 @@ public class NewReservationPopup extends JDialog{
                 Date startDate = (Date) startDatePicker.getModel().getValue();
                 String formattedDate = dateFormatter.format(startDate);
 
+                //TODO: HAND OFF EMAIL ENTERED IN CLERK PORTAL FIELD (DONT CHANGE CONSTRUCTOR OR CREATE AND SHOW GUI J ACCEPT THE ACCOUNT)
                 Account account = guest;
                 String subject = "Room Reserved";
                 String message = "Hello " + account.getFirstName() + " " + account.getLastName() + ",\n\n" +
@@ -141,8 +142,6 @@ public class NewReservationPopup extends JDialog{
                         false,
                         (Date) startDatePicker.getModel().getValue(),
                         (Date) endDatePicker.getModel().getValue());
-
-
                 try {
                     UIBlackBox.sendEmail(UIBlackBox.getCurrentAccount().getEmail(), subject, message);
                 } catch (MessagingException ex) {
@@ -151,7 +150,6 @@ public class NewReservationPopup extends JDialog{
                 }
             }
         });
-
 
         // Add and set container
         container = getContentPane();
@@ -211,7 +209,7 @@ public class NewReservationPopup extends JDialog{
         frame.setTitle("Create New Reservation");
         frame.setVisible(true);
         frame.setBounds(500, 15, 800, 550);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(true);
     }
 
