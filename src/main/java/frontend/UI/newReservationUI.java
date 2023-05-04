@@ -29,7 +29,7 @@ public class newReservationUI extends JFrame {
     private JDatePickerImpl startDatePicker, endDatePicker;
     private JLabel roomTypeLabel;
     private JComboBox<String> roomTypeList;
-    private JButton reserverRoom;
+    private JButton reserveRoom;
 
     private JScrollPane scrollPane;
     private AvaliableRoomTable avaliableRoomTable;
@@ -38,9 +38,12 @@ public class newReservationUI extends JFrame {
     private JFrame parentFrame;
     private Container container;
 
+    private Account account;
+
     public newReservationUI(JFrame parent) {
 
         parentFrame = parent;
+
         // Implement Back Button
         backButton = new JButton();
         backButton.addActionListener(new ActionListener() {
@@ -114,8 +117,8 @@ public class newReservationUI extends JFrame {
         });
 
         // reserve room
-        reserverRoom = new JButton("Reserve Room");
-        reserverRoom.addActionListener(new ActionListener() {
+        reserveRoom = new JButton("Reserve Room");
+        reserveRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -227,9 +230,9 @@ public class newReservationUI extends JFrame {
             }
         });
 
-        // reserve room
-        reserverRoom = new JButton("Reserve Room");
-        reserverRoom.addActionListener(new ActionListener() {
+        // Reserve room
+        reserveRoom = new JButton("Reserve Room");
+        reserveRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -276,7 +279,7 @@ public class newReservationUI extends JFrame {
         avaliableRoomTable.setBounds(350, 60, 400, 400);
 
         confirmButton.setBounds(130, 210, 200, 30);
-        reserverRoom.setBounds(130, 260, 200, 30);
+        reserveRoom.setBounds(130, 260, 200, 30);
     }
 
     public void addComponents() {
@@ -295,7 +298,7 @@ public class newReservationUI extends JFrame {
         container.add(avaliableRoomTable);
 
         container.add(confirmButton);
-        container.add(reserverRoom);
+        container.add(reserveRoom);
     }
 
     public void createAndShowGui() {
